@@ -18,15 +18,44 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --card-bg: #ffffff;
+            --nav-bg: #ffffff;
+            --border-color: #dddddd;
+            --hover-bg: #333333;
+            --hover-text: #ffffff;
+        }
+
+        [data-theme='dark'] {
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --card-bg: #1e1e1e;
+            --nav-bg: #1e1e1e;
+            --border-color: #444444;
+            --hover-bg: #ffffff;
+            --hover-text: #121212;
+        }
+
         body {
             font-family: 'Arial', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
             background-image: url('background.jpg');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
             background-repeat: no-repeat;
-            color: #333;
-            line-height: 1.6;
+            z-index: -1;
+            opacity: 0.8;
         }
 
         /* Header Navigation */
@@ -35,8 +64,8 @@
             top: 0;
             left: 0;
             right: 0;
-            background: white;
-            border-bottom: 1px solid #e0e0e0;
+            background: var(--nav-bg);
+            border-bottom: 1px solid var(--border-color);
             z-index: 1000;
         }
 
@@ -48,7 +77,7 @@
             height: 60px;
             background: rgba(255, 255, 255, 0.9);
             border-radius: 50%;
-            border: 2px solid #ddd;
+            border: 2px solid var(--border-color);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -77,7 +106,7 @@
 
         .nav-bar {
             height: 60px;
-            background: white;
+            background: var(--nav-bg);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -92,7 +121,7 @@
         }
 
         .nav-link {
-            color: #333;
+            color: var(--text-color);
             text-decoration: none;
             padding: 12px 20px;
             border: 2px solid transparent;
@@ -106,9 +135,9 @@
         }
 
         .nav-link:hover {
-            background-color: #333;
-            color: white;
-            border-color: #333;
+            background-color: var(--text-color);
+            color: var(--hover-text);
+            border-color: var(--text-color);
         }
 
         /* Dropdown Menu */
@@ -116,8 +145,8 @@
             position: absolute;
             top: 100%;
             left: 0;
-            background: white;
-            border: 2px solid #333;
+            background: var(--nav-bg);
+            border: 2px solid var(--text-color);
             border-radius: 4px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             opacity: 0;
@@ -136,10 +165,10 @@
 
         .dropdown-item {
             display: block;
-            color: #333;
+            color: var(--text-color);
             text-decoration: none;
             padding: 10px 16px;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid var(--border-color);
             transition: all 0.3s ease;
             position: relative;
         }
@@ -149,8 +178,8 @@
         }
 
         .dropdown-item:hover {
-            background-color: #333;
-            color: white;
+            background-color: var(--text-color);
+            color: var(--hover-text);
         }
 
         /* Main Content */
@@ -202,7 +231,7 @@
         .tagline {
             font-size: 24px;
             font-weight: 300;
-            color: #333;
+            color: var(--text-color);
             margin-bottom: 40px;
             letter-spacing: 2px;
             font-family: 'Bebas Neue', cursive;
@@ -223,10 +252,10 @@
             font-weight: 600;
             text-align: center;
             margin-bottom: 40px;
-            color: #333;
+            color: var(--text-color);
             letter-spacing: 1px;
             font-family: 'Bebas Neue', cursive;
-            border-bottom: 3px solid #333;
+            border-bottom: 3px solid var(--text-color);
             padding-bottom: 10px;
         }
 
@@ -235,7 +264,7 @@
             font-weight: 600;
             text-align: center;
             margin: 50px 0 30px 0;
-            color: #333;
+            color: var(--text-color);
             text-transform: uppercase;
             letter-spacing: 2px;
             padding-bottom: 10px;
@@ -260,15 +289,15 @@
         }
 
         .thumbnail-card {
-            border: 2px solid #ddd;
+            border: 2px solid var(--border-color);
             border-radius: 8px;
             overflow: hidden;
             transition: all 0.3s ease;
-            background: white;
+            background: var(--nav-bg);
         }
 
         .thumbnail-card:hover {
-            border-color: #333;
+            border-color: var(--text-color);
             transform: translateY(-5px);
             box-shadow: 0 8px 16px rgba(0,0,0,0.1);
         }
@@ -282,7 +311,7 @@
             justify-content: center;
             color: #666;
             font-size: 14px;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .thumbnail-info {
@@ -293,14 +322,14 @@
             font-size: 18px;
             font-weight: 600;
             margin-bottom: 10px;
-            color: #333;
+            color: var(--text-color);
         }
 
         .thumbnail-type {
             display: inline-block;
             padding: 4px 12px;
-            background: #333;
-            color: white;
+            background: var(--hover-bg);
+            color: var(--hover-text);
             border-radius: 20px;
             font-size: 12px;
             font-weight: 500;
@@ -318,19 +347,19 @@
 
         .review-card {
             position: relative;
-            border: 2px solid black;
+            border: 2px solid var(--text-color);
             border-radius: 8px;
             padding: 30px;
-            background: white;
-            color: black;
+            background: var(--nav-bg);
+            color: var(--text-color);
             transition: all 0.3s ease;
             cursor: pointer;
         }
 
         .review-card:hover {
-            background: black;
-            color: white;
-            border-color: black;
+            background: var(--hover-bg);
+            color: var(--hover-text);
+            border-color: var(--text-color);
             transform: translateY(-5px);
             box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
         }
@@ -361,13 +390,9 @@
             display: block;
         }
 
-        .review-card img:not(.review-logo) {
-            display: none;
-        }
+        
 
-        .review-card:hover img:not(.review-logo) {
-            display: block;
-        }
+        
 
         .stars {
             color: #ffa500;
@@ -391,11 +416,11 @@
 
             .pricing-card {
                 position: relative;
-                border: 2px solid #ddd;
+                border: 2px solid var(--border-color);
                 border-radius: 12px;
                 padding: 30px 25px;
                 text-align: center;
-                background: white;
+                background: var(--nav-bg);
                 transition: all 0.4s ease;
                 box-shadow: 0 4px 10px rgba(0,0,0,0.1);
                 min-height: 350px;
@@ -406,8 +431,8 @@
             }
 
             .pricing-card:hover {
-                background: #333;
-                border-color: #333;
+                background: var(--hover-bg);
+                border-color: var(--text-color);
                 transform: translateY(-8px) scale(1.02);
                 box-shadow: 0 12px 30px rgba(0,0,0,0.3);
             }
@@ -415,7 +440,7 @@
             .pricing-type {
                 font-size: 22px;
                 font-weight: 600;
-                color: #333;
+                color: var(--text-color);
                 margin-bottom: 15px;
                 text-transform: uppercase;
                 letter-spacing: 1px;
@@ -423,19 +448,19 @@
             }
 
             .pricing-card:hover .pricing-type {
-                color: white;
+                color: var(--hover-text);
             }
 
             .pricing-amount {
                 font-size: 36px;
                 font-weight: 300;
-                color: #333;
+                color: var(--text-color);
                 margin-bottom: 25px;
                 transition: color 0.4s ease;
             }
 
             .pricing-card:hover .pricing-amount {
-                color: white;
+                color: var(--hover-text);
             }
 
             .pricing-features {
@@ -448,7 +473,7 @@
             .pricing-features li {
                 padding: 8px 0;
                 color: #555;
-                border-bottom: 1px solid #eee;
+                border-bottom: 1px solid var(--border-color);
                 font-size: 14px;
                 line-height: 1.4;
                 transition: all 0.4s ease;
@@ -482,7 +507,7 @@
                 left: 50%;
                 transform: translateX(-50%);
                 background: linear-gradient(45deg, #3498db, #2980b9);
-                color: white;
+                color: var(--hover-text);
                 padding: 8px 20px;
                 border-radius: 20px;
                 font-size: 12px;
@@ -507,8 +532,8 @@
             }
 
             .highlight:hover {
-                background: #333;
-                border-color: #333;
+                background: var(--hover-bg);
+                border-color: var(--text-color);
                 transform: translateY(-8px) scale(1.04);
                 box-shadow: 0 15px 35px rgba(0,0,0,0.4);
             }
@@ -571,12 +596,12 @@
         }
 
         .feature-card {
-            background: white;
-            border: 2px solid #ddd;
+            background: var(--nav-bg);
+            border: 2px solid var(--border-color);
             border-radius: 20px;
             padding: 30px 20px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            color: #333;
+            color: var(--text-color);
             transition: all 0.3s ease;
             aspect-ratio: 1;
             display: flex;
@@ -588,7 +613,7 @@
         .feature-card h3 {
             margin-bottom: 15px;
             font-size: 18px;
-            color: #333;
+            color: var(--text-color);
         }
 
         .feature-card p {
@@ -598,15 +623,15 @@
         }
 
         .feature-card:hover {
-            background: #333;
-            color: white;
-            border-color: #333;
+            background: var(--hover-bg);
+            color: var(--hover-text);
+            border-color: var(--text-color);
             transform: translateY(-5px);
             box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
         }
 
         .feature-card:hover h3 {
-            color: white;
+            color: var(--hover-text);
         }
 
         .feature-card:hover p {
@@ -629,14 +654,14 @@
             font-size: 1.5em;
             font-weight: bold;
             margin-bottom: 15px;
-            color: #333;
+            color: var(--text-color);
             font-family: 'Bebas Neue', cursive; /* Match your existing font */
         }
 
         .document-btn {
             display: inline-block;
             padding: 12px 24px;
-            background-color: white;
+            background-color: var(--nav-bg);
             color: blue;
             text-decoration: underline;
             border: 2px solid blue;
@@ -648,10 +673,10 @@
         }
                    
         .document-btn:hover {
-            background-color: black;
+            background-color: var(--text-color);
             color: blue;
             text-decoration: underline;
-            border-color: black;
+            border-color: var(--text-color);
         }
 
         .document-btn:active {
@@ -688,7 +713,7 @@
         .hamburger-line {
             width: 20px;
             height: 2px;
-            background-color: #333;
+            background-color: var(--text-color);
             margin: 2px 0;
             transition: 0.3s;
         }
@@ -699,8 +724,8 @@
             top: 100%;
             left: 0;
             right: 0;
-            background: white;
-            border: 2px solid #333;
+            background: var(--nav-bg);
+            border: 2px solid var(--text-color);
             border-top: none;
             z-index: 1000;
         }
@@ -711,10 +736,10 @@
 
         .mobile-menu-item {
             display: block;
-            color: #333;
+            color: var(--text-color);
             text-decoration: none;
             padding: 15px 20px;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid var(--border-color);
             transition: all 0.3s ease;
             font-family: 'Bebas Neue', cursive;
             font-size: 16px;
@@ -727,11 +752,8 @@
         }
 
         .mobile-menu-item:hover {
-            background-color: #333;
-            color: white;
-        }
-
-
+            background-color: var(--text-color);
+            color: var(--hover-text);
         }
 
         /* Responsive Design */
@@ -791,12 +813,20 @@
                 grid-template-columns: 1fr;
             }
         }
-    </style>
+    
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+</style>
 </head>
 <body>
     <!-- Top Left Logo -->
     <div class="top-left-logo">
-        <img src="top_logo.jpg" alt="Company Logo" />
+        <img src="top_logo.jpg" alt="Company Logo" / loading="lazy">
     </div>
 
     <!-- Header Navigation -->
@@ -824,7 +854,13 @@
                 </div>
                 
                 <!-- Mobile Menu Toggle -->
-                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">⋯</button>
+                
+                <button class="theme-toggle" onclick="toggleTheme()" style="background: none; border: none; cursor: pointer; font-size: 20px; color: var(--text-color); margin-right: 15px;">🌙</button>
+                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                    <div class="hamburger-line"></div>
+                    <div class="hamburger-line"></div>
+                    <div class="hamburger-line"></div>
+                </button>
                 
                 <!-- Mobile Menu -->
                 <div class="mobile-menu" id="mobileMenu">
@@ -847,7 +883,7 @@
             <div class="home-section">
                 <div class="logo-container">
                     <div class="logo-placeholder">
-                        <img src="logo.jpg" alt="Logo" />
+                        <img src="logo.jpg" alt="Logo" / loading="lazy">
                     </div>
                 </div>
                 <div class="tagline">An Editing Service</div>
@@ -913,105 +949,105 @@
                 <div class="work-subsection-title">ARTS</div>
                 <div class="thumbnails-grid">
                     <div class="thumbnail-card">
-                        <img src="siarts1.jpg" alt="Corporate Social Assets Portfolio" class="thumbnail-placeholder">
+                        <img src="siarts1.jpg" alt="Corporate Social Assets Portfolio" class="thumbnail-placeholder" loading="lazy">
                         <div class="thumbnail-info">
                             <div class="thumbnail-title"></div>
                             <span class="thumbnail-type">Standard</span>
                         </div>
                     </div>
                     <div class="thumbnail-card">
-                        <img src="siarts2.jpg" alt="" class="thumbnail-placeholder">
+                        <img src="siarts2.jpg" alt="" class="thumbnail-placeholder" loading="lazy">
                         <div class="thumbnail-info">
                             <div class="thumbnail-title"></div>
                             <span class="thumbnail-type">Standard</span>
                         </div>
                     </div>
                     <div class="thumbnail-card">
-                        <img src="siarts3.jpg" alt="Corporate Social Assets Portfolio" class="thumbnail-placeholder">
+                        <img src="siarts3.jpg" alt="Corporate Social Assets Portfolio" class="thumbnail-placeholder" loading="lazy">
                         <div class="thumbnail-info">
                             <div class="thumbnail-title"></div>
                             <span class="thumbnail-type">Standard</span>
                         </div>
                     </div>
                     <div class="thumbnail-card">
-                        <img src="siarts4.jpg" alt="Corporate Social Assets Portfolio" class="thumbnail-placeholder">
+                        <img src="siarts4.jpg" alt="Corporate Social Assets Portfolio" class="thumbnail-placeholder" loading="lazy">
                         <div class="thumbnail-info">
                             <div class="thumbnail-title"></div>
                             <span class="thumbnail-type">Standard</span>
                         </div>
                     </div>
                     <div class="thumbnail-card">
-                        <img src="siarts5.jpg" alt="Corporate Social Assets Portfolio" class="thumbnail-placeholder">
+                        <img src="siarts5.jpg" alt="Corporate Social Assets Portfolio" class="thumbnail-placeholder" loading="lazy">
                         <div class="thumbnail-info">
                             <div class="thumbnail-title"></div>
                             <span class="thumbnail-type">Standard</span>
                         </div>
                     </div>
                     <div class="thumbnail-card">
-                        <img src="siarts6.jpg" alt="Corporate Social Assets Portfolio" class="thumbnail-placeholder">
+                        <img src="siarts6.jpg" alt="Corporate Social Assets Portfolio" class="thumbnail-placeholder" loading="lazy">
                         <div class="thumbnail-info">
                             <div class="thumbnail-title"></div>
                             <span class="thumbnail-type">Standard</span>
                         </div>
                     </div>
                     <div class="thumbnail-card">
-                        <img src="siarts7.jpg" alt="Corporate Social Assets Portfolio" class="thumbnail-placeholder">
+                        <img src="siarts7.jpg" alt="Corporate Social Assets Portfolio" class="thumbnail-placeholder" loading="lazy">
                         <div class="thumbnail-info">
                             <div class="thumbnail-title"></div>
                             <span class="thumbnail-type">Standard</span>
                         </div>
                     </div>
                     <div class="thumbnail-card">
-                        <img src="arts1.jpg" alt="Corporate Social Assets Portfolio" class="thumbnail-placeholder">
+                        <img src="arts1.jpg" alt="Corporate Social Assets Portfolio" class="thumbnail-placeholder" loading="lazy">
                         <div class="thumbnail-info">
                             <div class="thumbnail-title"></div>
                             <span class="thumbnail-type">Premium</span>
                         </div>
                     </div>
                     <div class="thumbnail-card">
-                        <img src="arts2.jpg" alt="Business Pitch Deck Design" class="thumbnail-placeholder">
+                        <img src="arts2.jpg" alt="Business Pitch Deck Design" class="thumbnail-placeholder" loading="lazy">
                         <div class="thumbnail-info">
                             <div class="thumbnail-title"></div>
                             <span class="thumbnail-type">Premium</span>
                         </div>
                     </div>
                     <div class="thumbnail-card">
-                        <img src="arts3.jpg" alt="Data Visualization Design" class="thumbnail-placeholder">
+                        <img src="arts3.jpg" alt="Data Visualization Design" class="thumbnail-placeholder" loading="lazy">
                         <div class="thumbnail-info">
                             <div class="thumbnail-title"></div>
                             <span class="thumbnail-type">Premium</span>
                         </div>
                     </div>
                     <div class="thumbnail-card">
-                        <img src="arts4.jpg" alt="Professional Data Charts" class="thumbnail-placeholder">
+                        <img src="arts4.jpg" alt="Professional Data Charts" class="thumbnail-placeholder" loading="lazy">
                         <div class="thumbnail-info">
                             <div class="thumbnail-title"></div>
                             <span class="thumbnail-type">Premium</span>
                         </div>
                     </div>
                     <div class="thumbnail-card">
-                        <img src="arts5.jpg" alt="Interactive Dashboard Design" class="thumbnail-placeholder">
+                        <img src="arts5.jpg" alt="Interactive Dashboard Design" class="thumbnail-placeholder" loading="lazy">
                         <div class="thumbnail-info">
                             <div class="thumbnail-title"></div>
                             <span class="thumbnail-type">Premium</span>
                         </div>
                     </div>
                     <div class="thumbnail-card">
-                        <img src="arts7.jpg" alt="Business Analytics Graphics" class="thumbnail-placeholder">
+                        <img src="arts7.jpg" alt="Business Analytics Graphics" class="thumbnail-placeholder" loading="lazy">
                         <div class="thumbnail-info">
                             <div class="thumbnail-title"></div>
                             <span class="thumbnail-type">Premium</span>
                         </div>
                     </div>
                     <div class="thumbnail-card">
-                        <img src="arts8.jpg" alt="Business Analytics Graphics" class="thumbnail-placeholder">
+                        <img src="arts8.jpg" alt="Business Analytics Graphics" class="thumbnail-placeholder" loading="lazy">
                         <div class="thumbnail-info">
                             <div class="thumbnail-title"></div>
                             <span class="thumbnail-type">Premium</span>
                         </div>
                     </div>
                     <div class="thumbnail-card">
-                        <img src="arts9.jpg" alt="Business Analytics Graphics" class="thumbnail-placeholder">
+                        <img src="arts9.jpg" alt="Business Analytics Graphics" class="thumbnail-placeholder" loading="lazy">
                         <div class="thumbnail-info">
                             <div class="thumbnail-title"></div>
                             <span class="thumbnail-type">Premium</span>
@@ -1023,7 +1059,7 @@
                 <div class="work-subsection-title">VIDEO EDITING</div>
                 <div class="thumbnails-grid">
                     <div class="thumbnail-card">
-                        <video class="thumbnail-placeholder" controls>
+                        <video class="thumbnail-placeholder" controls preload="none">
                             <source src="iart.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -1044,7 +1080,7 @@
                 <div class="work-subsection-title">ARTS</div>
                 <div class="thumbnails-grid">
                     <div class="thumbnail-card">
-                        <img src="sgarts1.jpg" alt="Gaming Community Assets Portfolio" class="thumbnail-placeholder">
+                        <img src="sgarts1.jpg" alt="Gaming Community Assets Portfolio" class="thumbnail-placeholder" loading="lazy">
                         <div class="thumbnail-info">
                             <div class="thumbnail-title"></div>
                             <span class="thumbnail-type">Standard</span>
@@ -1052,140 +1088,140 @@
                     </div>
                     
                     <div class="thumbnail-card">
-                        <img src="sgarts2.jpg" alt="Gaming Community Assets Portfolio" class="thumbnail-placeholder">
+                        <img src="sgarts2.jpg" alt="Gaming Community Assets Portfolio" class="thumbnail-placeholder" loading="lazy">
                         <div class="thumbnail-info">
                             <div class="thumbnail-title"></div>
                             <span class="thumbnail-type">Standard</span>
                         </div>
                     </div>
                     <div class="thumbnail-card">
-                        <img src="sgarts3.jpg" alt="Gaming Community Assets Portfolio" class="thumbnail-placeholder">
+                        <img src="sgarts3.jpg" alt="Gaming Community Assets Portfolio" class="thumbnail-placeholder" loading="lazy">
                         <div class="thumbnail-info">
                             <div class="thumbnail-title"></div>
                             <span class="thumbnail-type">Standard</span>
                         </div>
                     </div>
                     <div class="thumbnail-card">
-                        <img src="sgarts4.jpg" alt="Gaming Community Assets Portfolio" class="thumbnail-placeholder">
+                        <img src="sgarts4.jpg" alt="Gaming Community Assets Portfolio" class="thumbnail-placeholder" loading="lazy">
                         <div class="thumbnail-info">
                             <div class="thumbnail-title"></div>
                             <span class="thumbnail-type">Standard</span>
                         </div>
                     </div>
                     <div class="thumbnail-card">
-                        <img src="sgarts5.jpg" alt="Gaming Community Assets Portfolio" class="thumbnail-placeholder">
+                        <img src="sgarts5.jpg" alt="Gaming Community Assets Portfolio" class="thumbnail-placeholder" loading="lazy">
                         <div class="thumbnail-info">
                             <div class="thumbnail-title"></div>
                             <span class="thumbnail-type">Standard</span>
                         </div>
                     </div>
                     <div class="thumbnail-card">
-                        <img src="sgarts6.jpg" alt="Gaming Community Assets Portfolio" class="thumbnail-placeholder">
+                        <img src="sgarts6.jpg" alt="Gaming Community Assets Portfolio" class="thumbnail-placeholder" loading="lazy">
                         <div class="thumbnail-info">
                             <div class="thumbnail-title"></div>
                             <span class="thumbnail-type">Standard</span>
                         </div>
                     </div>
                     <div class="thumbnail-card">
-                        <img src="sgarts7.jpg" alt="Gaming Community Assets Portfolio" class="thumbnail-placeholder">
+                        <img src="sgarts7.jpg" alt="Gaming Community Assets Portfolio" class="thumbnail-placeholder" loading="lazy">
                         <div class="thumbnail-info">
                             <div class="thumbnail-title"></div>
                             <span class="thumbnail-type">Standard</span>
                         </div>
                     </div>
                     <div class="thumbnail-card">
-                        <img src="sgarts8.jpg" alt="Gaming Community Assets Portfolio" class="thumbnail-placeholder">
+                        <img src="sgarts8.jpg" alt="Gaming Community Assets Portfolio" class="thumbnail-placeholder" loading="lazy">
                         <div class="thumbnail-info">
                             <div class="thumbnail-title"></div>
                             <span class="thumbnail-type">Standard</span>
                         </div>
                     </div>
                     <div class="thumbnail-card">
-                        <img src="sgarts9.jpg" alt="Gaming Community Assets Portfolio" class="thumbnail-placeholder">
+                        <img src="sgarts9.jpg" alt="Gaming Community Assets Portfolio" class="thumbnail-placeholder" loading="lazy">
                         <div class="thumbnail-info">
                             <div class="thumbnail-title"></div>
                             <span class="thumbnail-type">Standard</span>
                         </div>
                     </div>
                     <div class="thumbnail-card">
-                        <img src="sgarts10.jpg" alt="Gaming Community Assets Portfolio" class="thumbnail-placeholder">
+                        <img src="sgarts10.jpg" alt="Gaming Community Assets Portfolio" class="thumbnail-placeholder" loading="lazy">
                         <div class="thumbnail-info">
                             <div class="thumbnail-title"></div>
                             <span class="thumbnail-type">Standard</span>
                         </div>
                     </div>
                     <div class="thumbnail-card">
-                        <img src="sgarts11.jpg" alt="Gaming Community Assets Portfolio" class="thumbnail-placeholder">
+                        <img src="sgarts11.jpg" alt="Gaming Community Assets Portfolio" class="thumbnail-placeholder" loading="lazy">
                         <div class="thumbnail-info">
                             <div class="thumbnail-title"></div>
                             <span class="thumbnail-type">Standard</span>
                         </div>
                     </div>
                     <div class="thumbnail-card">
-                        <img src="sgarts12.jpg" alt="Gaming Community Assets Portfolio" class="thumbnail-placeholder">
+                        <img src="sgarts12.jpg" alt="Gaming Community Assets Portfolio" class="thumbnail-placeholder" loading="lazy">
                         <div class="thumbnail-info">
                             <div class="thumbnail-title"></div>
                             <span class="thumbnail-type">Standard</span>
                         </div>
                     </div>
                     <div class="thumbnail-card">
-                        <img src="sgarts13.jpg" alt="Gaming Community Assets Portfolio" class="thumbnail-placeholder">
+                        <img src="sgarts13.jpg" alt="Gaming Community Assets Portfolio" class="thumbnail-placeholder" loading="lazy">
                         <div class="thumbnail-info">
                             <div class="thumbnail-title"></div>
                             <span class="thumbnail-type">Standard</span>
                         </div>
                     </div>
                     <div class="thumbnail-card">
-                        <img src="sgarts14.jpg" alt="Gaming Community Assets Portfolio" class="thumbnail-placeholder">
+                        <img src="sgarts14.jpg" alt="Gaming Community Assets Portfolio" class="thumbnail-placeholder" loading="lazy">
                         <div class="thumbnail-info">
                             <div class="thumbnail-title"></div>
                             <span class="thumbnail-type">Standard</span>
                         </div>
                     </div>
                     <div class="thumbnail-card">
-                        <img src="sgarts15.jpg" alt="Gaming Community Assets Portfolio" class="thumbnail-placeholder">
+                        <img src="sgarts15.jpg" alt="Gaming Community Assets Portfolio" class="thumbnail-placeholder" loading="lazy">
                         <div class="thumbnail-info">
                             <div class="thumbnail-title"></div>
                             <span class="thumbnail-type">Standard</span>
                         </div>
                     </div>
                     <div class="thumbnail-card">
-                        <img src="garts1.jpg" alt="Gaming Community Assets Portfolio" class="thumbnail-placeholder">
+                        <img src="garts1.jpg" alt="Gaming Community Assets Portfolio" class="thumbnail-placeholder" loading="lazy">
                         <div class="thumbnail-info">
                             <div class="thumbnail-title"></div>
                             <span class="thumbnail-type">Premium</span>
                         </div>
                     </div>
                     <div class="thumbnail-card">
-                        <img src="garts2.jpg" alt="Game Character Art Design" class="thumbnail-placeholder">
+                        <img src="garts2.jpg" alt="Game Character Art Design" class="thumbnail-placeholder" loading="lazy">
                         <div class="thumbnail-info">
                             <div class="thumbnail-title"></div>
                             <span class="thumbnail-type">Premium</span>
                         </div>
                     </div>
                     <div class="thumbnail-card">
-                        <img src="garts3.jpg" alt="Esports Event Graphics Portfolio" class="thumbnail-placeholder">
+                        <img src="garts3.jpg" alt="Esports Event Graphics Portfolio" class="thumbnail-placeholder" loading="lazy">
                         <div class="thumbnail-info">
                             <div class="thumbnail-title"></div>
                             <span class="thumbnail-type">Premium</span>
                         </div>
                     </div>
                     <div class="thumbnail-card">
-                        <img src="garts4.jpg" alt="Gaming Highlights Poster Design" class="thumbnail-placeholder">
+                        <img src="garts4.jpg" alt="Gaming Highlights Poster Design" class="thumbnail-placeholder" loading="lazy">
                         <div class="thumbnail-info">
                             <div class="thumbnail-title"></div>
                             <span class="thumbnail-type">Premium</span>
                         </div>
                     </div>
                     <div class="thumbnail-card">
-                        <img src="garts5.jpg" alt="Match Day Design Portfolio" class="thumbnail-placeholder">
+                        <img src="garts5.jpg" alt="Match Day Design Portfolio" class="thumbnail-placeholder" loading="lazy">
                         <div class="thumbnail-info">
                             <div class="thumbnail-title"></div>
                             <span class="thumbnail-type">Premium</span>
                         </div>
                     </div>
                     <div class="thumbnail-card">
-                        <img src="varts1.jpg" alt="Gaming Visual Assets" class="thumbnail-placeholder">
+                        <img src="varts1.jpg" alt="Gaming Visual Assets" class="thumbnail-placeholder" loading="lazy">
                         <div class="thumbnail-info">
                             <div class="thumbnail-title"></div>
                             <span class="thumbnail-type">Premium</span>
@@ -1193,91 +1229,91 @@
                     </div>
                     <!-- FIXED: This was the problematic 10th card -->
                     <div class="thumbnail-card">
-                        <img src="varts2.jpg" alt="Custom Gaming Graphics" class="thumbnail-placeholder">
+                        <img src="varts2.jpg" alt="Custom Gaming Graphics" class="thumbnail-placeholder" loading="lazy">
                         <div class="thumbnail-info">
                             <div class="thumbnail-title"></div>
                             <span class="thumbnail-type">premium</span>
                         </div>
                     </div>
                     <div class="thumbnail-card">
-                        <img src="garts6.jpg" alt="" class="thumbnail-placeholder">
+                        <img src="garts6.jpg" alt="" class="thumbnail-placeholder" loading="lazy">
                         <div class="thumbnail-info">
                             <div class="thumbnail-title"></div>
                             <span class="thumbnail-type">premium</span>
                         </div>
                     </div>
                     <div class="thumbnail-card">
-                        <img src="garts7.jpg" alt="Custom Gaming Graphics" class="thumbnail-placeholder">
+                        <img src="garts7.jpg" alt="Custom Gaming Graphics" class="thumbnail-placeholder" loading="lazy">
                         <div class="thumbnail-info">
                             <div class="thumbnail-title"></div>
                             <span class="thumbnail-type">premium</span>
                         </div>
                     </div>
                     <div class="thumbnail-card">
-                        <img src="garts8.jpg" alt="Custom Gaming Graphics" class="thumbnail-placeholder">
+                        <img src="garts8.jpg" alt="Custom Gaming Graphics" class="thumbnail-placeholder" loading="lazy">
                         <div class="thumbnail-info">
                             <div class="thumbnail-title"></div>
                             <span class="thumbnail-type">premium</span>
                         </div>
                     </div>
                     <div class="thumbnail-card">
-                        <img src="garts9.jpg" alt="Custom Gaming Graphics" class="thumbnail-placeholder">
+                        <img src="garts9.jpg" alt="Custom Gaming Graphics" class="thumbnail-placeholder" loading="lazy">
                         <div class="thumbnail-info">
                             <div class="thumbnail-title"></div>
                             <span class="thumbnail-type">premium</span>
                         </div>
                     </div>
                     <div class="thumbnail-card">
-                        <img src="garts10.jpg" alt="Custom Gaming Graphics" class="thumbnail-placeholder">
+                        <img src="garts10.jpg" alt="Custom Gaming Graphics" class="thumbnail-placeholder" loading="lazy">
                         <div class="thumbnail-info">
                             <div class="thumbnail-title"></div>
                             <span class="thumbnail-type">premium</span>
                         </div>
                     </div>
                     <div class="thumbnail-card">
-                        <img src="garts11.jpg" alt="Custom Gaming Graphics" class="thumbnail-placeholder">
+                        <img src="garts11.jpg" alt="Custom Gaming Graphics" class="thumbnail-placeholder" loading="lazy">
                         <div class="thumbnail-info">
                             <div class="thumbnail-title"></div>
                             <span class="thumbnail-type">premium</span>
                         </div>
                     </div>
                     <div class="thumbnail-card">
-                        <img src="garts12.jpg" alt="Custom Gaming Graphics" class="thumbnail-placeholder">
+                        <img src="garts12.jpg" alt="Custom Gaming Graphics" class="thumbnail-placeholder" loading="lazy">
                         <div class="thumbnail-info">
                             <div class="thumbnail-title"></div>
                             <span class="thumbnail-type">premium</span>
                         </div>
                     </div>
                     <div class="thumbnail-card">
-                        <img src="garts13.jpg" alt="Custom Gaming Graphics" class="thumbnail-placeholder">
+                        <img src="garts13.jpg" alt="Custom Gaming Graphics" class="thumbnail-placeholder" loading="lazy">
                         <div class="thumbnail-info">
                             <div class="thumbnail-title"></div>
                             <span class="thumbnail-type">premium</span>
                         </div>
                     </div>
                     <div class="thumbnail-card">
-                        <img src="garts14.jpg" alt="Custom Gaming Graphics" class="thumbnail-placeholder">
+                        <img src="garts14.jpg" alt="Custom Gaming Graphics" class="thumbnail-placeholder" loading="lazy">
                         <div class="thumbnail-info">
                             <div class="thumbnail-title"></div>
                             <span class="thumbnail-type">premium</span>
                         </div>
                     </div>
                     <div class="thumbnail-card">
-                        <img src="garts15.jpg" alt="Custom Gaming Graphics" class="thumbnail-placeholder">
+                        <img src="garts15.jpg" alt="Custom Gaming Graphics" class="thumbnail-placeholder" loading="lazy">
                         <div class="thumbnail-info">
                             <div class="thumbnail-title"></div>
                             <span class="thumbnail-type">premium</span>
                         </div>
                     </div>
                     <div class="thumbnail-card">
-                        <img src="garts16.jpg" alt="Custom Gaming Graphics" class="thumbnail-placeholder">
+                        <img src="garts16.jpg" alt="Custom Gaming Graphics" class="thumbnail-placeholder" loading="lazy">
                         <div class="thumbnail-info">
                             <div class="thumbnail-title"></div>
                             <span class="thumbnail-type">premium</span>
                         </div>
                     </div>
                     <div class="thumbnail-card">
-                        <img src="arts6.jpg" alt="Custom Gaming Graphics" class="thumbnail-placeholder">
+                        <img src="arts6.jpg" alt="Custom Gaming Graphics" class="thumbnail-placeholder" loading="lazy">
                         <div class="thumbnail-info">
                             <div class="thumbnail-title"></div>
                             <span class="thumbnail-type">premium</span>
@@ -1289,7 +1325,7 @@
                 <div class="work-subsection-title">VIDEO EDITING</div>
                 <div class="thumbnails-grid">
                     <div class="thumbnail-card">
-                        <video class="thumbnail-placeholder" controls>
+                        <video class="thumbnail-placeholder" controls preload="none">
                             <source src="varts.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -1299,7 +1335,7 @@
                         </div>
                     </div>
                     <div class="thumbnail-card">
-                        <video class="thumbnail-placeholder" controls>
+                        <video class="thumbnail-placeholder" controls preload="none">
                             <source src="varts1.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -1309,7 +1345,7 @@
                         </div>
                     </div>
                     <div class="thumbnail-card">
-                        <video class="thumbnail-placeholder" controls>
+                        <video class="thumbnail-placeholder" controls preload="none">
                             <source src="varts2.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -1319,7 +1355,7 @@
                         </div>
                     </div>
                     <div class="thumbnail-card">
-                        <video class="thumbnail-placeholder" controls>
+                        <video class="thumbnail-placeholder" controls preload="none">
                             <source src="varts3.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -1329,7 +1365,7 @@
                         </div>
                     </div>
                     <div class="thumbnail-card">
-                        <video class="thumbnail-placeholder" controls>
+                        <video class="thumbnail-placeholder" controls preload="none">
                             <source src="varts4.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -1339,7 +1375,7 @@
                         </div>
                     </div>
                     <div class="thumbnail-card">
-                        <video class="thumbnail-placeholder" controls>
+                        <video class="thumbnail-placeholder" controls preload="none">
                             <source src="parts.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -1359,7 +1395,7 @@
             <div class="reviews-grid">
                 <div class="review-card">
                     <div class="stars">&nbsp;&nbsp★★★★★</div>
-                    <img src="logo2.jpg" alt="Logo" class="review-logo">
+                    <img src="logo2.jpg" alt="Logo" class="review-logo" loading="lazy">
                     <div class="review-text">Absolutely amazing work! My videos came out perfect and the delivery was fast.</div>
                    
                     <div class="review-text">Editing service “Editify” was one of the
@@ -1373,7 +1409,7 @@
                     <div class="review-author">- JxckeMC,<br> ChampionsMC</div>
                 </div>
                 <div class="review-card">
-                    <img src="blogo.jpg" alt="Logo" class="review-logo">
+                    <img src="blogo.jpg" alt="Logo" class="review-logo" loading="lazy">
                     <div class="stars">&nbsp;&nbsp★★★★★</div>
                     <div class="review-text">We run a bouquet service and wanted a nice little video to show what we do. Editify really helped us bring it to life. The way they edited the clips, added smooth transitions, and matched the music — it just felt right. They were easy to talk to, understood what we needed, and made sure everything looked beautiful. We’re super happy with how it turned out!
                     </div>
@@ -1381,7 +1417,7 @@
                 </div>
                 <div class="review-card">
                     <div class="stars">&nbsp;&nbsp★★★★★</div>
-                    <img src="logo1.jpg" alt="Logo" class="review-logo">
+                    <img src="logo1.jpg" alt="Logo" class="review-logo" loading="lazy">
                     <div class="review-text">As the founder of aspire smp,Editify helped
                          us a lot in our journey and helped us gain a
                          lot of members,One of the videos they made
@@ -1391,14 +1427,14 @@
                     <div class="review-author">-Owner<br>C24L</div>
                 </div>
                 <div class="review-card">
-                    <img src="logo1.png" alt="Logo" class="review-logo">
+                    <img src="logo1.png" alt="Logo" class="review-logo" loading="lazy">
                     <div class="stars">&nbsp;&nbsp★★★★★</div>
                     <div class="review-text">Huge shoutout to Editify for putting together our Devmun trailer so brilliantly! Super dedicated, always open to feedback, and somehow made every tiny edit we asked for without a fuss. It was very easy to work with you—thank you for bringing our vision to life!
                                              Keep doing what you do</div>
                 <div class="review-author">- Abha Abhilash,<br> Devamatha's MUN programme</div>
                 </div>
                 <div class="review-card">
-                    <img src="jona_logo.jpg" alt="Logo" class="review-logo">
+                    <img src="jona_logo.jpg" alt="Logo" class="review-logo" loading="lazy">
                     <div class="stars">&nbsp;&nbsp★★★★★</div>
                     <div class="review-text">Was skeptical at first but Editify is the definition of proffesionalism!You get good quality work and whatever you ask for,these guys will deliver to the best of their abilities.Would reccomend!</div>
                     <div class="review-author">- Jooonah<br> </div>
@@ -1465,7 +1501,7 @@
                 </div>
             </div>
             <div style="text-align: center; margin-top: 40px; padding: 0 20px;">
-                <h3 style="font-size: 24px; font-family: 'Bebas Neue', cursive; color: #333; margin-bottom: 10px; letter-spacing: 1px;">Bulk Orders</h3>
+                <h3 style="font-size: 24px; font-family: 'Bebas Neue', cursive; color: var(--text-color); margin-bottom: 10px; letter-spacing: 1px;">Bulk Orders</h3>
                 <p style="color: #555; font-size: 16px; max-width: 600px; margin: 0 auto; line-height: 1.6;">We offer flexible pricing for high-volume clients. Reach out via Discord or Gmail to negotiate a custom package.</p>
             </div>
         </div>
@@ -1570,24 +1606,67 @@
 
       <!-- Centered Circle Logo -->
         <div class="about-logo">
-            <img src="logo.jpg" alt="Editify Logo" class=review-logo />
+            <img src="logo.jpg" alt="Editify Logo" class="review-logo" / loading="lazy">
         </div>
     </div>
 
     <!-- Footer Icons -->
     <footer style="text-align: center; padding: 40px 0; background-color: rgba(255,255,255,0.8); margin-top: 60px;">
         <div style="display: flex; justify-content: center; gap: 20px;">
-            <a href="https://youtube.com/@editify-n1o?si=Z2irWdP4srR9E4tg" target="_blank" style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.9); border-radius: 50%; border: 2px solid #ddd; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); text-decoration: none;">
-                <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube" style="width: 24px; height: 24px; object-fit: contain;">
+            <a href="https://youtube.com/@editify-n1o?si=Z2irWdP4srR9E4tg" target="_blank" style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.9); border-radius: 50%; border: 2px solid var(--border-color); display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); text-decoration: none;">
+                <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube" style="width: 24px; height: 24px; object-fit: contain;" loading="lazy">
             </a>
-            <a href="https://discord.gg/dvps2FDx96" target="_blank" style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.9); border-radius: 50%; border: 2px solid #ddd; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); text-decoration: none;">
-                <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" alt="Discord" style="width: 24px; height: 24px; object-fit: contain;">
+            <a href="https://discord.gg/dvps2FDx96" target="_blank" style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.9); border-radius: 50%; border: 2px solid var(--border-color); display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); text-decoration: none;">
+                <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" alt="Discord" style="width: 24px; height: 24px; object-fit: contain;" loading="lazy">
             </a>
         </div>
         <p style="margin-top: 20px; font-size: 14px; color: #777;">© 2025 Editify. All rights reserved.</p>
     </footer>
 
     <script>
+        
+        function toggleTheme() {
+            const body = document.documentElement;
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            document.querySelector('.theme-toggle').innerText = newTheme === 'dark' ? '☀️' : '🌙';
+        }
+
+        // Initialize Theme & Default Work section
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            document.querySelector('.theme-toggle').innerText = savedTheme === 'dark' ? '☀️' : '🌙';
+            
+            // Intersection Observer for Animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in-up');
+                    }
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.feature-card, .thumbnail-card, .review-card, .pricing-card').forEach(el => {
+                el.style.opacity = '0';
+                observer.observe(el);
+            });
+        });
+
+        // Modify showSection to default to live-industry if Works is clicked and no category is visible
+        const originalShowSection = showSection;
+        showSection = function(sectionId) {
+            originalShowSection(sectionId);
+            if (sectionId === 'works') {
+                const live = document.getElementById('live-industry');
+                const gaming = document.getElementById('gaming-sector');
+                if (live.style.display !== 'block' && gaming.style.display !== 'block') {
+                    showWorks('live-industry');
+                }
+            }
+        };
+
         function showSection(sectionId) {
             const sections = document.querySelectorAll('.content-section');
             sections.forEach(section => section.classList.remove('active'));
