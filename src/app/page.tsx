@@ -3,116 +3,116 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-black text-white font-sans selection:bg-[#cca845] selection:text-black">
+    <main className="min-h-screen">
       {/* 
         ====================================================
-        NAVBAR
+        HEADER / NAVBAR
         ====================================================
       */}
-      <nav className="fixed top-0 left-0 w-full p-6 flex justify-between items-center z-50 bg-black/80 backdrop-blur-md">
-        <div className="flex items-center">
+      <header className="fixed top-0 left-0 w-full h-[70px] bg-[#050505]/80 backdrop-blur-md border-b border-white/10 z-50 flex items-center justify-center">
+        {/* Top Left Logo */}
+        <div className="fixed top-[10px] left-[20px] w-[50px] h-[50px] rounded-full border-2 border-[#B8860B] shadow-[0_0_15px_rgba(212,175,55,0.15)] overflow-hidden hover:scale-110 hover:rotate-6 transition-transform duration-300 z-[1001]">
           <Image 
-            src="/logo.jpg" 
+            src="/top_logo.jpg" 
             alt="Editify Logo" 
-            width={40} 
-            height={40} 
-            className="rounded-full border border-[#cca845]" 
-          />
-        </div>
-        
-        {/* Desktop Links */}
-        <div className="hidden md:flex gap-8 text-sm tracking-[0.2em] font-semibold">
-          <Link href="#home" className="hover:text-[#cca845] transition-colors">HOME</Link>
-          <Link href="#works" className="hover:text-[#cca845] transition-colors">WORKS</Link>
-          <Link href="#reviews" className="hover:text-[#cca845] transition-colors">REVIEWS</Link>
-          <Link href="#prices" className="hover:text-[#cca845] transition-colors">PRICES</Link>
-          <Link href="#about" className="hover:text-[#cca845] transition-colors">ABOUT</Link>
-        </div>
-
-        {/* Small hidden links shown in screenshot (Home Live Industry Gaming Sector Reviews Prices About) */}
-        <div className="hidden lg:flex gap-2 text-xs text-blue-600 underline opacity-0 pointer-events-none">
-          {/* This matches the odd blue links visible in their raw screenshot, but keeping it hidden for cleanliness */}
-          <span>Home Live Industry Gaming Sector Reviews Prices About</span>
-        </div>
-      </nav>
-
-      {/* 
-        ====================================================
-        HERO SECTION
-        ====================================================
-      */}
-      <section id="home" className="pt-40 pb-20 px-4 flex flex-col items-center justify-center text-center">
-        {/* The Golden Circle Logo */}
-        <div className="relative w-48 h-48 md:w-56 md:h-56 rounded-full border-4 border-[#cca845] flex items-center justify-center mb-8 shadow-[0_0_30px_rgba(204,168,69,0.3)] bg-white overflow-hidden">
-          <Image 
-            src="/logo.jpg" 
-            alt="Editify Studios" 
-            width={180} 
-            height={180} 
-            className="object-contain" 
+            fill
+            className="object-cover" 
           />
         </div>
 
-        <h2 className="text-2xl md:text-3xl text-[#cca845] tracking-[0.1em] font-bold mt-4">
-          AN EDITING SERVICE
-        </h2>
-      </section>
+        {/* Centered Nav Links */}
+        <nav className="flex gap-10">
+          {["HOME", "WORKS", "REVIEWS", "PRICES", "ABOUT"].map((item) => (
+            <Link 
+              key={item} 
+              href={`#${item.toLowerCase()}`}
+              className="font-bebas text-[20px] tracking-[2px] text-[#f8f5ed] hover:text-[#D4AF37] hover:drop-shadow-[0_0_10px_rgba(212,175,55,0.15)] relative group transition-all duration-300"
+            >
+              {item}
+              {/* Golden Underline on Hover */}
+              <span className="absolute bottom-[-5px] left-1/2 -translate-x-1/2 w-0 h-[2px] bg-gradient-to-r from-[#D4AF37] to-[#B8860B] transition-all duration-300 group-hover:w-full" />
+            </Link>
+          ))}
+        </nav>
+      </header>
 
-      {/* 
-        ====================================================
-        FOUR FEATURE CARDS
-        ====================================================
-      */}
-      <section className="max-w-7xl mx-auto px-4 pb-32">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          
-          {/* Card 1 */}
-          <div className="bg-[#111] border border-[#222] rounded-xl p-8 text-center hover:-translate-y-2 transition-transform duration-300">
-            <h3 className="text-xl text-[#cca845] font-bold mb-4 flex items-center justify-center gap-2">
-              <span>⚡</span> FAST TURNAROUND
-            </h3>
-            <p className="text-gray-400 text-sm leading-relaxed">
-              Get your projects delivered quickly — whether it's a video edit, animation, banner, or thumbnail. We prioritize speed without compromising quality.
-            </p>
+      <div className="mt-[100px] px-5 max-w-[1400px] mx-auto">
+        {/* 
+          ====================================================
+          HOME SECTION
+          ====================================================
+        */}
+        <section id="home" className="text-center py-20">
+          {/* Logo Placeholder with gradient border */}
+          <div className="w-[180px] h-[180px] mx-auto mb-[30px] rounded-full p-[5px] bg-gradient-to-br from-[#D4AF37] to-[#B8860B] shadow-[0_0_40px_rgba(212,175,55,0.15)] relative">
+            <div className="w-full h-full rounded-full border-4 border-[#050505] overflow-hidden relative">
+              <Image 
+                src="/logo.jpg" 
+                alt="Editify Logo" 
+                fill
+                className="object-cover"
+                priority
+              />
+            </div>
           </div>
 
-          {/* Card 2 */}
-          <div className="bg-[#111] border border-[#222] rounded-xl p-8 text-center hover:-translate-y-2 transition-transform duration-300">
-            <h3 className="text-xl text-[#cca845] font-bold mb-4 flex items-center justify-center gap-2">
-              <span>💰</span> BEST PRICE GUARANTEE
-            </h3>
-            <p className="text-gray-400 text-sm leading-relaxed">
-              We offer premium creative services at unbeatable prices. You get the best value across editing, design, and animation.
-            </p>
+          <h2 className="font-bebas text-[32px] tracking-[2px] text-[#D4AF37] drop-shadow-[0_0_20px_rgba(212,175,55,0.15)] mb-[60px]">
+            AN EDITING SERVICE
+          </h2>
+
+          {/* 
+            ====================================================
+            FOUR FEATURE CARDS
+            ====================================================
+          */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[30px] max-w-[1200px] mx-auto">
+            {/* Card 1 */}
+            <div className="relative p-10 text-center bg-[#141414]/60 backdrop-blur-md rounded-[20px] border border-white/10 hover:border-[#D4AF37]/50 hover:shadow-[0_20px_40px_rgba(0,0,0,0.5),0_0_20px_rgba(212,175,55,0.15)] hover:-translate-y-[5px] transition-all duration-400 z-10 overflow-hidden group">
+              <div className="absolute inset-0 rounded-[20px] bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+              <h3 className="font-bebas text-[24px] tracking-[1px] text-[#D4AF37] mb-5">
+                ⚡ Fast Turnaround
+              </h3>
+              <p className="text-[15px] text-[#a0a0a0]">
+                Get your projects delivered quickly — whether it's a video edit, animation, banner, or thumbnail. We prioritize speed without compromising quality.
+              </p>
+            </div>
+
+            {/* Card 2 */}
+            <div className="relative p-10 text-center bg-[#141414]/60 backdrop-blur-md rounded-[20px] border border-white/10 hover:border-[#D4AF37]/50 hover:shadow-[0_20px_40px_rgba(0,0,0,0.5),0_0_20px_rgba(212,175,55,0.15)] hover:-translate-y-[5px] transition-all duration-400 z-10 overflow-hidden group">
+              <div className="absolute inset-0 rounded-[20px] bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+              <h3 className="font-bebas text-[24px] tracking-[1px] text-[#D4AF37] mb-5">
+                💰 Best Price Guarantee
+              </h3>
+              <p className="text-[15px] text-[#a0a0a0]">
+                We offer premium creative services at unbeatable prices. You get the best value across editing, design, and animation.
+              </p>
+            </div>
+
+            {/* Card 3 */}
+            <div className="relative p-10 text-center bg-[#141414]/60 backdrop-blur-md rounded-[20px] border border-white/10 hover:border-[#D4AF37]/50 hover:shadow-[0_20px_40px_rgba(0,0,0,0.5),0_0_20px_rgba(212,175,55,0.15)] hover:-translate-y-[5px] transition-all duration-400 z-10 overflow-hidden group">
+              <div className="absolute inset-0 rounded-[20px] bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+              <h3 className="font-bebas text-[24px] tracking-[1px] text-[#D4AF37] mb-5">
+                💻 Top-Tier Creatives
+              </h3>
+              <p className="text-[15px] text-[#a0a0a0]">
+                Our team includes editors, designers, and animators who've worked with well over 100 clients, ensuring top-quality results every time.
+              </p>
+            </div>
+
+            {/* Card 4 */}
+            <div className="relative p-10 text-center bg-[#141414]/60 backdrop-blur-md rounded-[20px] border border-white/10 hover:border-[#D4AF37]/50 hover:shadow-[0_20px_40px_rgba(0,0,0,0.5),0_0_20px_rgba(212,175,55,0.15)] hover:-translate-y-[5px] transition-all duration-400 z-10 overflow-hidden group">
+              <div className="absolute inset-0 rounded-[20px] bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+              <h3 className="font-bebas text-[24px] tracking-[1px] text-[#D4AF37] mb-5">
+                🔄 Unlimited Revisions
+              </h3>
+              <p className="text-[15px] text-[#a0a0a0]">
+                We're not done until you're happy. Enjoy unlimited fair revisions to perfect your project without extra charges.
+              </p>
+            </div>
           </div>
+        </section>
 
-          {/* Card 3 */}
-          <div className="bg-[#111] border border-[#222] rounded-xl p-8 text-center hover:-translate-y-2 transition-transform duration-300">
-            <h3 className="text-xl text-[#cca845] font-bold mb-4 flex items-center justify-center gap-2">
-              <span>💻</span> TOP-TIER CREATIVES
-            </h3>
-            <p className="text-gray-400 text-sm leading-relaxed">
-              Our team includes editors, designers, and animators who've worked with well over 100 clients, ensuring top-quality results every time.
-            </p>
-          </div>
-
-          {/* Card 4 */}
-          <div className="bg-[#111] border border-[#222] rounded-xl p-8 text-center hover:-translate-y-2 transition-transform duration-300">
-            <h3 className="text-xl text-[#cca845] font-bold mb-4 flex items-center justify-center gap-2">
-              <span>🔄</span> UNLIMITED REVISIONS
-            </h3>
-            <p className="text-gray-400 text-sm leading-relaxed">
-              We're not done until you're happy. Enjoy unlimited fair revisions to perfect your project without extra charges.
-            </p>
-          </div>
-
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="text-center py-10 border-t border-[#222] text-gray-600 text-sm">
-        <p>© 2026 Editify Studios. All rights reserved.</p>
-      </footer>
+      </div>
     </main>
   );
 }
