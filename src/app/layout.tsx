@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-
 import SmoothScroll from "@/components/SmoothScroll";
 import CustomCursor from "@/components/CustomCursor";
 import Header from "@/components/Header";
+import { ThemeProvider } from "@/components/ThemeProvider";
+import Scene from "@/components/Scene";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -54,15 +55,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="bg-[#050505] text-[#f4f4f4]">
-      <body className={`${inter.className} antialiased selection:bg-white selection:text-black overflow-x-hidden`}>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-        <CustomCursor />
-        <Header />
-        <SmoothScroll>{children}</SmoothScroll>
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${inter.className} antialiased selection:bg-white selection:text-black overflow-x-hidden bg-white text-zinc-900 dark:bg-[#050505] dark:text-[#f4f4f4] transition-colors duration-700`}>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          />
+          <CustomCursor />
+          <Scene />
+          <Header />
+          <SmoothScroll>{children}</SmoothScroll>
+        </ThemeProvider>
       </body>
     </html>
   );
