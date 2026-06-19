@@ -25,8 +25,8 @@ export default function Header() {
       }`}
     >
       <Link href="/" data-cursor-hover className="flex items-center gap-3 z-50 group">
-        <div className="relative w-10 h-10 transition-transform duration-500 group-hover:scale-105">
-          <Image src="/logo.png" alt="Editify Logo" fill className="object-contain" />
+        <div className="relative w-12 h-12 transition-transform duration-500 group-hover:scale-105 rounded-full overflow-hidden border border-yellow-600/30">
+          <Image src="/logo.png" alt="Editify Logo" fill className="object-cover" />
         </div>
         <span className="text-zinc-900 dark:text-white font-bold text-xl tracking-widest uppercase">Editify.</span>
       </Link>

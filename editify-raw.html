@@ -1,0 +1,1644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="top_logo.jpg" type="image/jpg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editing Service</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400&display=swap" rel="stylesheet">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9372154989004278"
+     crossorigin="anonymous">     
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url('background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header Navigation */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            border-bottom: 1px solid #e0e0e0;
+            z-index: 1000;
+        }
+
+        .top-left-logo {
+            position: fixed;
+            top: 15px;
+            left: 20px;
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            border: 2px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1001;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.7; }
+            50% { transform: scale(1.1); opacity: 0.3; }
+            100% { transform: scale(1); opacity: 0.7; }
+        }
+
+        .top-left-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            display: block;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nav-bar {
+            height: 60px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            padding-left: 80px;
+            padding-right: 80px;
+        }
+
+        .nav-item {
+            position: relative;
+            display: inline-block;
+        }
+
+        .nav-link {
+            color: #333;
+            text-decoration: none;
+            padding: 12px 20px;
+            border: 2px solid transparent;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Bebas Neue', cursive;
+            font-size: 18px;
+        }
+
+        .nav-link:hover {
+            background-color: #333;
+            color: white;
+            border-color: #333;
+        }
+
+        /* Dropdown Menu */
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border: 2px solid #333;
+            border-radius: 4px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            min-width: 200px;
+            z-index: 1001;
+        }
+
+        .nav-item:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-item {
+            display: block;
+            color: #333;
+            text-decoration: none;
+            padding: 10px 16px;
+            border-bottom: 1px solid #eee;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .dropdown-item:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-item:hover {
+            background-color: #333;
+            color: white;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 120px;
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Offset sections */
+        .offset-section {
+            margin-left: 80px;
+        }
+
+        /* Home Section */
+        .home-section {
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .logo-container {
+            margin-bottom: 30px;
+        }
+
+        .logo-placeholder {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 3px solid #ddd;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8f8f8;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .logo-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 50%;
+        }
+
+        .tagline {
+            font-size: 24px;
+            font-weight: 300;
+            color: #333;
+            margin-bottom: 40px;
+            letter-spacing: 2px;
+            font-family: 'Bebas Neue', cursive;
+        }
+
+        /* Content Sections */
+        .content-section {
+            display: none;
+            padding: 40px 0;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 40px;
+            color: #333;
+            letter-spacing: 1px;
+            font-family: 'Bebas Neue', cursive;
+            border-bottom: 3px solid #333;
+            padding-bottom: 10px;
+        }
+
+        .work-category-title {
+            font-size: 28px;
+            font-weight: 600;
+            text-align: center;
+            margin: 50px 0 30px 0;
+            color: #333;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding-bottom: 10px;
+        }
+
+        .work-subsection-title {
+            font-size: 24px;
+            font-weight: 500;
+            text-align: center;
+            margin: 40px 0 30px 0;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Thumbnails Grid - Fixed 3 columns */
+        .thumbnails-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .thumbnail-card {
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .thumbnail-card:hover {
+            border-color: #333;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+
+        .thumbnail-placeholder {
+            width: 100%;
+            height: 200px;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 14px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .thumbnail-info {
+            padding: 20px;
+        }
+
+        .thumbnail-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .thumbnail-type {
+            display: inline-block;
+            padding: 4px 12px;
+            background: #333;
+            color: white;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+/* Reviews Section */
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .review-card {
+            position: relative;
+            border: 2px solid black;
+            border-radius: 8px;
+            padding: 30px;
+            background: white;
+            color: black;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .review-card:hover {
+            background: black;
+            color: white;
+            border-color: black;
+            transform: translateY(-5px);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .review-text {
+            font-size: 16px;
+            line-height: 1.6;
+            color: inherit;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .review-author {
+            font-weight: 600;
+            color: inherit;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .review-logo {
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            border-radius: 50%;
+            display: block;
+        }
+
+        .review-card img:not(.review-logo) {
+            display: none;
+        }
+
+        .review-card:hover img:not(.review-logo) {
+            display: block;
+        }
+
+        .stars {
+            color: #ffa500;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        /* Ensure stars remain orange even on hover */
+        .review-card:hover .stars {
+            color: #ffa500;
+        }
+            .pricing-container {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+                margin-top: 40px;
+                max-width: 900px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .pricing-card {
+                position: relative;
+                border: 2px solid #ddd;
+                border-radius: 12px;
+                padding: 30px 25px;
+                text-align: center;
+                background: white;
+                transition: all 0.4s ease;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+                min-height: 350px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                cursor: pointer;
+            }
+
+            .pricing-card:hover {
+                background: #333;
+                border-color: #333;
+                transform: translateY(-8px) scale(1.02);
+                box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+            }
+
+            .pricing-type {
+                font-size: 22px;
+                font-weight: 600;
+                color: #333;
+                margin-bottom: 15px;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                transition: color 0.4s ease;
+            }
+
+            .pricing-card:hover .pricing-type {
+                color: white;
+            }
+
+            .pricing-amount {
+                font-size: 36px;
+                font-weight: 300;
+                color: #333;
+                margin-bottom: 25px;
+                transition: color 0.4s ease;
+            }
+
+            .pricing-card:hover .pricing-amount {
+                color: white;
+            }
+
+            .pricing-features {
+                list-style: none;
+                margin-bottom: 20px;
+                text-align: left;
+                flex-grow: 1;
+            }
+
+            .pricing-features li {
+                padding: 8px 0;
+                color: #555;
+                border-bottom: 1px solid #eee;
+                font-size: 14px;
+                line-height: 1.4;
+                transition: all 0.4s ease;
+            }
+
+            .pricing-card:hover .pricing-features li {
+                color: #f0f0f0;
+                border-bottom-color: #555;
+            }
+
+            .pricing-features li:last-child {
+                border-bottom: none;
+            }
+
+            .pricing-features li:before {
+                content: "✓ ";
+                color: #28a745;
+                font-weight: bold;
+                margin-right: 8px;
+                transition: color 0.4s ease;
+            }
+
+            .pricing-card:hover .pricing-features li:before {
+                color: #4CAF50;
+            }
+
+            /* Enhanced Popular Badge Animation */
+            .popular-badge {
+                position: absolute;
+                top: -12px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: linear-gradient(45deg, #3498db, #2980b9);
+                color: white;
+                padding: 8px 20px;
+                border-radius: 20px;
+                font-size: 12px;
+                font-weight: bold;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+                z-index: 10;
+                transition: all 0.4s ease;
+            }
+
+            .pricing-card:hover .popular-badge {
+                background: linear-gradient(45deg, #2980b9, #1f4e79);
+                box-shadow: 0 6px 20px rgba(52, 152, 219, 0.5);
+                transform: translateX(-50%) translateY(-2px);
+            }
+
+            .highlight {
+                border: 3px solid #3498db;
+                box-shadow: 0 0 20px rgba(52, 152, 219, 0.3);
+                transform: scale(1.02);
+            }
+
+            .highlight:hover {
+                background: #333;
+                border-color: #333;
+                transform: translateY(-8px) scale(1.04);
+                box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            }
+
+            /* Responsive Design for Pricing */
+            @media (max-width: 768px) {
+                .pricing-container {
+                    grid-template-columns: 1fr;
+                    gap: 20px;
+                    max-width: 400px;
+                }
+                
+                .pricing-card {
+                    min-height: 300px;
+                }
+                
+                .popular-badge {
+                    font-size: 10px;
+                    padding: 6px 16px;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .pricing-type {
+                    font-size: 18px;
+                }
+                
+                .pricing-amount {
+                    font-size: 28px;
+                }
+                
+                .pricing-features li {
+                    font-size: 13px;
+                }
+            }
+        
+        /* About Section */
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 18px;
+            line-height: 1.8;
+            color: #555;
+            font-family: 'Bebas Neue', cursive;
+        }
+
+        .about-content p {
+            margin-bottom: 25px;
+        }
+
+        /* Updated Features Grid - 3 columns, square with rounded edges */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-top: 40px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .feature-card {
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            color: #333;
+            transition: all 0.3s ease;
+            aspect-ratio: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 15px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .feature-card p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .feature-card:hover {
+            background: #333;
+            color: white;
+            border-color: #333;
+            transform: translateY(-5px);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-card:hover h3 {
+            color: white;
+        }
+
+        .feature-card:hover p {
+            color: #f0f0f0;
+        }
+        /* Legal Documents Section Styles - INSERT HERE */
+        .legal-documents-section {
+            margin: 40px 0;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+                       
+        .document-item {
+            margin: 0 auto;
+        }
+
+        .document-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #333;
+            font-family: 'Bebas Neue', cursive; /* Match your existing font */
+        }
+
+        .document-btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: white;
+            color: blue;
+            text-decoration: underline;
+            border: 2px solid blue;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+                   
+        .document-btn:hover {
+            background-color: black;
+            color: blue;
+            text-decoration: underline;
+            border-color: black;
+        }
+
+        .document-btn:active {
+            transform: translateY(1px);
+        }
+
+        .document-btn:visited {
+            color: blue;
+        }
+
+        /* Responsive design for smaller screens */
+        @media (min-width: 768px) {
+            .legal-documents-section {
+                    flex-direction: row;
+                    justify-content: center;
+                    gap: 50px;
+            }
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 30px;
+            height: 30px;
+        }
+
+        .hamburger-line {
+            width: 20px;
+            height: 2px;
+            background-color: #333;
+            margin: 2px 0;
+            transition: 0.3s;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 2px solid #333;
+            border-top: none;
+            z-index: 1000;
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .mobile-menu-item {
+            display: block;
+            color: #333;
+            text-decoration: none;
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+            transition: all 0.3s ease;
+            font-family: 'Bebas Neue', cursive;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .mobile-menu-item:last-child {
+            border-bottom: none;
+        }
+
+        .mobile-menu-item:hover {
+            background-color: #333;
+            color: white;
+        }
+
+
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .thumbnails-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .pricing-container {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-bar {
+                flex-direction: column;
+                height: auto;
+                gap: 10px;
+                padding: 10px;
+            }
+
+            .main-content {
+                margin-top: 160px;
+            }
+
+            .thumbnails-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-container {
+                grid-template-columns: 1fr;
+                grid-template-rows: repeat(4, 1fr);
+            }
+
+            .top-left-logo {
+                width: 50px;
+                height: 50px;
+                top: 10px;
+                left: 10px;
+            }
+
+            .nav-bar {
+                padding-left: 0;
+                padding-right: 0;
+            }
+
+            .offset-section {
+                margin-left: 0;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Left Logo -->
+    <div class="top-left-logo">
+        <img src="top_logo.jpg" alt="Company Logo" />
+    </div>
+
+    <!-- Header Navigation -->
+    <div class="header">
+        <div class="nav-container">
+            <div class="nav-bar">
+                <div class="nav-item">
+                    <a href="#" class="nav-link" onclick="showSection('home')">Home</a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link" onclick="showSection('works')">Works</a>
+                    <div class="dropdown">
+                        <a href="#" class="dropdown-item" onclick="showWorks('live-industry')">Live Industry</a>
+                        <a href="#" class="dropdown-item" onclick="showWorks('gaming-sector')">Gaming Sector</a>
+                    </div>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link" onclick="showSection('reviews')">Reviews</a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link" onclick="showSection('prices')">Prices</a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link" onclick="showSection('about')">About</a>
+                </div>
+                
+                <!-- Mobile Menu Toggle -->
+                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">⋯</button>
+                
+                <!-- Mobile Menu -->
+                <div class="mobile-menu" id="mobileMenu">
+                    <a href="#" class="mobile-menu-item" onclick="showSection('home'); closeMobileMenu()">Home</a>
+                    <a href="#" class="mobile-menu-item" onclick="showWorks('live-industry'); closeMobileMenu()">Live Industry</a>
+                    <a href="#" class="mobile-menu-item" onclick="showWorks('gaming-sector'); closeMobileMenu()">Gaming Sector</a>
+                    <a href="#" class="mobile-menu-item" onclick="showSection('reviews'); closeMobileMenu()">Reviews</a>
+                    <a href="#" class="mobile-menu-item" onclick="showSection('prices'); closeMobileMenu()">Prices</a>
+                    <a href="#" class="mobile-menu-item" onclick="showSection('about'); closeMobileMenu()">About</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Home Section -->
+        <div id="home" class="content-section active offset-section">
+            <div class="home-section">
+                <div class="logo-container">
+                    <div class="logo-placeholder">
+                        <img src="logo.jpg" alt="Logo" />
+                    </div>
+                </div>
+                <div class="tagline">An Editing Service</div>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3>⚡ Fast Turnaround</h3>
+                        <p>Get your projects delivered quickly — whether it's a video edit, animation, banner, or thumbnail. We prioritize speed without compromising quality.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <h3>💰 Best Price Guarantee</h3>
+                        <p>We offer premium creative services at unbeatable prices. You get the best value across editing, design, and animation.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <h3>👨‍💻 Top-Tier Creatives</h3>
+                        <p>Our team includes editors, designers, and animators who've worked with well over 100 clients, ensuring top-quality results every time.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <h3>♻ Unlimited Revisions</h3>
+                        <p>We're not done until you're happy. Enjoy unlimited fair revisions to perfect your project without extra charges.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <h3>🔁 1–2 Revisions on Standard Plans</h3>
+                        <p>Need minor tweaks? Our  plans come with 1–2 free revision rounds for quick refinements and polish.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <h3>🧠 Niche-Specific Expertise</h3>
+                        <p>From Minecraft content to corporate reels, stream overlays to animated logos — we assign specialists based on your niche.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <h3>📊 Quality Control & Feedback</h3>
+                        <p>Each deliverable goes through a strict review process to maintain quality. We also offer feedback and optimization tips.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <h3>🎯 Personalized Approach</h3>
+                        <p>Your brand is unique — so is our work. Every asset is custom-made to fit your style, audience, and goals.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <h3>🧩 All-in-One Creative Services</h3>
+                        <p>Video editing, animations, thumbnails, banners, overlays, and more — all under one roof, all by one reliable team.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Works Section -->
+        <div id="works" class="content-section">
+            <h2 class="section-title">Our Works</h2>
+            
+            <!-- Live Industry Section -->
+            <div id="live-industry" style="display: none;">
+                <div class="work-category-title">Live Industry</div>
+                
+                <!-- Arts Section -->
+                <div class="work-subsection-title">ARTS</div>
+                <div class="thumbnails-grid">
+                    <div class="thumbnail-card">
+                        <img src="siarts1.jpg" alt="Corporate Social Assets Portfolio" class="thumbnail-placeholder">
+                        <div class="thumbnail-info">
+                            <div class="thumbnail-title"></div>
+                            <span class="thumbnail-type">Standard</span>
+                        </div>
+                    </div>
+                    <div class="thumbnail-card">
+                        <img src="siarts2.jpg" alt="" class="thumbnail-placeholder">
+                        <div class="thumbnail-info">
+                            <div class="thumbnail-title"></div>
+                            <span class="thumbnail-type">Standard</span>
+                        </div>
+                    </div>
+                    <div class="thumbnail-card">
+                        <img src="siarts3.jpg" alt="Corporate Social Assets Portfolio" class="thumbnail-placeholder">
+                        <div class="thumbnail-info">
+                            <div class="thumbnail-title"></div>
+                            <span class="thumbnail-type">Standard</span>
+                        </div>
+                    </div>
+                    <div class="thumbnail-card">
+                        <img src="siarts4.jpg" alt="Corporate Social Assets Portfolio" class="thumbnail-placeholder">
+                        <div class="thumbnail-info">
+                            <div class="thumbnail-title"></div>
+                            <span class="thumbnail-type">Standard</span>
+                        </div>
+                    </div>
+                    <div class="thumbnail-card">
+                        <img src="siarts5.jpg" alt="Corporate Social Assets Portfolio" class="thumbnail-placeholder">
+                        <div class="thumbnail-info">
+                            <div class="thumbnail-title"></div>
+                            <span class="thumbnail-type">Standard</span>
+                        </div>
+                    </div>
+                    <div class="thumbnail-card">
+                        <img src="siarts6.jpg" alt="Corporate Social Assets Portfolio" class="thumbnail-placeholder">
+                        <div class="thumbnail-info">
+                            <div class="thumbnail-title"></div>
+                            <span class="thumbnail-type">Standard</span>
+                        </div>
+                    </div>
+                    <div class="thumbnail-card">
+                        <img src="siarts7.jpg" alt="Corporate Social Assets Portfolio" class="thumbnail-placeholder">
+                        <div class="thumbnail-info">
+                            <div class="thumbnail-title"></div>
+                            <span class="thumbnail-type">Standard</span>
+                        </div>
+                    </div>
+                    <div class="thumbnail-card">
+                        <img src="arts1.jpg" alt="Corporate Social Assets Portfolio" class="thumbnail-placeholder">
+                        <div class="thumbnail-info">
+                            <div class="thumbnail-title"></div>
+                            <span class="thumbnail-type">Premium</span>
+                        </div>
+                    </div>
+                    <div class="thumbnail-card">
+                        <img src="arts2.jpg" alt="Business Pitch Deck Design" class="thumbnail-placeholder">
+                        <div class="thumbnail-info">
+                            <div class="thumbnail-title"></div>
+                            <span class="thumbnail-type">Premium</span>
+                        </div>
+                    </div>
+                    <div class="thumbnail-card">
+                        <img src="arts3.jpg" alt="Data Visualization Design" class="thumbnail-placeholder">
+                        <div class="thumbnail-info">
+                            <div class="thumbnail-title"></div>
+                            <span class="thumbnail-type">Premium</span>
+                        </div>
+                    </div>
+                    <div class="thumbnail-card">
+                        <img src="arts4.jpg" alt="Professional Data Charts" class="thumbnail-placeholder">
+                        <div class="thumbnail-info">
+                            <div class="thumbnail-title"></div>
+                            <span class="thumbnail-type">Premium</span>
+                        </div>
+                    </div>
+                    <div class="thumbnail-card">
+                        <img src="arts5.jpg" alt="Interactive Dashboard Design" class="thumbnail-placeholder">
+                        <div class="thumbnail-info">
+                            <div class="thumbnail-title"></div>
+                            <span class="thumbnail-type">Premium</span>
+                        </div>
+                    </div>
+                    <div class="thumbnail-card">
+                        <img src="arts7.jpg" alt="Business Analytics Graphics" class="thumbnail-placeholder">
+                        <div class="thumbnail-info">
+                            <div class="thumbnail-title"></div>
+                            <span class="thumbnail-type">Premium</span>
+                        </div>
+                    </div>
+                    <div class="thumbnail-card">
+                        <img src="arts8.jpg" alt="Business Analytics Graphics" class="thumbnail-placeholder">
+                        <div class="thumbnail-info">
+                            <div class="thumbnail-title"></div>
+                            <span class="thumbnail-type">Premium</span>
+                        </div>
+                    </div>
+                    <div class="thumbnail-card">
+                        <img src="arts9.jpg" alt="Business Analytics Graphics" class="thumbnail-placeholder">
+                        <div class="thumbnail-info">
+                            <div class="thumbnail-title"></div>
+                            <span class="thumbnail-type">Premium</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video Editing Section -->
+                <div class="work-subsection-title">VIDEO EDITING</div>
+                <div class="thumbnails-grid">
+                    <div class="thumbnail-card">
+                        <video class="thumbnail-placeholder" controls>
+                            <source src="iart.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="thumbnail-info">
+                            <div class="thumbnail-title"></div>
+                            <span class="thumbnail-type">Standard</span>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <!-- Gaming Sector Section -->
+            <div id="gaming-sector" style="display: none;">
+                <div class="work-category-title">Gaming Sector</div>
+                
+<!-- Arts Section -->
+                <div class="work-subsection-title">ARTS</div>
+                <div class="thumbnails-grid">
+                    <div class="thumbnail-card">
+                        <img src="sgarts1.jpg" alt="Gaming Community Assets Portfolio" class="thumbnail-placeholder">
+                        <div class="thumbnail-info">
+                            <div class="thumbnail-title"></div>
+                            <span class="thumbnail-type">Standard</span>
+                        </div>
+                    </div>
+                    
+                    <div class="thumbnail-card">
+                        <img src="sgarts2.jpg" alt="Gaming Community Assets Portfolio" class="thumbnail-placeholder">
+                        <div class="thumbnail-info">
+                            <div class="thumbnail-title"></div>
+                            <span class="thumbnail-type">Standard</span>
+                        </div>
+                    </div>
+                    <div class="thumbnail-card">
+                        <img src="sgarts3.jpg" alt="Gaming Community Assets Portfolio" class="thumbnail-placeholder">
+                        <div class="thumbnail-info">
+                            <div class="thumbnail-title"></div>
+                            <span class="thumbnail-type">Standard</span>
+                        </div>
+                    </div>
+                    <div class="thumbnail-card">
+                        <img src="sgarts4.jpg" alt="Gaming Community Assets Portfolio" class="thumbnail-placeholder">
+                        <div class="thumbnail-info">
+                            <div class="thumbnail-title"></div>
+                            <span class="thumbnail-type">Standard</span>
+                        </div>
+                    </div>
+                    <div class="thumbnail-card">
+                        <img src="sgarts5.jpg" alt="Gaming Community Assets Portfolio" class="thumbnail-placeholder">
+                        <div class="thumbnail-info">
+                            <div class="thumbnail-title"></div>
+                            <span class="thumbnail-type">Standard</span>
+                        </div>
+                    </div>
+                    <div class="thumbnail-card">
+                        <img src="sgarts6.jpg" alt="Gaming Community Assets Portfolio" class="thumbnail-placeholder">
+                        <div class="thumbnail-info">
+                            <div class="thumbnail-title"></div>
+                            <span class="thumbnail-type">Standard</span>
+                        </div>
+                    </div>
+                    <div class="thumbnail-card">
+                        <img src="sgarts7.jpg" alt="Gaming Community Assets Portfolio" class="thumbnail-placeholder">
+                        <div class="thumbnail-info">
+                            <div class="thumbnail-title"></div>
+                            <span class="thumbnail-type">Standard</span>
+                        </div>
+                    </div>
+                    <div class="thumbnail-card">
+                        <img src="sgarts8.jpg" alt="Gaming Community Assets Portfolio" class="thumbnail-placeholder">
+                        <div class="thumbnail-info">
+                            <div class="thumbnail-title"></div>
+                            <span class="thumbnail-type">Standard</span>
+                        </div>
+                    </div>
+                    <div class="thumbnail-card">
+                        <img src="sgarts9.jpg" alt="Gaming Community Assets Portfolio" class="thumbnail-placeholder">
+                        <div class="thumbnail-info">
+                            <div class="thumbnail-title"></div>
+                            <span class="thumbnail-type">Standard</span>
+                        </div>
+                    </div>
+                    <div class="thumbnail-card">
+                        <img src="sgarts10.jpg" alt="Gaming Community Assets Portfolio" class="thumbnail-placeholder">
+                        <div class="thumbnail-info">
+                            <div class="thumbnail-title"></div>
+                            <span class="thumbnail-type">Standard</span>
+                        </div>
+                    </div>
+                    <div class="thumbnail-card">
+                        <img src="sgarts11.jpg" alt="Gaming Community Assets Portfolio" class="thumbnail-placeholder">
+                        <div class="thumbnail-info">
+                            <div class="thumbnail-title"></div>
+                            <span class="thumbnail-type">Standard</span>
+                        </div>
+                    </div>
+                    <div class="thumbnail-card">
+                        <img src="sgarts12.jpg" alt="Gaming Community Assets Portfolio" class="thumbnail-placeholder">
+                        <div class="thumbnail-info">
+                            <div class="thumbnail-title"></div>
+                            <span class="thumbnail-type">Standard</span>
+                        </div>
+                    </div>
+                    <div class="thumbnail-card">
+                        <img src="sgarts13.jpg" alt="Gaming Community Assets Portfolio" class="thumbnail-placeholder">
+                        <div class="thumbnail-info">
+                            <div class="thumbnail-title"></div>
+                            <span class="thumbnail-type">Standard</span>
+                        </div>
+                    </div>
+                    <div class="thumbnail-card">
+                        <img src="sgarts14.jpg" alt="Gaming Community Assets Portfolio" class="thumbnail-placeholder">
+                        <div class="thumbnail-info">
+                            <div class="thumbnail-title"></div>
+                            <span class="thumbnail-type">Standard</span>
+                        </div>
+                    </div>
+                    <div class="thumbnail-card">
+                        <img src="sgarts15.jpg" alt="Gaming Community Assets Portfolio" class="thumbnail-placeholder">
+                        <div class="thumbnail-info">
+                            <div class="thumbnail-title"></div>
+                            <span class="thumbnail-type">Standard</span>
+                        </div>
+                    </div>
+                    <div class="thumbnail-card">
+                        <img src="garts1.jpg" alt="Gaming Community Assets Portfolio" class="thumbnail-placeholder">
+                        <div class="thumbnail-info">
+                            <div class="thumbnail-title"></div>
+                            <span class="thumbnail-type">Premium</span>
+                        </div>
+                    </div>
+                    <div class="thumbnail-card">
+                        <img src="garts2.jpg" alt="Game Character Art Design" class="thumbnail-placeholder">
+                        <div class="thumbnail-info">
+                            <div class="thumbnail-title"></div>
+                            <span class="thumbnail-type">Premium</span>
+                        </div>
+                    </div>
+                    <div class="thumbnail-card">
+                        <img src="garts3.jpg" alt="Esports Event Graphics Portfolio" class="thumbnail-placeholder">
+                        <div class="thumbnail-info">
+                            <div class="thumbnail-title"></div>
+                            <span class="thumbnail-type">Premium</span>
+                        </div>
+                    </div>
+                    <div class="thumbnail-card">
+                        <img src="garts4.jpg" alt="Gaming Highlights Poster Design" class="thumbnail-placeholder">
+                        <div class="thumbnail-info">
+                            <div class="thumbnail-title"></div>
+                            <span class="thumbnail-type">Premium</span>
+                        </div>
+                    </div>
+                    <div class="thumbnail-card">
+                        <img src="garts5.jpg" alt="Match Day Design Portfolio" class="thumbnail-placeholder">
+                        <div class="thumbnail-info">
+                            <div class="thumbnail-title"></div>
+                            <span class="thumbnail-type">Premium</span>
+                        </div>
+                    </div>
+                    <div class="thumbnail-card">
+                        <img src="varts1.jpg" alt="Gaming Visual Assets" class="thumbnail-placeholder">
+                        <div class="thumbnail-info">
+                            <div class="thumbnail-title"></div>
+                            <span class="thumbnail-type">Premium</span>
+                        </div>
+                    </div>
+                    <!-- FIXED: This was the problematic 10th card -->
+                    <div class="thumbnail-card">
+                        <img src="varts2.jpg" alt="Custom Gaming Graphics" class="thumbnail-placeholder">
+                        <div class="thumbnail-info">
+                            <div class="thumbnail-title"></div>
+                            <span class="thumbnail-type">premium</span>
+                        </div>
+                    </div>
+                    <div class="thumbnail-card">
+                        <img src="garts6.jpg" alt="" class="thumbnail-placeholder">
+                        <div class="thumbnail-info">
+                            <div class="thumbnail-title"></div>
+                            <span class="thumbnail-type">premium</span>
+                        </div>
+                    </div>
+                    <div class="thumbnail-card">
+                        <img src="garts7.jpg" alt="Custom Gaming Graphics" class="thumbnail-placeholder">
+                        <div class="thumbnail-info">
+                            <div class="thumbnail-title"></div>
+                            <span class="thumbnail-type">premium</span>
+                        </div>
+                    </div>
+                    <div class="thumbnail-card">
+                        <img src="garts8.jpg" alt="Custom Gaming Graphics" class="thumbnail-placeholder">
+                        <div class="thumbnail-info">
+                            <div class="thumbnail-title"></div>
+                            <span class="thumbnail-type">premium</span>
+                        </div>
+                    </div>
+                    <div class="thumbnail-card">
+                        <img src="garts9.jpg" alt="Custom Gaming Graphics" class="thumbnail-placeholder">
+                        <div class="thumbnail-info">
+                            <div class="thumbnail-title"></div>
+                            <span class="thumbnail-type">premium</span>
+                        </div>
+                    </div>
+                    <div class="thumbnail-card">
+                        <img src="garts10.jpg" alt="Custom Gaming Graphics" class="thumbnail-placeholder">
+                        <div class="thumbnail-info">
+                            <div class="thumbnail-title"></div>
+                            <span class="thumbnail-type">premium</span>
+                        </div>
+                    </div>
+                    <div class="thumbnail-card">
+                        <img src="garts11.jpg" alt="Custom Gaming Graphics" class="thumbnail-placeholder">
+                        <div class="thumbnail-info">
+                            <div class="thumbnail-title"></div>
+                            <span class="thumbnail-type">premium</span>
+                        </div>
+                    </div>
+                    <div class="thumbnail-card">
+                        <img src="garts12.jpg" alt="Custom Gaming Graphics" class="thumbnail-placeholder">
+                        <div class="thumbnail-info">
+                            <div class="thumbnail-title"></div>
+                            <span class="thumbnail-type">premium</span>
+                        </div>
+                    </div>
+                    <div class="thumbnail-card">
+                        <img src="garts13.jpg" alt="Custom Gaming Graphics" class="thumbnail-placeholder">
+                        <div class="thumbnail-info">
+                            <div class="thumbnail-title"></div>
+                            <span class="thumbnail-type">premium</span>
+                        </div>
+                    </div>
+                    <div class="thumbnail-card">
+                        <img src="garts14.jpg" alt="Custom Gaming Graphics" class="thumbnail-placeholder">
+                        <div class="thumbnail-info">
+                            <div class="thumbnail-title"></div>
+                            <span class="thumbnail-type">premium</span>
+                        </div>
+                    </div>
+                    <div class="thumbnail-card">
+                        <img src="garts15.jpg" alt="Custom Gaming Graphics" class="thumbnail-placeholder">
+                        <div class="thumbnail-info">
+                            <div class="thumbnail-title"></div>
+                            <span class="thumbnail-type">premium</span>
+                        </div>
+                    </div>
+                    <div class="thumbnail-card">
+                        <img src="garts16.jpg" alt="Custom Gaming Graphics" class="thumbnail-placeholder">
+                        <div class="thumbnail-info">
+                            <div class="thumbnail-title"></div>
+                            <span class="thumbnail-type">premium</span>
+                        </div>
+                    </div>
+                    <div class="thumbnail-card">
+                        <img src="arts6.jpg" alt="Custom Gaming Graphics" class="thumbnail-placeholder">
+                        <div class="thumbnail-info">
+                            <div class="thumbnail-title"></div>
+                            <span class="thumbnail-type">premium</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video Editing Section -->
+                <div class="work-subsection-title">VIDEO EDITING</div>
+                <div class="thumbnails-grid">
+                    <div class="thumbnail-card">
+                        <video class="thumbnail-placeholder" controls>
+                            <source src="varts.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="thumbnail-info">
+                            <div class="thumbnail-title"></div>
+                            <span class="thumbnail-type">Standard</span>
+                        </div>
+                    </div>
+                    <div class="thumbnail-card">
+                        <video class="thumbnail-placeholder" controls>
+                            <source src="varts1.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="thumbnail-info">
+                            <div class="thumbnail-title"></div>
+                            <span class="thumbnail-type">Standard</span>
+                        </div>
+                    </div>
+                    <div class="thumbnail-card">
+                        <video class="thumbnail-placeholder" controls>
+                            <source src="varts2.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="thumbnail-info">
+                            <div class="thumbnail-title"></div>
+                            <span class="thumbnail-type">Standard</span>
+                        </div>
+                    </div>
+                    <div class="thumbnail-card">
+                        <video class="thumbnail-placeholder" controls>
+                            <source src="varts3.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="thumbnail-info">
+                            <div class="thumbnail-title"></div>
+                            <span class="thumbnail-type">Standard</span>
+                        </div>
+                    </div>
+                    <div class="thumbnail-card">
+                        <video class="thumbnail-placeholder" controls>
+                            <source src="varts4.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="thumbnail-info">
+                            <div class="thumbnail-title"></div>
+                            <span class="thumbnail-type">Standard</span>
+                        </div>
+                    </div>
+                    <div class="thumbnail-card">
+                        <video class="thumbnail-placeholder" controls>
+                            <source src="parts.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="thumbnail-info">
+                            <div class="thumbnail-title"></div>
+                            <span class="thumbnail-type">premium</span>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- Reviews Section -->
+        <div id="reviews" class="content-section">
+            <h2 class="section-title">Client Reviews</h2>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="stars">&nbsp;&nbsp★★★★★</div>
+                    <img src="logo2.jpg" alt="Logo" class="review-logo">
+                    <div class="review-text">Absolutely amazing work! My videos came out perfect and the delivery was fast.</div>
+                   
+                    <div class="review-text">Editing service “Editify” was one of the
+                                finest teams I have worked with.
+                                Their assistance was instrumental in
+                                expanding my Discord server to 2.5k
+                                members, for which Im quite grateful.
+                                Their pricing was fair, and the quality was
+                                amazing! Be sure to check them out onDiscord!
+                    </div>
+                    <div class="review-author">- JxckeMC,<br> ChampionsMC</div>
+                </div>
+                <div class="review-card">
+                    <img src="blogo.jpg" alt="Logo" class="review-logo">
+                    <div class="stars">&nbsp;&nbsp★★★★★</div>
+                    <div class="review-text">We run a bouquet service and wanted a nice little video to show what we do. Editify really helped us bring it to life. The way they edited the clips, added smooth transitions, and matched the music — it just felt right. They were easy to talk to, understood what we needed, and made sure everything looked beautiful. We’re super happy with how it turned out!
+                    </div>
+                 <div class="review-author">-Bloomsart.tcr</div>
+                </div>
+                <div class="review-card">
+                    <div class="stars">&nbsp;&nbsp★★★★★</div>
+                    <img src="logo1.jpg" alt="Logo" class="review-logo">
+                    <div class="review-text">As the founder of aspire smp,Editify helped
+                         us a lot in our journey and helped us gain a
+                         lot of members,One of the videos they made
+                         got around 130k views and helped us to gain
+                         around 5k members.l'd definitely reccomend
+                         it for the upcoming new servers...</div>
+                    <div class="review-author">-Owner<br>C24L</div>
+                </div>
+                <div class="review-card">
+                    <img src="logo1.png" alt="Logo" class="review-logo">
+                    <div class="stars">&nbsp;&nbsp★★★★★</div>
+                    <div class="review-text">Huge shoutout to Editify for putting together our Devmun trailer so brilliantly! Super dedicated, always open to feedback, and somehow made every tiny edit we asked for without a fuss. It was very easy to work with you—thank you for bringing our vision to life!
+                                             Keep doing what you do</div>
+                <div class="review-author">- Abha Abhilash,<br> Devamatha's MUN programme</div>
+                </div>
+                <div class="review-card">
+                    <img src="" alt="Logo" class="review-logo">
+                    <div class="stars">&nbsp;&nbsp★★★★★</div>
+                    <div class="review-text">Was skeptical at first but Editify is the definition of proffesionalism!You get good quality work and whatever you ask for,these guys will deliver to the best of their abilities.Would reccomend!</div>
+                    <div class="review-author">- Jooonah<br> </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fixed Pricing Section -->
+        <div id="prices" class="content-section">
+            <h2 class="section-title">Pricing Plans</h2>
+            <div class="pricing-container">
+                <!-- Standard Art -->
+                <div class="pricing-card">
+                    <div class="pricing-type">🖼 Standard Art</div>
+                    <div class="pricing-amount">$10</div>
+                    <ul class="pricing-features">
+                        <li>1 Revision (any 1 change)</li>
+                        <li>1–4 Day Delivery</li>
+                        <li>Unlimited Reasonable Revisions</li>
+                        <li>Direct Implementation</li>
+                    </ul>
+                </div>
+                
+                <!-- Premium Art -->
+                <div class="pricing-card">
+                    <div class="pricing-type">🖌 Premium Art</div>
+                    <div class="pricing-amount">$15</div>
+                    <ul class="pricing-features">
+                        <li>3 Revisions (any 3 changes)</li>
+                        <li>Unlimited Reasonable Revisions</li>
+                        <li>1–2 Day Delivery</li>
+                        <li>Creator Input Implementation</li>
+                        <li>Quality Checked by Experts</li>
+                    </ul>
+                </div>
+                
+                <!-- Standard Video -->
+                <div class="pricing-card highlight">
+                    <div class="popular-badge">Most Popular</div>
+                    <div class="pricing-type">🎬 Standard Video Editing</div>
+                    <div class="pricing-amount">$10</div>
+                    <ul class="pricing-features">
+                        <li>Up to 2 min high-quality edit</li>
+                        <li>OR 10 min basic edit</li>
+                        <li>2 Revisions included</li>
+                        <li>Fast turnaround</li>
+                        <li>Unlimited Reasonable Revisions</li>
+                        <li>Reassignment if unsatisfactory</li>
+                    </ul>
+                </div>
+                
+                <!-- Premium Video -->
+                <div class="pricing-card">
+                    <div class="pricing-type">🎥 Premium Video Editing</div>
+                    <div class="pricing-amount">$30</div>
+                    <ul class="pricing-features">
+                        <li>Up to 10 min high-quality edit</li>
+                        <li>Custom pricing for longer videos</li>
+                        <li>4 Revisions included</li>
+                        <li>Multiple QA Checks</li>
+                        <li>Unlimited Reasonable Revisions</li>
+                        <li>Priority support & reassignment</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <!-- About Section -->
+        <div id="about" class="content-section">
+          <h2 class="section-title">About Editify</h2>
+          <div class="about-content">
+
+            <p class="intro">
+                Welcome to <strong>Editify</strong> — the creative powerhouse where content transforms into unforgettable experiences 🎬✨.
+            </p>
+            <p>
+                At Editify, we believe every creator has a unique story worth sharing 📖, and our mission is to bring those stories to life with professional editing, eye-catching visuals, and that extra spark ⚡ that makes you stand out in today’s fast-moving digital world. 
+                    Whether you’re a gamer 🎮 dropping montages, a YouTuber 📺 building a brand, or a business 🏢 showcasing your products — we make sure your content leaves a lasting impression.
+            </p>
+
+            <hr />
+
+            <h3>👥 Who We Are</h3>
+            <p>
+                Editify began as a passion project ❤ — built by young creators who loved gaming, editing, and design. 
+                We noticed one big problem: amazing creators everywhere struggled to make their content look professional. That’s where we stepped in 🚀.
+            </p>
+            <p>
+                Today, Editify has grown into a full-service editing agency that works with creators worldwide 🌍. 
+                From polished gaming edits 🎥 to custom thumbnails, banners, logos, and animations 🎨 — we do it all. 
+                Our team includes editors experienced in Minecraft PvP 🗡, competitive gaming, and cinematic content — meaning we understand what truly makes content click 🖱.
+            </p>
+
+            <hr />
+
+            <h3>🎯 What We Do</h3>
+            <ul>
+                    <li>🎬 <strong>Video Editing</strong> – Gaming montages, cinematic storytelling, or professional content tailored to your style.</li>
+                    <li>🖼 <strong>Thumbnails & Graphics</strong> – Click-worthy designs that grab attention instantly 👀.</li>
+                    <li>🎨 <strong>Banners, Logos & Branding</strong> – Clean, memorable branding that defines your identity.</li>
+                    <li>✨ <strong>Animations & Motion Graphics</strong> – Smooth animations that give your content extra life and personality.</li>
+            </ul>
+            <p>We don’t just edit videos — we craft experiences 💎.</p>
+
+            <hr />
+
+            <h3>💡 Why Choose Editify?</h3>
+            <ul>
+                <li>✅ <strong>Built for Creators:</strong> We know the grind 🔥 — chasing views, building an audience, and standing out.</li>
+                <li>🤝 <strong>Community-Driven:</strong> Editify isn’t just a service, it’s a community of creators 💬.</li>
+                <li>💸 <strong>Affordable & Transparent:</strong> Professional editing that doesn’t break the bank 💰.</li>
+                <li>❤ <strong>Passion First:</strong> We’re not here just to deliver edits; we’re here to bring your vision alive 🌈.</li>
+            </ul>
+
+            <hr />
+
+            <h3>🚀 Our Vision</h3>
+            <p>
+                 We’re building more than an editing agency — we’re creating a hub for creators 🌐. 
+                 Soon, Editify will expand into media collaborations, partnerships, and community-driven opportunities where creators grow together. 
+                 Our dream is to become the go-to platform where creativity ✨ meets execution 🎯, and small creators get the same support as the biggest names 👑.
+            </p>
+
+            <hr />
+
+            <h3>🤝 Let’s Create Together</h3>
+            <p>
+                 At the end of the day, Editify is here for YOU 💎.<br>
+                 🎮 The gamer uploading their first highlight.<br>
+                 📺 The YouTuber chasing milestones.<br>
+                 🏢 The brand inspiring its audience.
+            </p>
+            <p>
+                 Whatever your journey, we want to be part of it 💫 — making sure your content doesn’t just reach people, but resonates with them.
+            </p>
+            <p>
+                   Because in a world full of content 🌍, it’s not just about posting… it’s about <strong>standing out 🏆</strong>. And that’s what we do best.
+            </p>
+
+            <p class="outro">
+              ✨ <strong>Editify — Your Content, Elevated.</strong> ✨
+            </p>
+        </div>
+
+        <!-- Legal Documents Section -->
+        <div class="legal-documents-section">
+            <div class="document-item">
+                <h3 class="document-title">Privacy Policy</h3>
+                <a href="privacy.pdf" 
+                    target="_blank" 
+                    class="document-btn">
+                     View Privacy Policy
+                </a>
+            </div>
+    
+            <div class="document-item">
+                <h3 class="document-title">Terms and Conditions</h3>
+                <a href="terms.pdf" 
+                        target="_blank" 
+                        class="document-btn">
+                         View Terms and Conditions
+                </a>
+            </div>
+        </div>
+
+      <!-- Centered Circle Logo -->
+        <div class="about-logo">
+            <img src="logo.jpg" alt="Editify Logo" class=review-logo />
+        </div>
+    </div>
+
+    <!-- Footer Icons -->
+    <footer style="text-align: center; padding: 40px 0; background-color: rgba(255,255,255,0.8); margin-top: 60px;">
+        <div style="display: flex; justify-content: center; gap: 20px;">
+            <a href="https://youtube.com/@editify-n1o?si=Z2irWdP4srR9E4tg" target="_blank" style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.9); border-radius: 50%; border: 2px solid #ddd; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); text-decoration: none;">
+                <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube" style="width: 24px; height: 24px; object-fit: contain;">
+            </a>
+            <a href="https://discord.gg/dvps2FDx96" target="_blank" style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.9); border-radius: 50%; border: 2px solid #ddd; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); text-decoration: none;">
+                <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" alt="Discord" style="width: 24px; height: 24px; object-fit: contain;">
+            </a>
+        </div>
+        <p style="margin-top: 20px; font-size: 14px; color: #777;">© 2025 Editify. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => section.classList.remove('active'));
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.classList.add('active');
+            }
+        }
+
+        function showWorks(categoryId) {
+            // Hide all work categories
+            const categories = ['live-industry', 'gaming-sector'];
+            categories.forEach(id => {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.style.display = 'none';
+                }
+            });
+
+            // Show the selected category
+            const targetElement = document.getElementById(categoryId);
+            if (targetElement) {
+                targetElement.style.display = 'block';
+            }
+
+            // Also make sure we're on the works section
+            showSection('works');
+        }
+
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('active');
+        }
+
+        function closeMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.remove('active');
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            
+            if (!mobileMenu.contains(event.target) && !toggle.contains(event.target)) {
+                mobileMenu.classList.remove('active');
+            }
+        });
+
+        // Ensure functions are globally available
+        window.showSection = showSection;
+        window.showWorks = showWorks;
+        window.toggleMobileMenu = toggleMobileMenu;
+        window.closeMobileMenu = closeMobileMenu;
+    </script>
+</body>
+</html>
