@@ -9,8 +9,43 @@ import Header from "@/components/Header";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "EDITIFY STUDIOS",
-  description: "Next level video editing and creative production.",
+  title: "Editify Studios | Premium Video Editing & Creative Production",
+  description: "Top-tier video editing agency for YouTube creators and brands. We engineer engaging, cinematic experiences through advanced VFX, motion graphics, and narrative-driven cuts.",
+  keywords: ["video editing agency", "youtube editor", "creative production", "VFX", "motion graphics", "high-end editing", "digital art", "Editify"],
+  openGraph: {
+    title: "Editify Studios | Premium Video Editing",
+    description: "Engineering engaging, cinematic experiences for the top 1% of creators and brands.",
+    url: "https://editify.shop",
+    siteName: "Editify Studios",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Editify Studios | Premium Video Editing",
+    description: "Engineering engaging, cinematic experiences for the top 1% of creators and brands.",
+  }
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Editify Studios",
+  "description": "Top-tier video editing agency for YouTube creators and brands.",
+  "url": "https://editify.shop",
+  "offers": [
+    {
+      "@type": "Offer",
+      "name": "Standard Video Editing",
+      "price": "40.00",
+      "priceCurrency": "USD"
+    },
+    {
+      "@type": "Offer",
+      "name": "Premium Video Editing",
+      "price": "100.00",
+      "priceCurrency": "USD"
+    }
+  ]
 };
 
 export default function RootLayout({
@@ -21,6 +56,10 @@ export default function RootLayout({
   return (
     <html lang="en" className="bg-[#050505] text-[#f4f4f4]">
       <body className={`${inter.className} antialiased selection:bg-white selection:text-black overflow-x-hidden`}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <CustomCursor />
         <Header />
         <SmoothScroll>{children}</SmoothScroll>
