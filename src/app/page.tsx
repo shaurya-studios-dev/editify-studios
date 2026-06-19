@@ -1,116 +1,103 @@
+"use client";
+
+import { useRef, useMemo } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { Points, PointMaterial } from "@react-three/drei";
+import * as random from "maath/random/dist/maath-random.esm";
 import Image from "next/image";
 import Link from "next/link";
 
+function Starfield(props: any) {
+  const ref = useRef<any>();
+  // Generate 5000 points in a sphere
+  const sphere = useMemo(() => random.inSphere(new Float32Array(5000), { radius: 1.5 }) as Float32Array, []);
+
+  useFrame((state, delta) => {
+    if (ref.current) {
+      ref.current.rotation.x -= delta / 10;
+      ref.current.rotation.y -= delta / 15;
+    }
+  });
+
+  return (
+    <group rotation={[0, 0, Math.PI / 4]}>
+      <Points ref={ref} positions={sphere} stride={3} frustumCulled={false} {...props}>
+        <PointMaterial
+          transparent
+          color="#D4AF37"
+          size={0.005}
+          sizeAttenuation={true}
+          depthWrite={false}
+        />
+      </Points>
+    </group>
+  );
+}
+
 export default function Home() {
   return (
-    <main className="min-h-screen">
-      {/* 
-        ====================================================
-        HEADER / NAVBAR
-        ====================================================
-      */}
-      <header className="fixed top-0 left-0 w-full h-[70px] bg-[#050505]/80 backdrop-blur-md border-b border-white/10 z-50 flex items-center justify-center">
-        {/* Top Left Logo */}
-        <div className="fixed top-[10px] left-[20px] w-[50px] h-[50px] rounded-full border-2 border-[#B8860B] shadow-[0_0_15px_rgba(212,175,55,0.15)] overflow-hidden hover:scale-110 hover:rotate-6 transition-transform duration-300 z-[1001]">
-          <Image 
-            src="/top_logo.jpg" 
-            alt="Editify Logo" 
-            fill
-            className="object-cover" 
-          />
+    <main className="relative w-full h-screen overflow-hidden bg-[#050505] text-[#f8f5ed]">
+      
+      {/* 3D WebGL Canvas Layer */}
+      <div className="absolute inset-0 z-0">
+        <Canvas camera={{ position: [0, 0, 1] }}>
+          <Starfield />
+        </Canvas>
+      </div>
+
+      {/* HTML Overlay Layer */}
+      <div className="relative z-10 w-full h-full flex flex-col items-center justify-center pointer-events-none">
+        
+        {/* Top Nav (Optional for structure) */}
+        <header className="absolute top-0 w-full p-8 flex justify-center pointer-events-auto">
+          <div className="w-[60px] h-[60px] rounded-full border-2 border-[#D4AF37] overflow-hidden shadow-[0_0_20px_rgba(212,175,55,0.3)]">
+             <Image src="/top_logo.jpg" alt="Logo" width={60} height={60} className="object-cover" priority />
+          </div>
+        </header>
+
+        {/* Center Hero Content */}
+        <div className="flex flex-col items-center text-center pointer-events-auto">
+          <p className="font-bebas text-[14px] tracking-[4px] text-[#D4AF37] mb-4 uppercase animate-pulse">
+            A Creative Editing Service
+          </p>
+          <h1 className="font-bebas text-[50px] md:text-[80px] lg:text-[120px] leading-[0.9] tracking-tighter text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.2)] mb-8">
+            <span className="block">STEP INSIDE</span>
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] to-[#B8860B]">
+              THE STUDIO.
+            </span>
+          </h1>
+
+          {/* Interactive Doors / Choices */}
+          <div className="flex flex-col sm:flex-row gap-6 mt-10">
+            <Link 
+              href="#video-editing"
+              className="group relative px-8 py-4 rounded-full border border-white/20 bg-white/5 backdrop-blur-md overflow-hidden transition-all hover:border-[#D4AF37]/50 hover:shadow-[0_0_30px_rgba(212,175,55,0.2)]"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-[#D4AF37]/20 to-transparent translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500" />
+              <span className="relative font-bebas text-[20px] tracking-[2px] text-white group-hover:text-[#D4AF37] transition-colors">
+                VIDEO EDITING
+              </span>
+            </Link>
+
+            <Link 
+              href="#motion-graphics"
+              className="group relative px-8 py-4 rounded-full border border-white/20 bg-white/5 backdrop-blur-md overflow-hidden transition-all hover:border-[#D4AF37]/50 hover:shadow-[0_0_30px_rgba(212,175,55,0.2)]"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-[#D4AF37]/20 to-transparent translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500" />
+              <span className="relative font-bebas text-[20px] tracking-[2px] text-white group-hover:text-[#D4AF37] transition-colors">
+                MOTION GRAPHICS
+              </span>
+            </Link>
+          </div>
         </div>
 
-        {/* Centered Nav Links */}
-        <nav className="flex gap-10">
-          {["HOME", "WORKS", "REVIEWS", "PRICES", "ABOUT"].map((item) => (
-            <Link 
-              key={item} 
-              href={`#${item.toLowerCase()}`}
-              className="font-bebas text-[20px] tracking-[2px] text-[#f8f5ed] hover:text-[#D4AF37] hover:drop-shadow-[0_0_10px_rgba(212,175,55,0.15)] relative group transition-all duration-300"
-            >
-              {item}
-              {/* Golden Underline on Hover */}
-              <span className="absolute bottom-[-5px] left-1/2 -translate-x-1/2 w-0 h-[2px] bg-gradient-to-r from-[#D4AF37] to-[#B8860B] transition-all duration-300 group-hover:w-full" />
-            </Link>
-          ))}
-        </nav>
-      </header>
-
-      <div className="mt-[100px] px-5 max-w-[1400px] mx-auto">
-        {/* 
-          ====================================================
-          HOME SECTION
-          ====================================================
-        */}
-        <section id="home" className="text-center py-20">
-          {/* Logo Placeholder with gradient border */}
-          <div className="w-[180px] h-[180px] mx-auto mb-[30px] rounded-full p-[5px] bg-gradient-to-br from-[#D4AF37] to-[#B8860B] shadow-[0_0_40px_rgba(212,175,55,0.15)] relative">
-            <div className="w-full h-full rounded-full border-4 border-[#050505] overflow-hidden relative">
-              <Image 
-                src="/logo.jpg" 
-                alt="Editify Logo" 
-                fill
-                className="object-cover"
-                priority
-              />
-            </div>
-          </div>
-
-          <h2 className="font-bebas text-[32px] tracking-[2px] text-[#D4AF37] drop-shadow-[0_0_20px_rgba(212,175,55,0.15)] mb-[60px]">
-            AN EDITING SERVICE
-          </h2>
-
-          {/* 
-            ====================================================
-            FOUR FEATURE CARDS
-            ====================================================
-          */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[30px] max-w-[1200px] mx-auto">
-            {/* Card 1 */}
-            <div className="relative p-10 text-center bg-[#141414]/60 backdrop-blur-md rounded-[20px] border border-white/10 hover:border-[#D4AF37]/50 hover:shadow-[0_20px_40px_rgba(0,0,0,0.5),0_0_20px_rgba(212,175,55,0.15)] hover:-translate-y-[5px] transition-all duration-400 z-10 overflow-hidden group">
-              <div className="absolute inset-0 rounded-[20px] bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
-              <h3 className="font-bebas text-[24px] tracking-[1px] text-[#D4AF37] mb-5">
-                ⚡ Fast Turnaround
-              </h3>
-              <p className="text-[15px] text-[#a0a0a0]">
-                Get your projects delivered quickly — whether it's a video edit, animation, banner, or thumbnail. We prioritize speed without compromising quality.
-              </p>
-            </div>
-
-            {/* Card 2 */}
-            <div className="relative p-10 text-center bg-[#141414]/60 backdrop-blur-md rounded-[20px] border border-white/10 hover:border-[#D4AF37]/50 hover:shadow-[0_20px_40px_rgba(0,0,0,0.5),0_0_20px_rgba(212,175,55,0.15)] hover:-translate-y-[5px] transition-all duration-400 z-10 overflow-hidden group">
-              <div className="absolute inset-0 rounded-[20px] bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
-              <h3 className="font-bebas text-[24px] tracking-[1px] text-[#D4AF37] mb-5">
-                💰 Best Price Guarantee
-              </h3>
-              <p className="text-[15px] text-[#a0a0a0]">
-                We offer premium creative services at unbeatable prices. You get the best value across editing, design, and animation.
-              </p>
-            </div>
-
-            {/* Card 3 */}
-            <div className="relative p-10 text-center bg-[#141414]/60 backdrop-blur-md rounded-[20px] border border-white/10 hover:border-[#D4AF37]/50 hover:shadow-[0_20px_40px_rgba(0,0,0,0.5),0_0_20px_rgba(212,175,55,0.15)] hover:-translate-y-[5px] transition-all duration-400 z-10 overflow-hidden group">
-              <div className="absolute inset-0 rounded-[20px] bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
-              <h3 className="font-bebas text-[24px] tracking-[1px] text-[#D4AF37] mb-5">
-                💻 Top-Tier Creatives
-              </h3>
-              <p className="text-[15px] text-[#a0a0a0]">
-                Our team includes editors, designers, and animators who've worked with well over 100 clients, ensuring top-quality results every time.
-              </p>
-            </div>
-
-            {/* Card 4 */}
-            <div className="relative p-10 text-center bg-[#141414]/60 backdrop-blur-md rounded-[20px] border border-white/10 hover:border-[#D4AF37]/50 hover:shadow-[0_20px_40px_rgba(0,0,0,0.5),0_0_20px_rgba(212,175,55,0.15)] hover:-translate-y-[5px] transition-all duration-400 z-10 overflow-hidden group">
-              <div className="absolute inset-0 rounded-[20px] bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
-              <h3 className="font-bebas text-[24px] tracking-[1px] text-[#D4AF37] mb-5">
-                🔄 Unlimited Revisions
-              </h3>
-              <p className="text-[15px] text-[#a0a0a0]">
-                We're not done until you're happy. Enjoy unlimited fair revisions to perfect your project without extra charges.
-              </p>
-            </div>
-          </div>
-        </section>
+        {/* Bottom Hint */}
+        <div className="absolute bottom-10 flex flex-col items-center">
+          <p className="font-sans text-[12px] uppercase tracking-[0.3em] text-white/50 mb-2">
+            Drag to interact
+          </p>
+          <div className="w-[1px] h-[30px] bg-gradient-to-b from-white/50 to-transparent animate-bounce" />
+        </div>
 
       </div>
     </main>
