@@ -185,8 +185,8 @@ export default function Page() {
         </div>
         <div className="flex flex-col md:flex-row gap-5 md:gap-10">
           <a data-cursor-hover href="mailto:hello@editify.studios" className="hover:text-white transition-colors">hello@editify.studios</a>
-          <a data-cursor-hover href="#" className="hover:text-white transition-colors">Instagram</a>
-          <a data-cursor-hover href="#" className="hover:text-white transition-colors">Twitter</a>
+          <a data-cursor-hover href="https://discord.gg/JMhA5PERdS" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Discord</a>
+          <a data-cursor-hover href="https://www.youtube.com/@Editify-n1o" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">YouTube</a>
         </div>
       </footer>
     </main>
