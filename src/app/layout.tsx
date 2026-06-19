@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { Inter, Bebas_Neue } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
 import SmoothScroll from "@/components/SmoothScroll";
 import CustomCursor from "@/components/CustomCursor";
+import Header from "@/components/Header";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,6 +22,7 @@ export default function RootLayout({
     <html lang="en" className="bg-[#050505] text-[#f4f4f4]">
       <body className={`${inter.className} antialiased selection:bg-white selection:text-black overflow-x-hidden`}>
         <CustomCursor />
+        <Header />
         <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>

@@ -95,37 +95,71 @@ export default function Page() {
       </section>
 
       {/* Bento Grid Section */}
-      <section className="w-full px-5 md:px-10 py-32 z-10 relative bg-[#050505]">
-        <div className="max-w-[2000px] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {/* Main featured project takes up 2 cols on lg */}
-          <div data-cursor-hover className="grid-item lg:col-span-2 group relative aspect-[16/9] bg-zinc-900 rounded-[2rem] overflow-hidden cursor-pointer">
-            <div className="absolute inset-0 bg-black/60 group-hover:bg-black/20 transition-colors duration-700 z-10" />
-            <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2000&auto=format&fit=crop" alt="work" className="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)] grayscale group-hover:grayscale-0" />
-            <div className="absolute bottom-10 left-10 z-20 flex items-center gap-4 opacity-0 translate-y-8 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]">
-              <span className="text-white font-medium uppercase tracking-[0.2em] text-sm md:text-lg">Premium Editorial</span>
-              <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center">
-                <ArrowUpRight className="text-black w-5 h-5" />
-              </div>
-            </div>
-          </div>
-
-          {[1,2,3,4].map((item) => (
-            <div key={item} data-cursor-hover className="grid-item group relative aspect-[4/5] bg-zinc-900 rounded-[2rem] overflow-hidden cursor-pointer">
+      <section id="works" className="w-full px-5 md:px-10 py-32 z-10 relative bg-[#050505]">
+        <div className="max-w-[2000px] mx-auto">
+          <h2 className="grid-item text-[6vw] md:text-[4vw] font-bold leading-none tracking-tighter uppercase mb-20 text-white">
+            Selected Works.
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {/* Main featured project takes up 2 cols on lg */}
+            <div data-cursor-hover className="grid-item lg:col-span-2 group relative aspect-[16/9] bg-zinc-900 rounded-[2rem] overflow-hidden cursor-pointer">
               <div className="absolute inset-0 bg-black/60 group-hover:bg-black/20 transition-colors duration-700 z-10" />
-              <img src={`https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3`} alt="work" className="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)] grayscale group-hover:grayscale-0" />
-              <div className="absolute bottom-8 left-8 z-20 flex items-center gap-3 opacity-0 translate-y-6 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]">
-                <span className="text-white font-medium uppercase tracking-wider text-sm">Creative {item}</span>
-                <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center">
-                  <ArrowUpRight className="text-black w-4 h-4" />
+              <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2000&auto=format&fit=crop" alt="work" className="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)] grayscale group-hover:grayscale-0" />
+              <div className="absolute bottom-10 left-10 z-20 flex items-center gap-4 opacity-0 translate-y-8 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]">
+                <span className="text-white font-medium uppercase tracking-[0.2em] text-sm md:text-lg">Premium Editorial</span>
+                <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center">
+                  <ArrowUpRight className="text-black w-5 h-5" />
                 </div>
               </div>
             </div>
-          ))}
+
+            {[1,2,3,4].map((item) => (
+              <div key={item} data-cursor-hover className="grid-item group relative aspect-[4/5] bg-zinc-900 rounded-[2rem] overflow-hidden cursor-pointer">
+                <div className="absolute inset-0 bg-black/60 group-hover:bg-black/20 transition-colors duration-700 z-10" />
+                <img src={`https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3`} alt="work" className="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)] grayscale group-hover:grayscale-0" />
+                <div className="absolute bottom-8 left-8 z-20 flex items-center gap-3 opacity-0 translate-y-6 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]">
+                  <span className="text-white font-medium uppercase tracking-wider text-sm">Creative {item}</span>
+                  <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center">
+                    <ArrowUpRight className="text-black w-4 h-4" />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Reviews Section */}
+      <section className="w-full px-5 md:px-10 py-32 z-10 relative bg-[#050505] border-t border-zinc-900/50">
+        <div className="max-w-[2000px] mx-auto">
+          <h2 className="grid-item text-3xl font-medium tracking-widest text-zinc-500 uppercase mb-20 text-center">
+            Client Testimonials
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20">
+            <div className="grid-item flex flex-col gap-6">
+              <p className="text-2xl md:text-4xl leading-snug font-light text-zinc-300">
+                "The best editing studio we have ever worked with. They completely transformed our brand's visual identity."
+              </p>
+              <div className="flex flex-col">
+                <span className="text-white font-bold uppercase tracking-widest">Creator XYZ</span>
+                <span className="text-zinc-500 text-sm">1.2M+ Subscribers</span>
+              </div>
+            </div>
+            <div className="grid-item flex flex-col gap-6">
+              <p className="text-2xl md:text-4xl leading-snug font-light text-zinc-300">
+                "Editify doesn't just cut video, they engineer engagement. Our retention rates doubled on the first project."
+              </p>
+              <div className="flex flex-col">
+                <span className="text-white font-bold uppercase tracking-widest">Agency Alpha</span>
+                <span className="text-zinc-500 text-sm">Creative Director</span>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Pricing Section */}
-      <section className="w-full px-5 md:px-10 py-32 z-10 relative bg-[#050505] border-t border-zinc-900/50">
+      <section id="pricing" className="w-full px-5 md:px-10 py-32 z-10 relative bg-[#050505] border-t border-zinc-900/50">
         <div className="max-w-[2000px] mx-auto">
           <h2 className="grid-item text-[6vw] md:text-[4vw] font-bold leading-none tracking-tighter uppercase mb-20">
             Investment.
