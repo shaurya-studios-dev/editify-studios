@@ -43,7 +43,7 @@ export default function Home() {
       */}
       <section id="home" className="pt-40 pb-20 px-4 flex flex-col items-center justify-center text-center">
         {/* The Golden Circle Logo */}
-        <div className="relative w-48 h-48 md:w-56 md:h-56 rounded-full border-4 border-[#cca845] flex items-center justify-center mb-8 shadow-[0_0_30px_rgba(204,168,69,0.3)] bg-white">
+        <div className="relative w-48 h-48 md:w-56 md:h-56 rounded-full border-4 border-[#cca845] flex items-center justify-center mb-8 shadow-[0_0_30px_rgba(204,168,69,0.3)] bg-white overflow-hidden">
           <Image 
             src="/logo.jpg" 
             alt="Editify Studios" 
