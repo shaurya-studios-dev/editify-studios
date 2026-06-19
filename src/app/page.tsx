@@ -1,106 +1,138 @@
 "use client";
 
-import { useRef, useMemo } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { Points, PointMaterial } from "@react-three/drei";
-// @ts-ignore
-import * as random from "maath/random/dist/maath-random.esm";
-import Image from "next/image";
-import Link from "next/link";
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Magnetic from "@/components/Magnetic";
+import { ArrowUpRight } from "lucide-react";
 
-function Starfield(props: any) {
-  const ref = useRef<any>(null);
-  // Generate 5000 points in a sphere
-  const sphere = useMemo(() => random.inSphere(new Float32Array(5000), { radius: 1.5 }) as Float32Array, []);
+export default function Page() {
+  const textRef = useRef<HTMLHeadingElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  useFrame((state, delta) => {
-    if (ref.current) {
-      ref.current.rotation.x -= delta / 10;
-      ref.current.rotation.y -= delta / 15;
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    
+    // Mask reveal animation for hero text
+    const chars = textRef.current?.querySelectorAll(".char");
+    if (chars) {
+      gsap.fromTo(
+        chars,
+        { y: 100, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          stagger: 0.05,
+          duration: 1.2,
+          ease: "power4.out",
+          delay: 0.2,
+        }
+      );
     }
-  });
+
+    // Scroll trigger for grid items
+    const items = document.querySelectorAll('.grid-item');
+    items.forEach((item, i) => {
+      gsap.fromTo(
+        item,
+        { y: 100, opacity: 0 },
+        {
+          scrollTrigger: {
+            trigger: item,
+            start: "top bottom-=100",
+            toggleActions: "play none none reverse"
+          },
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          ease: "power3.out",
+        }
+      );
+    });
+
+    return () => {
+      ScrollTrigger.getAll().forEach(t => t.kill());
+    };
+  }, []);
 
   return (
-    <group rotation={[0, 0, Math.PI / 4]}>
-      <Points ref={ref} positions={sphere} stride={3} frustumCulled={false} {...props}>
-        <PointMaterial
-          transparent
-          color="#D4AF37"
-          size={0.005}
-          sizeAttenuation={true}
-          depthWrite={false}
-        />
-      </Points>
-    </group>
-  );
-}
+    <main className="relative w-full bg-[#050505] min-h-[200vh]" ref={containerRef}>
+      {/* Subtle noise background for texture (staple of Awwwards minimalism) */}
+      <div 
+        className="fixed inset-0 opacity-[0.03] pointer-events-none z-0 mix-blend-overlay" 
+        style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")' }} 
+      />
 
-export default function Home() {
-  return (
-    <main className="relative w-full h-screen overflow-hidden bg-[#050505] text-[#f8f5ed]">
-      
-      {/* 3D WebGL Canvas Layer */}
-      <div className="absolute inset-0 z-0">
-        <Canvas camera={{ position: [0, 0, 1] }}>
-          <Starfield />
-        </Canvas>
-      </div>
-
-      {/* HTML Overlay Layer */}
-      <div className="relative z-10 w-full h-full flex flex-col items-center justify-center pointer-events-none">
-        
-        {/* Top Nav (Optional for structure) */}
-        <header className="absolute top-0 w-full p-8 flex justify-center pointer-events-auto">
-          <div className="w-[60px] h-[60px] rounded-full border-2 border-[#D4AF37] overflow-hidden shadow-[0_0_20px_rgba(212,175,55,0.3)]">
-             <Image src="/top_logo.jpg" alt="Logo" width={60} height={60} className="object-cover" priority />
+      {/* Hero Section */}
+      <section className="h-screen w-full flex flex-col items-center justify-center relative z-10 px-6">
+        <h1 
+          ref={textRef} 
+          className="text-[12vw] md:text-[8vw] font-bold leading-[0.85] tracking-tighter text-center uppercase"
+        >
+          <div className="overflow-hidden py-2">
+            {"CRAFTING".split("").map((char, i) => <span key={i} className="char inline-block translate-y-full">{char}</span>)}
           </div>
-        </header>
-
-        {/* Center Hero Content */}
-        <div className="flex flex-col items-center text-center pointer-events-auto">
-          <p className="font-bebas text-[14px] tracking-[4px] text-[#D4AF37] mb-4 uppercase animate-pulse">
-            A Creative Editing Service
-          </p>
-          <h1 className="font-bebas text-[50px] md:text-[80px] lg:text-[120px] leading-[0.9] tracking-tighter text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.2)] mb-8">
-            <span className="block">STEP INSIDE</span>
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] to-[#B8860B]">
-              THE STUDIO.
-            </span>
-          </h1>
-
-          {/* Interactive Doors / Choices */}
-          <div className="flex flex-col sm:flex-row gap-6 mt-10">
-            <Link 
-              href="#video-editing"
-              className="group relative px-8 py-4 rounded-full border border-white/20 bg-white/5 backdrop-blur-md overflow-hidden transition-all hover:border-[#D4AF37]/50 hover:shadow-[0_0_30px_rgba(212,175,55,0.2)]"
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-[#D4AF37]/20 to-transparent translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500" />
-              <span className="relative font-bebas text-[20px] tracking-[2px] text-white group-hover:text-[#D4AF37] transition-colors">
-                VIDEO EDITING
-              </span>
-            </Link>
-
-            <Link 
-              href="#motion-graphics"
-              className="group relative px-8 py-4 rounded-full border border-white/20 bg-white/5 backdrop-blur-md overflow-hidden transition-all hover:border-[#D4AF37]/50 hover:shadow-[0_0_30px_rgba(212,175,55,0.2)]"
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-[#D4AF37]/20 to-transparent translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500" />
-              <span className="relative font-bebas text-[20px] tracking-[2px] text-white group-hover:text-[#D4AF37] transition-colors">
-                MOTION GRAPHICS
-              </span>
-            </Link>
+          <div className="overflow-hidden py-2 text-zinc-600">
+            {"NEXT LEVEL".split("").map((char, i) => <span key={i} className="char inline-block translate-y-full">{char}</span>)}
           </div>
+          <div className="overflow-hidden py-2">
+            {"EXPERIENCES".split("").map((char, i) => <span key={i} className="char inline-block translate-y-full">{char}</span>)}
+          </div>
+        </h1>
+
+        <div className="absolute bottom-10 left-10 text-xs tracking-[0.3em] text-zinc-500 uppercase flex items-center gap-4">
+          <div className="w-12 h-[1px] bg-zinc-700" />
+          Scroll to explore
         </div>
 
-        {/* Bottom Hint */}
-        <div className="absolute bottom-10 flex flex-col items-center">
-          <p className="font-sans text-[12px] uppercase tracking-[0.3em] text-white/50 mb-2">
-            Drag to interact
-          </p>
-          <div className="w-[1px] h-[30px] bg-gradient-to-b from-white/50 to-transparent animate-bounce" />
+        <div className="absolute bottom-10 right-10">
+          <Magnetic>
+            <button data-cursor-hover className="w-28 h-28 rounded-full bg-[#f4f4f4] text-[#050505] flex items-center justify-center hover:scale-95 transition-transform duration-500 ease-out font-medium tracking-widest text-sm">
+              PLAY REEL
+            </button>
+          </Magnetic>
         </div>
+      </section>
 
-      </div>
+      {/* Bento Grid Section */}
+      <section className="w-full px-5 md:px-10 py-32 z-10 relative bg-[#050505]">
+        <div className="max-w-[2000px] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {/* Main featured project takes up 2 cols on lg */}
+          <div data-cursor-hover className="grid-item lg:col-span-2 group relative aspect-[16/9] bg-zinc-900 rounded-[2rem] overflow-hidden cursor-pointer">
+            <div className="absolute inset-0 bg-black/60 group-hover:bg-black/20 transition-colors duration-700 z-10" />
+            <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2000&auto=format&fit=crop" alt="work" className="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)] grayscale group-hover:grayscale-0" />
+            <div className="absolute bottom-10 left-10 z-20 flex items-center gap-4 opacity-0 translate-y-8 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]">
+              <span className="text-white font-medium uppercase tracking-[0.2em] text-sm md:text-lg">Project Alpha</span>
+              <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center">
+                <ArrowUpRight className="text-black w-5 h-5" />
+              </div>
+            </div>
+          </div>
+
+          {[1,2,3,4].map((item) => (
+            <div key={item} data-cursor-hover className="grid-item group relative aspect-[4/5] bg-zinc-900 rounded-[2rem] overflow-hidden cursor-pointer">
+              <div className="absolute inset-0 bg-black/60 group-hover:bg-black/20 transition-colors duration-700 z-10" />
+              <img src={`https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3`} alt="work" className="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)] grayscale group-hover:grayscale-0" />
+              <div className="absolute bottom-8 left-8 z-20 flex items-center gap-3 opacity-0 translate-y-6 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]">
+                <span className="text-white font-medium uppercase tracking-wider text-sm">Editorial {item}</span>
+                <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center">
+                  <ArrowUpRight className="text-black w-4 h-4" />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Minimal Footer */}
+      <footer className="w-full px-10 py-20 border-t border-zinc-900 flex justify-between items-center text-zinc-500 uppercase tracking-widest text-xs z-10 relative bg-[#050505]">
+        <div>© 2026 EDITIFY STUDIOS</div>
+        <div className="flex gap-10">
+          <a data-cursor-hover href="#" className="hover:text-white transition-colors">Instagram</a>
+          <a data-cursor-hover href="#" className="hover:text-white transition-colors">Twitter</a>
+          <a data-cursor-hover href="#" className="hover:text-white transition-colors">Email</a>
+        </div>
+      </footer>
     </main>
   );
 }
