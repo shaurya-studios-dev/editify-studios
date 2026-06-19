@@ -9,7 +9,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 function Starfield(props: any) {
-  const ref = useRef<any>();
+  const ref = useRef<any>(null);
   // Generate 5000 points in a sphere
   const sphere = useMemo(() => random.inSphere(new Float32Array(5000), { radius: 1.5 }) as Float32Array, []);
 
