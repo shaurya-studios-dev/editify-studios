@@ -33,9 +33,20 @@ export default function Header() {
 
       <nav className="hidden md:flex items-center gap-10">
         <Magnetic>
-          <a href="/#works" data-cursor-hover className="text-sm font-medium uppercase tracking-widest text-zinc-500 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors">
+          <button 
+            onClick={(e) => {
+              if (window.location.pathname === "/") {
+                e.preventDefault();
+                document.getElementById('works')?.scrollIntoView({ behavior: 'smooth' });
+              } else {
+                window.location.href = "/#works";
+              }
+            }}
+            data-cursor-hover 
+            className="text-sm font-medium uppercase tracking-widest text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors cursor-pointer"
+          >
             Works
-          </a>
+          </button>
         </Magnetic>
         <Magnetic>
           <a href="/#pricing" data-cursor-hover className="text-sm font-medium uppercase tracking-widest text-zinc-500 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors">

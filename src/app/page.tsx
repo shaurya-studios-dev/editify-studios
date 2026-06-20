@@ -87,9 +87,13 @@ export default function Page() {
 
         <div className="absolute bottom-10 right-10">
           <Magnetic>
-            <a href="#works" data-cursor-hover className="w-28 h-28 rounded-full bg-yellow-600 text-white dark:bg-yellow-500 dark:text-[#050505] flex items-center justify-center hover:scale-95 transition-transform duration-500 ease-out font-bold tracking-widest text-sm shadow-[0_0_30px_rgba(202,138,4,0.3)]">
+            <button 
+              onClick={() => document.getElementById('works')?.scrollIntoView({ behavior: 'smooth' })} 
+              data-cursor-hover 
+              className="w-28 h-28 rounded-full bg-yellow-600 text-white dark:bg-yellow-500 dark:text-[#050505] flex items-center justify-center hover:scale-95 transition-transform duration-500 ease-out font-bold tracking-widest text-sm shadow-[0_0_30px_rgba(202,138,4,0.3)] cursor-pointer"
+            >
               EXPLORE
-            </a>
+            </button>
           </Magnetic>
         </div>
       </section>
@@ -100,7 +104,9 @@ export default function Page() {
           <h2 className="grid-item text-[6vw] md:text-[4vw] font-bold leading-none tracking-tighter uppercase mb-20 text-zinc-900 dark:text-white">
             Latest Edits.
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          
+          <h3 className="grid-item text-2xl font-medium tracking-widest text-zinc-500 uppercase mb-8">Video Editing</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-20">
             {[
               "https://editify.shop/varts.mp4",
               "https://editify.shop/varts1.mp4",
@@ -111,6 +117,53 @@ export default function Page() {
             ].map((videoSrc, i) => (
               <div key={i} className="grid-item group relative aspect-[4/5] bg-zinc-200 dark:bg-zinc-900 rounded-[2rem] overflow-hidden border border-zinc-300 dark:border-zinc-800 hover:border-yellow-600/50 transition-colors duration-500">
                 <video src={videoSrc} controls muted className="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)]" />
+              </div>
+            ))}
+          </div>
+
+          <h3 className="grid-item text-2xl font-medium tracking-widest text-zinc-500 uppercase mb-8">Digital Art & Thumbnails</h3>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+            {[
+              "https://editify.shop/arts1.jpg",
+              "https://editify.shop/arts2.jpg",
+              "https://editify.shop/arts3.jpg",
+              "https://editify.shop/arts4.jpg",
+              "https://editify.shop/arts5.jpg",
+              "https://editify.shop/arts7.jpg",
+              "https://editify.shop/arts8.jpg",
+              "https://editify.shop/arts9.jpg",
+              "https://editify.shop/garts1.jpg",
+              "https://editify.shop/garts2.jpg",
+              "https://editify.shop/garts3.jpg",
+              "https://editify.shop/garts4.jpg",
+              "https://editify.shop/garts5.jpg",
+              "https://editify.shop/garts6.jpg",
+              "https://editify.shop/garts7.jpg",
+              "https://editify.shop/garts8.jpg",
+              "https://editify.shop/garts9.jpg",
+              "https://editify.shop/garts10.jpg",
+              "https://editify.shop/garts11.jpg",
+              "https://editify.shop/garts12.jpg",
+              "https://editify.shop/garts13.jpg",
+              "https://editify.shop/garts14.jpg",
+              "https://editify.shop/garts15.jpg",
+              "https://editify.shop/garts16.jpg",
+              "https://editify.shop/varts1.jpg",
+              "https://editify.shop/varts2.jpg",
+              "https://editify.shop/sgarts1.jpg",
+              "https://editify.shop/sgarts2.jpg",
+              "https://editify.shop/sgarts3.jpg",
+              "https://editify.shop/sgarts4.jpg",
+              "https://editify.shop/sgarts5.jpg",
+              "https://editify.shop/sgarts6.jpg",
+              "https://editify.shop/siarts1.jpg",
+              "https://editify.shop/siarts2.jpg",
+              "https://editify.shop/siarts3.jpg",
+              "https://editify.shop/siarts4.jpg"
+            ].map((imgSrc, i) => (
+              <div key={i} className="grid-item group relative aspect-square bg-zinc-200 dark:bg-zinc-900 rounded-[1rem] overflow-hidden border border-zinc-300 dark:border-zinc-800 hover:border-yellow-600/50 transition-colors duration-500 cursor-pointer">
+                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/0 transition-colors duration-500 z-10" />
+                <img src={imgSrc} alt={`Editify Digital Art ${i+1}`} className="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-700" />
               </div>
             ))}
           </div>
