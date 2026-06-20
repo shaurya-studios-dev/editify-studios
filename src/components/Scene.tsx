@@ -56,29 +56,7 @@ function GoldenMonolithScene({ isDark }: { isDark: boolean }) {
             />
           </RoundedBox>
         </Float>
-
-        {/* Very Little Particle Dust (Layer 2 - White/Silver for color changing effect) */}
-        <Sparkles 
-          count={20} 
-          scale={12} 
-          size={3} 
-          speed={0.1} 
-          opacity={isDark ? 0.5 : 0.2} 
-          color="#ffffff" 
-          noise={2}
-        />
       </group>
-
-      {/* Very Little Particle Dust (Layer 1 - Golden) (Stays outside spin group for parallax depth) */}
-      <Sparkles 
-        count={30} 
-        scale={10} 
-        size={4} 
-        speed={0.1} 
-        opacity={isDark ? 0.6 : 0.3} 
-        color="#ca8a04" 
-        noise={1}
-      />
     </group>
   );
 }
