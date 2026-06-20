@@ -84,29 +84,20 @@ export default function Page() {
       {/* Hero Section */}
       <section className="min-h-screen w-full flex flex-col items-center justify-center relative z-10 px-6 pt-32 pb-20">
         
-        {/* Floating Badge above headline */}
-        <div className="fade-up-hero flex items-center gap-2 px-4 py-2 rounded-full border border-yellow-600/30 bg-yellow-600/10 backdrop-blur-md mb-8">
-          <span className="w-2 h-2 rounded-full bg-yellow-500 animate-pulse"></span>
-          <span className="text-xs font-bold tracking-widest text-yellow-600 dark:text-yellow-500 uppercase">The Gold Standard of Retention</span>
-        </div>
-
         <h1 
           ref={textRef} 
-          className="text-[11vw] md:text-[7vw] font-bold leading-[0.85] tracking-tighter text-center uppercase flex flex-col items-center"
+          className="text-[11vw] md:text-[8vw] font-bold leading-[0.85] tracking-tighter text-center uppercase flex flex-col items-center"
         >
           <div className="overflow-hidden py-1 md:py-2">
-            {"SCALING CREATORS".split("").map((char, i) => <span key={`sc-${i}`} className="char inline-block translate-y-full">{char === " " ? "\u00A0" : char}</span>)}
+            {"ELITE".split("").map((char, i) => <span key={`e-${i}`} className="char inline-block translate-y-full">{char === " " ? "\u00A0" : char}</span>)}
           </div>
           <div className="overflow-hidden py-1 md:py-2 text-transparent dark:text-transparent" style={{ WebkitTextStroke: '2px currentColor', color: 'var(--foreground)' }}>
-            {"THROUGH ELITE".split("").map((char, i) => <span key={`te-${i}`} className="char inline-block translate-y-full">{char === " " ? "\u00A0" : char}</span>)}
-          </div>
-          <div className="overflow-hidden py-1 md:py-2">
-            {"VIDEO EDITING".split("").map((char, i) => <span key={`ve-${i}`} className="char inline-block translate-y-full">{char === " " ? "\u00A0" : char}</span>)}
+            {"EDITING.".split("").map((char, i) => <span key={`ed-${i}`} className="char inline-block translate-y-full">{char === " " ? "\u00A0" : char}</span>)}
           </div>
         </h1>
 
-        <p className="fade-up-hero mt-10 max-w-2xl text-center text-zinc-600 dark:text-zinc-400 text-lg md:text-xl font-medium leading-relaxed">
-          We engineer high-retention, cinematic content that demands attention and drives culture. The premium creative partner for top YouTubers, brands, and agencies.
+        <p className="fade-up-hero mt-8 max-w-lg text-center text-zinc-600 dark:text-zinc-400 text-lg md:text-xl font-medium leading-relaxed">
+          High-retention cinematic execution for top-tier creators.
         </p>
 
         <div className="fade-up-hero flex flex-col sm:flex-row items-center gap-6 mt-12">
