@@ -1,14 +1,15 @@
 "use client";
 
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Environment, Float, Sparkles, Icosahedron } from "@react-three/drei";
+import { Environment, Float, Sparkles, RoundedBox } from "@react-three/drei";
 import { useTheme } from "next-themes";
 import { useEffect, useState, useRef } from "react";
 import * as THREE from "three";
 
-function ComplexInteractiveScene({ isDark }: { isDark: boolean }) {
+function GoldenMonolithScene({ isDark }: { isDark: boolean }) {
   const groupRef = useRef<THREE.Group>(null);
   const mouse = useRef({ x: 0, y: 0 });
+  const time = useRef(0);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -19,59 +20,55 @@ function ComplexInteractiveScene({ isDark }: { isDark: boolean }) {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
-  useFrame((state) => {
+  useFrame((state, delta) => {
     if (!groupRef.current) return;
+    time.current += delta;
     
-    // Smooth camera panning based on mouse
-    const targetX = (mouse.current.x * Math.PI) / 6;
-    const targetY = (mouse.current.y * Math.PI) / 6;
+    // Smooth camera panning based on mouse (interactive dust & box)
+    const targetX = (mouse.current.x * Math.PI) / 8;
+    const targetY = (mouse.current.y * Math.PI) / 8;
     
     groupRef.current.rotation.y = THREE.MathUtils.lerp(groupRef.current.rotation.y, targetX, 0.05);
     groupRef.current.rotation.x = THREE.MathUtils.lerp(groupRef.current.rotation.x, -targetY, 0.05);
     
-    // Always slowly rotate the globe
-    groupRef.current.rotation.y += 0.001;
+    // Always slowly rotate the golden box
+    groupRef.current.rotation.y += 0.002;
   });
-
-  const materialColor = isDark ? "#ffffff" : "#000000";
-  const sparkleColor = isDark ? "#ca8a04" : "#eab308"; // Golden sparkles
 
   return (
     <group ref={groupRef}>
-      {/* Outer Geodesic Globe */}
-      <Float speed={1.5} rotationIntensity={0.5} floatIntensity={1}>
-        <Icosahedron args={[2.5, 2]}>
+      {/* Massive Shiny Golden Box (Monolith) */}
+      <Float speed={2} rotationIntensity={0.2} floatIntensity={1}>
+        <RoundedBox args={[2.5, 4.5, 1.5]} radius={0.15} smoothness={4}>
           <meshStandardMaterial 
-            color={materialColor} 
-            wireframe 
-            transparent 
-            opacity={isDark ? 0.15 : 0.08} 
-            roughness={0.1} 
-            metalness={0.8} 
+            color="#eab308" 
+            roughness={0.15} 
+            metalness={1} 
+            envMapIntensity={2}
           />
-        </Icosahedron>
+        </RoundedBox>
       </Float>
 
-      {/* Inner Golden Core */}
-      <Float speed={2} rotationIntensity={-1} floatIntensity={0.5}>
-        <Icosahedron args={[1.5, 1]}>
-          <meshStandardMaterial 
-            color={isDark ? "#ca8a04" : "#eab308"} 
-            wireframe 
-            transparent 
-            opacity={0.4} 
-          />
-        </Icosahedron>
-      </Float>
-
-      {/* Background Interactive Sparkles */}
+      {/* Very Little Particle Dust (Layer 1 - Golden) */}
       <Sparkles 
-        count={400} 
+        count={30} 
+        scale={10} 
+        size={4} 
+        speed={0.2} 
+        opacity={isDark ? 0.6 : 0.3} 
+        color="#ca8a04" 
+        noise={1}
+      />
+      
+      {/* Very Little Particle Dust (Layer 2 - White/Silver for color changing effect) */}
+      <Sparkles 
+        count={20} 
         scale={12} 
-        size={2.5} 
+        size={3} 
         speed={0.3} 
-        opacity={isDark ? 0.4 : 0.2} 
-        color={sparkleColor} 
+        opacity={isDark ? 0.5 : 0.2} 
+        color="#ffffff" 
+        noise={2}
       />
     </group>
   );
@@ -88,11 +85,12 @@ export default function Scene() {
   const isDark = theme === "dark" || !theme;
 
   return (
-    <div className="fixed inset-0 z-[-1] pointer-events-none mix-blend-difference">
-      <Canvas camera={{ position: [0, 0, 7] }}>
-        <ambientLight intensity={isDark ? 0.2 : 0.8} />
-        <directionalLight position={[10, 10, 5]} intensity={isDark ? 0.5 : 1} />
-        <ComplexInteractiveScene isDark={isDark} />
+    <div className="fixed inset-0 z-[-1] pointer-events-none mix-blend-normal opacity-80 dark:opacity-100">
+      <Canvas camera={{ position: [0, 0, 8] }}>
+        <ambientLight intensity={isDark ? 0.5 : 1} />
+        <directionalLight position={[10, 20, 10]} intensity={1.5} />
+        <directionalLight position={[-10, -20, -10]} intensity={0.5} color="#ca8a04" />
+        <GoldenMonolithScene isDark={isDark} />
         <Environment preset="city" />
       </Canvas>
     </div>
