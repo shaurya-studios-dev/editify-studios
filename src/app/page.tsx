@@ -31,12 +31,25 @@ export default function Page() {
       );
     }
 
-    // Scroll trigger for grid items
-    const items = document.querySelectorAll('.grid-item');
-    items.forEach((item, i) => {
+    // Fade up hero elements
+    gsap.fromTo(
+      ".fade-up-hero",
+      { y: 30, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        stagger: 0.1,
+        duration: 1,
+        ease: "power3.out",
+        delay: 1.2,
+      }
+    );
+
+    // Grid items reveal
+    gsap.utils.toArray<HTMLElement>(".grid-item").forEach((item) => {
       gsap.fromTo(
         item,
-        { y: 100, opacity: 0 },
+        { y: 50, opacity: 0 },
         {
           scrollTrigger: {
             trigger: item,
@@ -69,38 +82,79 @@ export default function Page() {
       <div className="fixed bottom-[-20%] right-[-10%] w-[60vw] h-[60vw] bg-yellow-500/10 dark:bg-yellow-500/5 rounded-full blur-[150px] pointer-events-none z-[-1]" />
 
       {/* Hero Section */}
-      <section className="h-screen w-full flex flex-col items-center justify-center relative z-10 px-6">
+      <section className="min-h-screen w-full flex flex-col items-center justify-center relative z-10 px-6 pt-32 pb-20">
+        
+        {/* Floating Badge above headline */}
+        <div className="fade-up-hero flex items-center gap-2 px-4 py-2 rounded-full border border-yellow-600/30 bg-yellow-600/10 backdrop-blur-md mb-8">
+          <span className="w-2 h-2 rounded-full bg-yellow-500 animate-pulse"></span>
+          <span className="text-xs font-bold tracking-widest text-yellow-600 dark:text-yellow-500 uppercase">The Gold Standard of Retention</span>
+        </div>
+
         <h1 
           ref={textRef} 
-          className="text-[12vw] md:text-[8vw] font-bold leading-[0.85] tracking-tighter text-center uppercase"
+          className="text-[11vw] md:text-[7vw] font-bold leading-[0.85] tracking-tighter text-center uppercase flex flex-col items-center"
         >
-          <div className="overflow-hidden py-2">
-            {"CRAFTING".split("").map((char, i) => <span key={i} className="char inline-block translate-y-full">{char}</span>)}
+          <div className="overflow-hidden py-1 md:py-2">
+            {"SCALING CREATORS".split("").map((char, i) => <span key={`sc-${i}`} className="char inline-block translate-y-full">{char === " " ? "\u00A0" : char}</span>)}
           </div>
-          <div className="overflow-hidden py-2 text-transparent dark:text-transparent" style={{ WebkitTextStroke: '2px currentColor', color: 'var(--foreground)' }}>
-            {"NEXT LEVEL".split("").map((char, i) => <span key={i} className="char inline-block translate-y-full">{char}</span>)}
+          <div className="overflow-hidden py-1 md:py-2 text-transparent dark:text-transparent" style={{ WebkitTextStroke: '2px currentColor', color: 'var(--foreground)' }}>
+            {"THROUGH ELITE".split("").map((char, i) => <span key={`te-${i}`} className="char inline-block translate-y-full">{char === " " ? "\u00A0" : char}</span>)}
           </div>
-          <div className="overflow-hidden py-2">
-            {"EXPERIENCES".split("").map((char, i) => <span key={i} className="char inline-block translate-y-full">{char}</span>)}
+          <div className="overflow-hidden py-1 md:py-2">
+            {"VIDEO EDITING".split("").map((char, i) => <span key={`ve-${i}`} className="char inline-block translate-y-full">{char === " " ? "\u00A0" : char}</span>)}
           </div>
         </h1>
 
-        <div className="absolute bottom-10 left-10 text-xs tracking-[0.3em] text-zinc-500 uppercase flex items-center gap-4">
-          <div className="w-12 h-[1px] bg-zinc-300 dark:bg-zinc-700" />
-          Scroll to explore
-        </div>
+        <p className="fade-up-hero mt-10 max-w-2xl text-center text-zinc-600 dark:text-zinc-400 text-lg md:text-xl font-medium leading-relaxed">
+          We engineer high-retention, cinematic content that demands attention and drives culture. The premium creative partner for top YouTubers, brands, and agencies.
+        </p>
 
-        <div className="absolute bottom-10 right-10">
+        <div className="fade-up-hero flex flex-col sm:flex-row items-center gap-6 mt-12">
+          <Magnetic>
+            <a 
+              href="https://discord.gg/JMhA5PERdS"
+              target="_blank"
+              rel="noreferrer"
+              data-cursor-hover 
+              className="px-8 py-4 rounded-full bg-yellow-600 text-white dark:bg-yellow-500 dark:text-[#050505] flex items-center justify-center hover:scale-105 transition-transform duration-500 ease-out font-bold tracking-widest text-sm shadow-[0_0_30px_rgba(202,138,4,0.3)]"
+            >
+              BOOK A CALL
+            </a>
+          </Magnetic>
           <Magnetic>
             <button 
               onClick={() => document.getElementById('works')?.scrollIntoView({ behavior: 'smooth' })} 
               data-cursor-hover 
-              className="w-28 h-28 rounded-full bg-yellow-600 text-white dark:bg-yellow-500 dark:text-[#050505] flex items-center justify-center hover:scale-95 transition-transform duration-500 ease-out font-bold tracking-widest text-sm shadow-[0_0_30px_rgba(202,138,4,0.3)] cursor-pointer"
+              className="px-8 py-4 rounded-full border border-zinc-300 dark:border-zinc-700 text-zinc-900 dark:text-white flex items-center justify-center hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors duration-500 ease-out font-bold tracking-widest text-sm"
             >
-              EXPLORE
+              VIEW WORK
             </button>
           </Magnetic>
         </div>
+
+        {/* Credibility / Trust Bar */}
+        <div className="fade-up-hero mt-20 flex flex-wrap items-center justify-center gap-8 md:gap-16 border-t border-zinc-200 dark:border-zinc-800/50 pt-10 w-full max-w-4xl">
+          <div className="flex flex-col items-center gap-2">
+            <span className="text-3xl md:text-4xl font-bold text-zinc-900 dark:text-white">100M+</span>
+            <span className="text-xs tracking-widest text-zinc-500 uppercase font-medium">Views Generated</span>
+          </div>
+          <div className="hidden md:block w-px h-12 bg-zinc-200 dark:bg-zinc-800"></div>
+          <div className="flex flex-col items-center gap-2">
+            <span className="text-3xl md:text-4xl font-bold text-zinc-900 dark:text-white">500+</span>
+            <span className="text-xs tracking-widest text-zinc-500 uppercase font-medium">Projects Delivered</span>
+          </div>
+          <div className="hidden md:block w-px h-12 bg-zinc-200 dark:bg-zinc-800"></div>
+          <div className="flex flex-col items-center gap-2">
+            <div className="flex -space-x-3 mb-1">
+              <Image src="/jona_logo.jpg" alt="Joonah" width={32} height={32} className="rounded-full border-2 border-zinc-50 dark:border-[#050505] object-cover w-8 h-8" />
+              <Image src="https://editify.shop/logo1.jpg" alt="Client" width={32} height={32} className="rounded-full border-2 border-zinc-50 dark:border-[#050505] object-cover w-8 h-8" />
+              <Image src="https://editify.shop/logo2.jpg" alt="Client" width={32} height={32} className="rounded-full border-2 border-zinc-50 dark:border-[#050505] object-cover w-8 h-8" />
+              <div className="w-8 h-8 rounded-full border-2 border-zinc-50 dark:border-[#050505] bg-zinc-200 dark:bg-zinc-800 flex items-center justify-center text-[10px] font-bold text-zinc-500 z-10 relative">+</div>
+            </div>
+            <span className="text-xs tracking-widest text-zinc-500 uppercase font-medium">Trusted by Creators</span>
+          </div>
+        </div>
+
       </section>
 
       {/* Works Section */}
