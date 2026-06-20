@@ -6,6 +6,7 @@ import CustomCursor from "@/components/CustomCursor";
 import Header from "@/components/Header";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import Scene from "@/components/Scene";
+import Preloader from "@/components/Preloader";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -58,6 +59,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.className} antialiased bg-white dark:bg-black text-black dark:text-white selection:bg-yellow-600 selection:text-white overflow-x-hidden`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+          <Preloader />
           <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
