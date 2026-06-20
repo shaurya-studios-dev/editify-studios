@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Link from "next/link";
 
 export default function About() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -73,7 +74,7 @@ export default function About() {
             <h2 className="text-3xl font-medium tracking-widest text-zinc-500 uppercase mb-8">Our Mission</h2>
             <p className="text-xl md:text-3xl leading-relaxed text-zinc-800 dark:text-zinc-300 font-light">
               We are a premier video editing and creative production agency dedicated to crafting visual masterpieces for the top 1% of creators and brands. 
-              We don't just edit videos; we engineer engaging, cinematic experiences that demand attention and drive culture.
+              We don&apos;t just edit videos; we engineer engaging, cinematic experiences that demand attention and drive culture.
             </p>
           </div>
           <div className="fade-up">
@@ -86,12 +87,14 @@ export default function About() {
       </div>
       
       {/* Minimal Footer for About page */}
-      <footer className="w-full mt-40 pt-10 border-t border-zinc-200 dark:border-zinc-900 flex flex-col md:flex-row justify-between items-start md:items-center gap-10 text-zinc-500 uppercase tracking-widest text-xs z-10 relative bg-zinc-50 dark:bg-[#050505]">
+      <footer className="w-full mt-20 pt-10 border-t border-zinc-200 dark:border-zinc-900 flex flex-col md:flex-row justify-between items-start md:items-center gap-10 text-zinc-500 uppercase tracking-widest text-xs z-10 relative bg-zinc-50 dark:bg-[#050505]">
         <div>
           <span className="text-zinc-900 dark:text-white font-bold block mb-2 text-lg">EDITIFY STUDIOS</span>
           © 2026 All Rights Reserved
         </div>
         <div className="flex flex-col md:flex-row gap-5 md:gap-10">
+          <Link data-cursor-hover href="/privacy" className="hover:text-zinc-900 dark:hover:text-white transition-colors">Privacy Policy</Link>
+          <Link data-cursor-hover href="/terms" className="hover:text-zinc-900 dark:hover:text-white transition-colors">Terms &amp; Conditions</Link>
           <a data-cursor-hover href="https://discord.gg/JMhA5PERdS" target="_blank" rel="noopener noreferrer" className="hover:text-zinc-900 dark:hover:text-white transition-colors">Discord</a>
           <a data-cursor-hover href="https://www.youtube.com/@Editify-n1o" target="_blank" rel="noopener noreferrer" className="hover:text-zinc-900 dark:hover:text-white transition-colors">YouTube</a>
         </div>

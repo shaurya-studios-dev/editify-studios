@@ -3,8 +3,9 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Link from "next/link";
 import Magnetic from "@/components/Magnetic";
-import { ArrowUpRight } from "lucide-react";
+import Image from "next/image";
 
 export default function Page() {
   const textRef = useRef<HTMLHeadingElement>(null);
@@ -76,7 +77,7 @@ export default function Page() {
           <div className="overflow-hidden py-2">
             {"CRAFTING".split("").map((char, i) => <span key={i} className="char inline-block translate-y-full">{char}</span>)}
           </div>
-          <div className="overflow-hidden py-2 text-zinc-400 dark:text-zinc-600">
+          <div className="overflow-hidden py-2 text-transparent dark:text-transparent" style={{ WebkitTextStroke: '2px currentColor', color: 'var(--foreground)' }}>
             {"NEXT LEVEL".split("").map((char, i) => <span key={i} className="char inline-block translate-y-full">{char}</span>)}
           </div>
           <div className="overflow-hidden py-2">
@@ -145,7 +146,7 @@ export default function Page() {
               ].map((imgSrc, i) => (
                 <div key={`r1-${i}`} className="relative w-[300px] md:w-[400px] aspect-video rounded-3xl overflow-hidden group cursor-pointer border border-zinc-200 dark:border-zinc-800 flex-shrink-0">
                   <div className="absolute inset-0 bg-black/50 group-hover:bg-black/0 transition-colors duration-500 z-10" />
-                  <img src={imgSrc} alt="Art" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]" />
+                  <Image src={imgSrc} alt="Art" fill sizes="(max-width: 768px) 300px, 400px" className="object-cover group-hover:scale-110 transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]" />
                 </div>
               ))}
               {/* Duplicate for seamless infinite scroll */}
@@ -159,7 +160,7 @@ export default function Page() {
               ].map((imgSrc, i) => (
                 <div key={`r1-dup-${i}`} className="relative w-[300px] md:w-[400px] aspect-video rounded-3xl overflow-hidden group cursor-pointer border border-zinc-200 dark:border-zinc-800 flex-shrink-0">
                   <div className="absolute inset-0 bg-black/50 group-hover:bg-black/0 transition-colors duration-500 z-10" />
-                  <img src={imgSrc} alt="Art" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]" />
+                  <Image src={imgSrc} alt="Art" fill sizes="(max-width: 768px) 300px, 400px" className="object-cover group-hover:scale-110 transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]" />
                 </div>
               ))}
             </div>
@@ -176,7 +177,7 @@ export default function Page() {
               ].map((imgSrc, i) => (
                 <div key={`r2-${i}`} className="relative w-[300px] md:w-[400px] aspect-square rounded-[2.5rem] overflow-hidden group cursor-pointer border border-zinc-200 dark:border-zinc-800 flex-shrink-0">
                   <div className="absolute inset-0 bg-yellow-600/20 mix-blend-overlay group-hover:opacity-0 transition-opacity duration-500 z-10" />
-                  <img src={imgSrc} alt="Art" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] grayscale group-hover:grayscale-0" />
+                  <Image src={imgSrc} alt="Art" fill sizes="(max-width: 768px) 300px, 400px" className="object-cover group-hover:scale-110 transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] grayscale group-hover:grayscale-0" />
                 </div>
               ))}
               {/* Duplicate for seamless infinite scroll */}
@@ -190,7 +191,7 @@ export default function Page() {
               ].map((imgSrc, i) => (
                 <div key={`r2-dup-${i}`} className="relative w-[300px] md:w-[400px] aspect-square rounded-[2.5rem] overflow-hidden group cursor-pointer border border-zinc-200 dark:border-zinc-800 flex-shrink-0">
                   <div className="absolute inset-0 bg-yellow-600/20 mix-blend-overlay group-hover:opacity-0 transition-opacity duration-500 z-10" />
-                  <img src={imgSrc} alt="Art" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] grayscale group-hover:grayscale-0" />
+                  <Image src={imgSrc} alt="Art" fill sizes="(max-width: 768px) 300px, 400px" className="object-cover group-hover:scale-110 transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] grayscale group-hover:grayscale-0" />
                 </div>
               ))}
             </div>
@@ -242,20 +243,20 @@ export default function Page() {
               {
                 name: "Jooonah",
                 text: "Was skeptical at first but Editify is the definition of professionalism! You get good quality work and whatever you ask for, these guys will deliver to the best of their abilities. Would recommend!",
-                img: "https://ui-avatars.com/api/?name=Jooonah&background=ca8a04&color=fff&size=128"
+                img: "/joonah.jpg"
               }
             ].map((review, i) => (
               <div key={i} className="grid-item flex flex-col justify-between p-10 rounded-[2rem] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-black hover:border-yellow-600/50 transition-colors duration-500 shadow-sm">
                 <div>
                   <div className="text-yellow-500 text-xl tracking-widest mb-6">★★★★★</div>
                   <p className="text-zinc-600 dark:text-zinc-300 font-medium leading-relaxed mb-8">
-                    "{review.text}"
+                    &quot;{review.text}&quot;
                   </p>
                 </div>
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full overflow-hidden bg-zinc-200 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 flex-shrink-0">
+                  <div className="relative w-12 h-12 rounded-full overflow-hidden bg-zinc-200 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 flex-shrink-0">
                     {review.img ? (
-                      <img src={review.img} alt={review.name} className="w-full h-full object-cover" />
+                      <Image src={review.img} alt={review.name} fill sizes="48px" className="object-cover" />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center text-zinc-500 font-bold">{review.name.charAt(0)}</div>
                     )}
@@ -337,6 +338,12 @@ export default function Page() {
               </div>
             </div>
           </div>
+
+          {/* Bulk Orders Note */}
+          <div className="grid-item mt-10 p-8 rounded-[2rem] border border-zinc-200/50 bg-white/30 dark:border-zinc-800/50 dark:bg-zinc-950/30 backdrop-blur-sm flex flex-col items-center justify-center text-center hover:border-yellow-600/30 transition-colors duration-500">
+            <h3 className="text-xl font-bold uppercase text-zinc-900 dark:text-white mb-2 tracking-widest">Bulk Orders</h3>
+            <p className="text-sm text-zinc-600 dark:text-zinc-400 font-medium">We offer flexible pricing for high-volume clients. Reach out via Discord or Gmail to negotiate a custom package.</p>
+          </div>
         </div>
       </section>
 
@@ -347,6 +354,8 @@ export default function Page() {
           © 2026 All Rights Reserved
         </div>
         <div className="flex flex-col md:flex-row gap-5 md:gap-10">
+          <Link data-cursor-hover href="/privacy" className="hover:text-zinc-900 dark:hover:text-white transition-colors">Privacy Policy</Link>
+          <Link data-cursor-hover href="/terms" className="hover:text-zinc-900 dark:hover:text-white transition-colors">Terms &amp; Conditions</Link>
           <a data-cursor-hover href="https://discord.gg/JMhA5PERdS" target="_blank" rel="noopener noreferrer" className="hover:text-zinc-900 dark:hover:text-white transition-colors">Discord</a>
           <a data-cursor-hover href="https://www.youtube.com/@Editify-n1o" target="_blank" rel="noopener noreferrer" className="hover:text-zinc-900 dark:hover:text-white transition-colors">YouTube</a>
         </div>

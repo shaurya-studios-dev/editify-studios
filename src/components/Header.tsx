@@ -52,10 +52,21 @@ export default function Header() {
           </button>
         </Magnetic>
         <Magnetic>
-          <a href="/#pricing" data-cursor-hover className="group relative text-sm font-medium uppercase tracking-widest text-zinc-500 dark:text-zinc-400 hover:text-yellow-600 dark:hover:text-yellow-400 transition-colors">
-            Pricing
+          <button 
+            onClick={(e) => {
+              if (window.location.pathname === "/") {
+                e.preventDefault();
+                document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' });
+              } else {
+                window.location.href = "/#pricing";
+              }
+            }}
+            data-cursor-hover 
+            className="group relative text-sm font-medium uppercase tracking-widest text-zinc-600 dark:text-zinc-400 hover:text-yellow-600 dark:hover:text-yellow-400 transition-colors cursor-pointer"
+          >
+            Prices
             <span className="absolute -bottom-2 left-0 w-full h-[2px] bg-yellow-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
-          </a>
+          </button>
         </Magnetic>
         <Magnetic>
           <Link href="/about" data-cursor-hover className="group relative text-sm font-medium uppercase tracking-widest text-zinc-500 dark:text-zinc-400 hover:text-yellow-600 dark:hover:text-yellow-400 transition-colors">

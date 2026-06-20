@@ -1,12 +1,12 @@
 "use client";
 
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Environment, Float, Sparkles, RoundedBox } from "@react-three/drei";
+import { Environment, Float, RoundedBox } from "@react-three/drei";
 import { useTheme } from "next-themes";
 import { useEffect, useState, useRef } from "react";
 import * as THREE from "three";
 
-function GoldenMonolithScene({ isDark }: { isDark: boolean }) {
+function GoldenMonolithScene() {
   const tiltGroupRef = useRef<THREE.Group>(null);
   const spinGroupRef = useRef<THREE.Group>(null);
   const mouse = useRef({ x: 0, y: 0 });
@@ -65,7 +65,10 @@ export default function Scene() {
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
-  useEffect(() => setMounted(true), []);
+  useEffect(() => {
+    const t = setTimeout(() => setMounted(true), 0);
+    return () => clearTimeout(t);
+  }, []);
 
   if (!mounted) return null;
 
@@ -73,11 +76,11 @@ export default function Scene() {
 
   return (
     <div className="fixed inset-0 z-[-1] pointer-events-none mix-blend-normal opacity-80 dark:opacity-100">
-      <Canvas camera={{ position: [0, 0, 8] }}>
+      <Canvas camera={{ position: [0, 0, 8] }} dpr={[1, 1.5]}>
         <ambientLight intensity={isDark ? 0.5 : 1} />
         <directionalLight position={[10, 20, 10]} intensity={1.5} />
         <directionalLight position={[-10, -20, -10]} intensity={0.5} color="#ca8a04" />
-        <GoldenMonolithScene isDark={isDark} />
+        <GoldenMonolithScene />
         <Environment preset="city" />
       </Canvas>
     </div>
