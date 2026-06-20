@@ -1,9 +1,9 @@
 "use client";
 
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Environment, Float, Sparkles, TorusKnot, Icosahedron } from "@react-three/drei";
+import { Environment, Float, Sparkles, Icosahedron } from "@react-three/drei";
 import { useTheme } from "next-themes";
-import { useEffect, useState, useRef, useMemo } from "react";
+import { useEffect, useState, useRef } from "react";
 import * as THREE from "three";
 
 function ComplexInteractiveScene({ isDark }: { isDark: boolean }) {
@@ -23,11 +23,14 @@ function ComplexInteractiveScene({ isDark }: { isDark: boolean }) {
     if (!groupRef.current) return;
     
     // Smooth camera panning based on mouse
-    const targetX = (mouse.current.x * Math.PI) / 10;
-    const targetY = (mouse.current.y * Math.PI) / 10;
+    const targetX = (mouse.current.x * Math.PI) / 6;
+    const targetY = (mouse.current.y * Math.PI) / 6;
     
     groupRef.current.rotation.y = THREE.MathUtils.lerp(groupRef.current.rotation.y, targetX, 0.05);
     groupRef.current.rotation.x = THREE.MathUtils.lerp(groupRef.current.rotation.x, -targetY, 0.05);
+    
+    // Always slowly rotate the globe
+    groupRef.current.rotation.y += 0.001;
   });
 
   const materialColor = isDark ? "#ffffff" : "#000000";
@@ -35,39 +38,39 @@ function ComplexInteractiveScene({ isDark }: { isDark: boolean }) {
 
   return (
     <group ref={groupRef}>
-      {/* Central Complex Geometry */}
-      <Float speed={2} rotationIntensity={1.5} floatIntensity={2}>
-        <TorusKnot args={[1.5, 0.4, 256, 64]} scale={1.2}>
+      {/* Outer Geodesic Globe */}
+      <Float speed={1.5} rotationIntensity={0.5} floatIntensity={1}>
+        <Icosahedron args={[2.5, 2]}>
           <meshStandardMaterial 
             color={materialColor} 
             wireframe 
             transparent 
-            opacity={isDark ? 0.15 : 0.05} 
+            opacity={isDark ? 0.15 : 0.08} 
             roughness={0.1} 
             metalness={0.8} 
           />
-        </TorusKnot>
+        </Icosahedron>
       </Float>
 
-      {/* Floating inner geometry */}
-      <Float speed={3} rotationIntensity={2} floatIntensity={1}>
-        <Icosahedron args={[1, 0]} scale={0.8}>
+      {/* Inner Golden Core */}
+      <Float speed={2} rotationIntensity={-1} floatIntensity={0.5}>
+        <Icosahedron args={[1.5, 1]}>
           <meshStandardMaterial 
             color={isDark ? "#ca8a04" : "#eab308"} 
             wireframe 
             transparent 
-            opacity={0.3} 
+            opacity={0.4} 
           />
         </Icosahedron>
       </Float>
 
       {/* Background Interactive Sparkles */}
       <Sparkles 
-        count={300} 
-        scale={15} 
-        size={3} 
-        speed={0.4} 
-        opacity={isDark ? 0.3 : 0.15} 
+        count={400} 
+        scale={12} 
+        size={2.5} 
+        speed={0.3} 
+        opacity={isDark ? 0.4 : 0.2} 
         color={sparkleColor} 
       />
     </group>
