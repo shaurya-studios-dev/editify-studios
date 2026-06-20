@@ -1,14 +1,13 @@
 "use client";
 
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Environment, MeshDistortMaterial, Sphere } from "@react-three/drei";
+import { Environment, Float, Sparkles, TorusKnot, Icosahedron } from "@react-three/drei";
 import { useTheme } from "next-themes";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useMemo } from "react";
 import * as THREE from "three";
 
-function AnimatedSphere({ isDark }: { isDark: boolean }) {
-  const meshRef = useRef<THREE.Mesh>(null);
-  const materialRef = useRef<any>(null);
+function ComplexInteractiveScene({ isDark }: { isDark: boolean }) {
+  const groupRef = useRef<THREE.Group>(null);
   const mouse = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
@@ -20,36 +19,58 @@ function AnimatedSphere({ isDark }: { isDark: boolean }) {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
-  useFrame(() => {
-    if (!meshRef.current) return;
+  useFrame((state) => {
+    if (!groupRef.current) return;
     
-    const targetX = (mouse.current.x * Math.PI) / 4;
-    const targetY = (mouse.current.y * Math.PI) / 4;
+    // Smooth camera panning based on mouse
+    const targetX = (mouse.current.x * Math.PI) / 10;
+    const targetY = (mouse.current.y * Math.PI) / 10;
     
-    meshRef.current.rotation.y = THREE.MathUtils.lerp(meshRef.current.rotation.y, targetX, 0.02);
-    meshRef.current.rotation.x = THREE.MathUtils.lerp(meshRef.current.rotation.x, -targetY, 0.02);
-    
-    meshRef.current.position.x = THREE.MathUtils.lerp(meshRef.current.position.x, mouse.current.x * 2.5, 0.02);
-    meshRef.current.position.y = THREE.MathUtils.lerp(meshRef.current.position.y, mouse.current.y * 2.5, 0.02);
-
-    if (materialRef.current) {
-      const targetDistort = 0.4 + (Math.abs(mouse.current.x) + Math.abs(mouse.current.y)) * 0.15;
-      materialRef.current.distort = THREE.MathUtils.lerp(materialRef.current.distort, targetDistort, 0.05);
-    }
+    groupRef.current.rotation.y = THREE.MathUtils.lerp(groupRef.current.rotation.y, targetX, 0.05);
+    groupRef.current.rotation.x = THREE.MathUtils.lerp(groupRef.current.rotation.x, -targetY, 0.05);
   });
 
+  const materialColor = isDark ? "#ffffff" : "#000000";
+  const sparkleColor = isDark ? "#ca8a04" : "#eab308"; // Golden sparkles
+
   return (
-    <Sphere ref={meshRef} args={[2, 64, 64]} scale={2.5}>
-      <MeshDistortMaterial
-        ref={materialRef}
-        color={isDark ? "#222222" : "#dddddd"}
-        attach="material"
-        distort={0.4}
-        speed={1.5}
-        roughness={0.2}
-        metalness={isDark ? 0.8 : 0.2}
+    <group ref={groupRef}>
+      {/* Central Complex Geometry */}
+      <Float speed={2} rotationIntensity={1.5} floatIntensity={2}>
+        <TorusKnot args={[1.5, 0.4, 256, 64]} scale={1.2}>
+          <meshStandardMaterial 
+            color={materialColor} 
+            wireframe 
+            transparent 
+            opacity={isDark ? 0.15 : 0.05} 
+            roughness={0.1} 
+            metalness={0.8} 
+          />
+        </TorusKnot>
+      </Float>
+
+      {/* Floating inner geometry */}
+      <Float speed={3} rotationIntensity={2} floatIntensity={1}>
+        <Icosahedron args={[1, 0]} scale={0.8}>
+          <meshStandardMaterial 
+            color={isDark ? "#ca8a04" : "#eab308"} 
+            wireframe 
+            transparent 
+            opacity={0.3} 
+          />
+        </Icosahedron>
+      </Float>
+
+      {/* Background Interactive Sparkles */}
+      <Sparkles 
+        count={300} 
+        scale={15} 
+        size={3} 
+        speed={0.4} 
+        opacity={isDark ? 0.3 : 0.15} 
+        color={sparkleColor} 
       />
-    </Sphere>
+    </group>
   );
 }
 
@@ -64,11 +85,11 @@ export default function Scene() {
   const isDark = theme === "dark" || !theme;
 
   return (
-    <div className="fixed inset-0 z-[-1] pointer-events-none opacity-40 mix-blend-difference">
-      <Canvas camera={{ position: [0, 0, 5] }}>
+    <div className="fixed inset-0 z-[-1] pointer-events-none mix-blend-difference">
+      <Canvas camera={{ position: [0, 0, 7] }}>
         <ambientLight intensity={isDark ? 0.2 : 0.8} />
         <directionalLight position={[10, 10, 5]} intensity={isDark ? 0.5 : 1} />
-        <AnimatedSphere isDark={isDark} />
+        <ComplexInteractiveScene isDark={isDark} />
         <Environment preset="city" />
       </Canvas>
     </div>
