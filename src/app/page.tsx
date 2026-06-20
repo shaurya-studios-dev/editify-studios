@@ -63,6 +63,10 @@ export default function Page() {
         style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")' }} 
       />
 
+      {/* Golden Accents in Background */}
+      <div className="fixed top-[-20%] left-[-10%] w-[50vw] h-[50vw] bg-yellow-600/10 dark:bg-yellow-600/5 rounded-full blur-[120px] pointer-events-none z-[-1]" />
+      <div className="fixed bottom-[-20%] right-[-10%] w-[60vw] h-[60vw] bg-yellow-500/10 dark:bg-yellow-500/5 rounded-full blur-[150px] pointer-events-none z-[-1]" />
+
       {/* Hero Section */}
       <section className="h-screen w-full flex flex-col items-center justify-center relative z-10 px-6">
         <h1 
@@ -121,56 +125,148 @@ export default function Page() {
             ))}
           </div>
 
-          <h3 className="grid-item text-2xl font-medium tracking-widest text-zinc-500 uppercase mb-8">Digital Art & Thumbnails</h3>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-            {[
-              "https://editify.shop/arts1.jpg",
-              "https://editify.shop/arts2.jpg",
-              "https://editify.shop/arts3.jpg",
-              "https://editify.shop/arts4.jpg",
-              "https://editify.shop/arts5.jpg",
-              "https://editify.shop/arts7.jpg",
-              "https://editify.shop/arts8.jpg",
-              "https://editify.shop/arts9.jpg",
-              "https://editify.shop/garts1.jpg",
-              "https://editify.shop/garts2.jpg",
-              "https://editify.shop/garts3.jpg",
-              "https://editify.shop/garts4.jpg",
-              "https://editify.shop/garts5.jpg",
-              "https://editify.shop/garts6.jpg",
-              "https://editify.shop/garts7.jpg",
-              "https://editify.shop/garts8.jpg",
-              "https://editify.shop/garts9.jpg",
-              "https://editify.shop/garts10.jpg",
-              "https://editify.shop/garts11.jpg",
-              "https://editify.shop/garts12.jpg",
-              "https://editify.shop/garts13.jpg",
-              "https://editify.shop/garts14.jpg",
-              "https://editify.shop/garts15.jpg",
-              "https://editify.shop/garts16.jpg",
-              "https://editify.shop/varts1.jpg",
-              "https://editify.shop/varts2.jpg",
-              "https://editify.shop/sgarts1.jpg",
-              "https://editify.shop/sgarts2.jpg",
-              "https://editify.shop/sgarts3.jpg",
-              "https://editify.shop/sgarts4.jpg",
-              "https://editify.shop/sgarts5.jpg",
-              "https://editify.shop/sgarts6.jpg",
-              "https://editify.shop/siarts1.jpg",
-              "https://editify.shop/siarts2.jpg",
-              "https://editify.shop/siarts3.jpg",
-              "https://editify.shop/siarts4.jpg"
-            ].map((imgSrc, i) => (
-              <div key={i} className="grid-item group relative aspect-square bg-zinc-200 dark:bg-zinc-900 rounded-[1rem] overflow-hidden border border-zinc-300 dark:border-zinc-800 hover:border-yellow-600/50 transition-colors duration-500 cursor-pointer">
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/0 transition-colors duration-500 z-10" />
-                <img src={imgSrc} alt={`Editify Digital Art ${i+1}`} className="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-700" />
-              </div>
-            ))}
+          <h3 className="grid-item text-2xl font-medium tracking-widest text-zinc-500 uppercase mb-8 mt-32">Digital Art & Thumbnails</h3>
+          
+          {/* Crazy Infinite Marquee Showcasing */}
+          <div className="relative w-full overflow-hidden flex flex-col gap-5 py-10 -mx-5 md:-mx-10 px-5 md:px-10">
+            {/* Gradient Fades for Marquee */}
+            <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white dark:from-black to-transparent z-20 pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white dark:from-black to-transparent z-20 pointer-events-none" />
+            
+            {/* Row 1 - Moving Left */}
+            <div className="flex w-max animate-[marquee_40s_linear_infinite] hover:[animation-play-state:paused] gap-5">
+              {[
+                "https://editify.shop/arts1.jpg", "https://editify.shop/arts2.jpg", "https://editify.shop/arts3.jpg",
+                "https://editify.shop/arts4.jpg", "https://editify.shop/arts5.jpg", "https://editify.shop/arts7.jpg",
+                "https://editify.shop/arts8.jpg", "https://editify.shop/arts9.jpg", "https://editify.shop/garts1.jpg",
+                "https://editify.shop/garts2.jpg", "https://editify.shop/garts3.jpg", "https://editify.shop/garts4.jpg",
+                "https://editify.shop/garts5.jpg", "https://editify.shop/garts6.jpg", "https://editify.shop/garts7.jpg",
+                "https://editify.shop/garts8.jpg", "https://editify.shop/garts9.jpg", "https://editify.shop/garts10.jpg"
+              ].map((imgSrc, i) => (
+                <div key={`r1-${i}`} className="relative w-[300px] md:w-[400px] aspect-video rounded-3xl overflow-hidden group cursor-pointer border border-zinc-200 dark:border-zinc-800 flex-shrink-0">
+                  <div className="absolute inset-0 bg-black/50 group-hover:bg-black/0 transition-colors duration-500 z-10" />
+                  <img src={imgSrc} alt="Art" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]" />
+                </div>
+              ))}
+              {/* Duplicate for seamless infinite scroll */}
+              {[
+                "https://editify.shop/arts1.jpg", "https://editify.shop/arts2.jpg", "https://editify.shop/arts3.jpg",
+                "https://editify.shop/arts4.jpg", "https://editify.shop/arts5.jpg", "https://editify.shop/arts7.jpg",
+                "https://editify.shop/arts8.jpg", "https://editify.shop/arts9.jpg", "https://editify.shop/garts1.jpg",
+                "https://editify.shop/garts2.jpg", "https://editify.shop/garts3.jpg", "https://editify.shop/garts4.jpg",
+                "https://editify.shop/garts5.jpg", "https://editify.shop/garts6.jpg", "https://editify.shop/garts7.jpg",
+                "https://editify.shop/garts8.jpg", "https://editify.shop/garts9.jpg", "https://editify.shop/garts10.jpg"
+              ].map((imgSrc, i) => (
+                <div key={`r1-dup-${i}`} className="relative w-[300px] md:w-[400px] aspect-video rounded-3xl overflow-hidden group cursor-pointer border border-zinc-200 dark:border-zinc-800 flex-shrink-0">
+                  <div className="absolute inset-0 bg-black/50 group-hover:bg-black/0 transition-colors duration-500 z-10" />
+                  <img src={imgSrc} alt="Art" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]" />
+                </div>
+              ))}
+            </div>
+
+            {/* Row 2 - Moving Right */}
+            <div className="flex w-max animate-[marqueeReverse_45s_linear_infinite] hover:[animation-play-state:paused] gap-5 -ml-[500px]">
+              {[
+                "https://editify.shop/garts11.jpg", "https://editify.shop/garts12.jpg", "https://editify.shop/garts13.jpg",
+                "https://editify.shop/garts14.jpg", "https://editify.shop/garts15.jpg", "https://editify.shop/garts16.jpg",
+                "https://editify.shop/varts1.jpg", "https://editify.shop/varts2.jpg", "https://editify.shop/sgarts1.jpg",
+                "https://editify.shop/sgarts2.jpg", "https://editify.shop/sgarts3.jpg", "https://editify.shop/sgarts4.jpg",
+                "https://editify.shop/sgarts5.jpg", "https://editify.shop/sgarts6.jpg", "https://editify.shop/siarts1.jpg",
+                "https://editify.shop/siarts2.jpg", "https://editify.shop/siarts3.jpg", "https://editify.shop/siarts4.jpg"
+              ].map((imgSrc, i) => (
+                <div key={`r2-${i}`} className="relative w-[300px] md:w-[400px] aspect-square rounded-[2.5rem] overflow-hidden group cursor-pointer border border-zinc-200 dark:border-zinc-800 flex-shrink-0">
+                  <div className="absolute inset-0 bg-yellow-600/20 mix-blend-overlay group-hover:opacity-0 transition-opacity duration-500 z-10" />
+                  <img src={imgSrc} alt="Art" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] grayscale group-hover:grayscale-0" />
+                </div>
+              ))}
+              {/* Duplicate for seamless infinite scroll */}
+              {[
+                "https://editify.shop/garts11.jpg", "https://editify.shop/garts12.jpg", "https://editify.shop/garts13.jpg",
+                "https://editify.shop/garts14.jpg", "https://editify.shop/garts15.jpg", "https://editify.shop/garts16.jpg",
+                "https://editify.shop/varts1.jpg", "https://editify.shop/varts2.jpg", "https://editify.shop/sgarts1.jpg",
+                "https://editify.shop/sgarts2.jpg", "https://editify.shop/sgarts3.jpg", "https://editify.shop/sgarts4.jpg",
+                "https://editify.shop/sgarts5.jpg", "https://editify.shop/sgarts6.jpg", "https://editify.shop/siarts1.jpg",
+                "https://editify.shop/siarts2.jpg", "https://editify.shop/siarts3.jpg", "https://editify.shop/siarts4.jpg"
+              ].map((imgSrc, i) => (
+                <div key={`r2-dup-${i}`} className="relative w-[300px] md:w-[400px] aspect-square rounded-[2.5rem] overflow-hidden group cursor-pointer border border-zinc-200 dark:border-zinc-800 flex-shrink-0">
+                  <div className="absolute inset-0 bg-yellow-600/20 mix-blend-overlay group-hover:opacity-0 transition-opacity duration-500 z-10" />
+                  <img src={imgSrc} alt="Art" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] grayscale group-hover:grayscale-0" />
+                </div>
+              ))}
+            </div>
+            
+            <style dangerouslySetInnerHTML={{__html: `
+              @keyframes marquee {
+                0% { transform: translateX(0); }
+                100% { transform: translateX(calc(-50% - 10px)); }
+              }
+              @keyframes marqueeReverse {
+                0% { transform: translateX(calc(-50% - 10px)); }
+                100% { transform: translateX(0); }
+              }
+            `}} />
           </div>
         </div>
       </section>
 
 
+
+      {/* Reviews Section */}
+      <section className="w-full px-5 md:px-10 py-32 z-10 relative bg-zinc-100 dark:bg-zinc-950">
+        <div className="max-w-[2000px] mx-auto">
+          <h2 className="grid-item text-[6vw] md:text-[4vw] font-bold leading-none tracking-tighter uppercase mb-20 text-zinc-900 dark:text-white">
+            Client Voices.
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {[
+              {
+                name: "JxckeMC, ChampionsMC",
+                text: "Absolutely amazing work! My videos came out perfect and the delivery was fast. Editing service “Editify” was one of the finest teams I have worked with. Their assistance was instrumental in expanding my Discord server to 2.5k members. Their pricing was fair, and the quality was amazing!",
+                img: "https://editify.shop/logo2.jpg"
+              },
+              {
+                name: "Bloomsart.tcr",
+                text: "We run a bouquet service and wanted a nice little video to show what we do. Editify really helped us bring it to life. The way they edited the clips, added smooth transitions, and matched the music — it just felt right. They were easy to talk to, understood what we needed, and made sure everything looked beautiful.",
+                img: "https://editify.shop/blogo.jpg"
+              },
+              {
+                name: "Owner C24L, Aspire SMP",
+                text: "As the founder of aspire smp, Editify helped us a lot in our journey and helped us gain a lot of members, One of the videos they made got around 130k views and helped us to gain around 5k members. I'd definitely recommend it for the upcoming new servers...",
+                img: "https://editify.shop/logo1.jpg"
+              },
+              {
+                name: "Abha Abhilash, Devamatha's MUN",
+                text: "Huge shoutout to Editify for putting together our Devmun trailer so brilliantly! Super dedicated, always open to feedback, and somehow made every tiny edit we asked for without a fuss. It was very easy to work with you—thank you for bringing our vision to life!",
+                img: "https://editify.shop/logo1.png"
+              },
+              {
+                name: "Jooonah",
+                text: "Was skeptical at first but Editify is the definition of professionalism! You get good quality work and whatever you ask for, these guys will deliver to the best of their abilities. Would recommend!",
+                img: ""
+              }
+            ].map((review, i) => (
+              <div key={i} className="grid-item flex flex-col justify-between p-10 rounded-[2rem] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-black hover:border-yellow-600/50 transition-colors duration-500 shadow-sm">
+                <div>
+                  <div className="text-yellow-500 text-xl tracking-widest mb-6">★★★★★</div>
+                  <p className="text-zinc-600 dark:text-zinc-300 font-medium leading-relaxed mb-8">
+                    "{review.text}"
+                  </p>
+                </div>
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-full overflow-hidden bg-zinc-200 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 flex-shrink-0">
+                    {review.img ? (
+                      <img src={review.img} alt={review.name} className="w-full h-full object-cover" />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center text-zinc-500 font-bold">{review.name.charAt(0)}</div>
+                    )}
+                  </div>
+                  <span className="text-sm font-bold tracking-widest uppercase text-zinc-900 dark:text-white">{review.name}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Pricing Section */}
       <section id="pricing" className="w-full px-5 md:px-10 py-32 z-10 relative border-t border-zinc-200 dark:border-zinc-900/50">
@@ -201,27 +297,43 @@ export default function Page() {
               </div>
             </div>
 
-            {/* Video Category */}
-            <div className="grid-item flex flex-col gap-5 p-10 rounded-[2rem] border-2 border-yellow-600/50 bg-white/50 dark:bg-zinc-950/50 backdrop-blur-sm relative shadow-[0_0_30px_rgba(202,138,4,0.1)] transition-colors duration-500">
-              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-yellow-600 to-yellow-500 text-white px-6 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase shadow-lg">
-                Most Popular
-              </div>
-              <h3 className="text-2xl font-medium tracking-widest text-zinc-500 uppercase mb-5 mt-2">Video Editing</h3>
+            {/* Video Category - Creative Most Popular */}
+            <div className="grid-item relative group md:-mt-4 md:mb-4 transition-all duration-700 hover:scale-[1.02]">
+              {/* Animated Glow Background */}
+              <div className="absolute -inset-1 bg-gradient-to-r from-yellow-600 via-amber-500 to-yellow-600 rounded-[2.5rem] blur opacity-30 group-hover:opacity-70 transition duration-1000 animate-pulse"></div>
               
-              <div className="flex justify-between items-end border-b border-zinc-200 dark:border-zinc-800 pb-5">
-                <div className="flex flex-col">
-                  <span className="text-3xl font-bold uppercase text-zinc-900 dark:text-white">Standard</span>
-                  <span className="text-sm text-zinc-500 mt-2">Professional cuts, color correction & sound.</span>
+              <div className="relative flex flex-col gap-5 p-10 rounded-[2rem] border border-yellow-600/40 bg-white/90 dark:bg-zinc-950/90 backdrop-blur-2xl h-full shadow-[0_0_40px_rgba(202,138,4,0.2)] z-10 overflow-hidden">
+                {/* Subtle internal animated gradient blobs */}
+                <div className="absolute top-0 right-0 w-64 h-64 bg-yellow-600/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 animate-spin" style={{ animationDuration: '10s' }} />
+                <div className="absolute bottom-0 left-0 w-64 h-64 bg-yellow-500/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 animate-spin" style={{ animationDuration: '15s', animationDirection: 'reverse' }} />
+
+                {/* Creative Badge */}
+                <div className="absolute -top-5 left-1/2 -translate-x-1/2 flex items-center justify-center z-20">
+                  <div className="absolute w-full h-full bg-yellow-500/60 blur-md rounded-full animate-pulse"></div>
+                  <div className="relative bg-gradient-to-r from-yellow-600 via-yellow-400 to-yellow-600 bg-[length:200%_auto] text-[#050505] px-8 py-2 rounded-full text-xs font-bold tracking-[0.2em] uppercase shadow-[0_10px_20px_rgba(202,138,4,0.4)] border border-yellow-300/50 flex items-center gap-3 animate-pulse" style={{ animationDuration: '3s' }}>
+                    <span>★</span>
+                    Most Popular
+                    <span>★</span>
+                  </div>
                 </div>
-                <span className="text-3xl font-light text-yellow-600 dark:text-yellow-500">$50</span>
-              </div>
-              
-              <div className="flex justify-between items-end border-b border-zinc-200 dark:border-zinc-800 pb-5 pt-5">
-                <div className="flex flex-col">
-                  <span className="text-3xl font-bold uppercase text-zinc-900 dark:text-white">Premium</span>
-                  <span className="text-sm text-zinc-500 mt-2">Advanced VFX, motion graphics & cinematic grade.</span>
+
+                <h3 className="text-2xl font-medium tracking-widest text-zinc-500 uppercase mb-5 mt-4 relative z-20">Video Editing</h3>
+                
+                <div className="flex justify-between items-end border-b border-zinc-200 dark:border-zinc-800 pb-5 relative z-20">
+                  <div className="flex flex-col">
+                    <span className="text-3xl font-bold uppercase text-zinc-900 dark:text-white">Standard</span>
+                    <span className="text-sm text-zinc-500 mt-2">Professional cuts, color correction & sound.</span>
+                  </div>
+                  <span className="text-4xl font-bold text-yellow-600 dark:text-yellow-500 tracking-tighter drop-shadow-[0_0_15px_rgba(202,138,4,0.4)]">$50</span>
                 </div>
-                <span className="text-3xl font-light text-zinc-900 dark:text-white">$100</span>
+                
+                <div className="flex justify-between items-end border-b border-zinc-200 dark:border-zinc-800 pb-5 pt-5 relative z-20">
+                  <div className="flex flex-col">
+                    <span className="text-3xl font-bold uppercase text-zinc-900 dark:text-white">Premium</span>
+                    <span className="text-sm text-zinc-500 mt-2">Advanced VFX, motion graphics & cinematic grade.</span>
+                  </div>
+                  <span className="text-3xl font-light text-zinc-900 dark:text-white">$100</span>
+                </div>
               </div>
             </div>
           </div>

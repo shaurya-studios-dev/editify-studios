@@ -21,9 +21,11 @@ export default function Header() {
   return (
     <header 
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 flex justify-between items-center px-6 md:px-10 py-6 ${
-        scrolled ? "bg-white/80 dark:bg-[#050505]/80 backdrop-blur-md border-b border-zinc-200 dark:border-zinc-900" : "bg-transparent"
+        scrolled ? "bg-white/90 dark:bg-black/90 backdrop-blur-md shadow-[0_4px_30px_rgba(202,138,4,0.05)]" : "bg-transparent"
       }`}
     >
+      {/* Subtle golden bottom border on scroll */}
+      <div className={`absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-yellow-600/50 to-transparent transition-opacity duration-500 ${scrolled ? "opacity-100" : "opacity-0"}`} />
       <Link href="/" data-cursor-hover className="flex items-center gap-3 z-50 group">
         <div className="relative w-12 h-12 transition-transform duration-500 group-hover:scale-105 rounded-full overflow-hidden border border-yellow-600/30">
           <Image src="/logo.png" alt="Editify Logo" fill className="object-cover" />
@@ -43,19 +45,22 @@ export default function Header() {
               }
             }}
             data-cursor-hover 
-            className="text-sm font-medium uppercase tracking-widest text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors cursor-pointer"
+            className="group relative text-sm font-medium uppercase tracking-widest text-zinc-600 dark:text-zinc-400 hover:text-yellow-600 dark:hover:text-yellow-400 transition-colors cursor-pointer"
           >
             Works
+            <span className="absolute -bottom-2 left-0 w-full h-[2px] bg-yellow-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
           </button>
         </Magnetic>
         <Magnetic>
-          <a href="/#pricing" data-cursor-hover className="text-sm font-medium uppercase tracking-widest text-zinc-500 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors">
+          <a href="/#pricing" data-cursor-hover className="group relative text-sm font-medium uppercase tracking-widest text-zinc-500 dark:text-zinc-400 hover:text-yellow-600 dark:hover:text-yellow-400 transition-colors">
             Pricing
+            <span className="absolute -bottom-2 left-0 w-full h-[2px] bg-yellow-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
           </a>
         </Magnetic>
         <Magnetic>
-          <Link href="/about" data-cursor-hover className="text-sm font-medium uppercase tracking-widest text-zinc-500 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors">
+          <Link href="/about" data-cursor-hover className="group relative text-sm font-medium uppercase tracking-widest text-zinc-500 dark:text-zinc-400 hover:text-yellow-600 dark:hover:text-yellow-400 transition-colors">
             About
+            <span className="absolute -bottom-2 left-0 w-full h-[2px] bg-yellow-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
           </Link>
         </Magnetic>
         <ThemeToggle />
