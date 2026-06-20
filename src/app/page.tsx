@@ -243,7 +243,7 @@ export default function Page() {
               {
                 name: "Jooonah",
                 text: "Was skeptical at first but Editify is the definition of professionalism! You get good quality work and whatever you ask for, these guys will deliver to the best of their abilities. Would recommend!",
-                img: "/joonah.jpg"
+                img: "/jona_logo.jpg"
               }
             ].map((review, i) => (
               <div key={i} className="grid-item flex flex-col justify-between p-10 rounded-[2rem] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-black hover:border-yellow-600/50 transition-colors duration-500 shadow-sm">
