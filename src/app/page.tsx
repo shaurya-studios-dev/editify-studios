@@ -135,16 +135,6 @@ export default function Page() {
         {/* Credibility / Trust Bar */}
         <div className="fade-up-hero mt-20 flex flex-wrap items-center justify-center gap-8 md:gap-16 border-t border-zinc-200 dark:border-zinc-800/50 pt-10 w-full max-w-4xl">
           <div className="flex flex-col items-center gap-2">
-            <span className="text-3xl md:text-4xl font-bold text-zinc-900 dark:text-white">100M+</span>
-            <span className="text-xs tracking-widest text-zinc-500 uppercase font-medium">Views Generated</span>
-          </div>
-          <div className="hidden md:block w-px h-12 bg-zinc-200 dark:bg-zinc-800"></div>
-          <div className="flex flex-col items-center gap-2">
-            <span className="text-3xl md:text-4xl font-bold text-zinc-900 dark:text-white">500+</span>
-            <span className="text-xs tracking-widest text-zinc-500 uppercase font-medium">Projects Delivered</span>
-          </div>
-          <div className="hidden md:block w-px h-12 bg-zinc-200 dark:bg-zinc-800"></div>
-          <div className="flex flex-col items-center gap-2">
             <div className="flex -space-x-3 mb-1">
               <Image src="/jona_logo.jpg" alt="Joonah" width={32} height={32} className="rounded-full border-2 border-zinc-50 dark:border-[#050505] object-cover w-8 h-8" />
               <Image src="https://editify.shop/logo1.jpg" alt="Client" width={32} height={32} className="rounded-full border-2 border-zinc-50 dark:border-[#050505] object-cover w-8 h-8" />
