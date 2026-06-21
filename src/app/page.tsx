@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
 import Magnetic from "@/components/Magnetic";
 import Image from "next/image";
+import TiltCard from "@/components/TiltCard";
 
 export default function Page() {
   const textRef = useRef<HTMLHeadingElement>(null);
@@ -313,38 +314,35 @@ export default function Page() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             {/* Art Category */}
-            <div className="grid-item flex flex-col gap-5 p-10 rounded-[2rem] border border-zinc-200 bg-white/50 dark:border-zinc-800/50 dark:bg-zinc-950/50 backdrop-blur-sm hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors duration-500">
-              <h3 className="text-2xl font-medium tracking-widest text-zinc-500 uppercase mb-5">Digital Art</h3>
-              
-              <div className="flex justify-between items-end border-b border-zinc-200 dark:border-zinc-800 pb-5">
-                <div className="flex flex-col">
-                  <span className="text-3xl font-bold uppercase text-zinc-900 dark:text-white">Standard</span>
-                  <span className="text-sm text-zinc-500 mt-2">Clean, high-quality bespoke artwork.</span>
+            <div className="grid-item">
+              <TiltCard className="h-full">
+                <div className="flex flex-col gap-5 p-10 h-full bg-zinc-50 dark:bg-[#09090b] relative z-10 rounded-[2rem]">
+                  <h3 className="text-2xl font-medium tracking-widest text-zinc-500 uppercase mb-5">Digital Art</h3>
+                  
+                  <div className="flex justify-between items-end border-b border-zinc-200 dark:border-zinc-800 pb-5">
+                    <div className="flex flex-col">
+                      <span className="text-3xl font-bold uppercase text-zinc-900 dark:text-white">Standard</span>
+                      <span className="text-sm text-zinc-500 mt-2">Clean, high-quality bespoke artwork.</span>
+                    </div>
+                    <span className="text-3xl font-light text-zinc-900 dark:text-white">$20</span>
+                  </div>
+                  
+                  <div className="flex justify-between items-end border-b border-zinc-200 dark:border-zinc-800 pb-5 pt-5">
+                    <div className="flex flex-col">
+                      <span className="text-3xl font-bold uppercase text-zinc-900 dark:text-white">Premium</span>
+                      <span className="text-sm text-zinc-500 mt-2">Complex compositions & unlimited revisions.</span>
+                    </div>
+                    <span className="text-3xl font-light text-zinc-900 dark:text-white">$50</span>
+                  </div>
                 </div>
-                <span className="text-3xl font-light text-zinc-900 dark:text-white">$20</span>
-              </div>
-              
-              <div className="flex justify-between items-end border-b border-zinc-200 dark:border-zinc-800 pb-5 pt-5">
-                <div className="flex flex-col">
-                  <span className="text-3xl font-bold uppercase text-zinc-900 dark:text-white">Premium</span>
-                  <span className="text-sm text-zinc-500 mt-2">Complex compositions & unlimited revisions.</span>
-                </div>
-                <span className="text-3xl font-light text-zinc-900 dark:text-white">$50</span>
-              </div>
+              </TiltCard>
             </div>
 
             {/* Video Category - Creative Most Popular */}
-            <div className="grid-item relative group md:-mt-4 md:mb-4 transition-all duration-700 hover:scale-[1.02]">
-              {/* Animated Glow Background */}
-              <div className="absolute -inset-1 bg-gradient-to-r from-yellow-600 via-amber-500 to-yellow-600 rounded-[2.5rem] blur opacity-30 group-hover:opacity-70 transition duration-1000 animate-pulse"></div>
-              
-              <div className="relative flex flex-col gap-5 p-10 rounded-[2rem] border border-yellow-600/40 bg-white/90 dark:bg-zinc-950/90 backdrop-blur-2xl h-full shadow-[0_0_40px_rgba(202,138,4,0.2)] z-10 overflow-hidden">
-                {/* Subtle internal animated gradient blobs */}
-                <div className="absolute top-0 right-0 w-64 h-64 bg-yellow-600/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 animate-spin" style={{ animationDuration: '10s' }} />
-                <div className="absolute bottom-0 left-0 w-64 h-64 bg-yellow-500/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 animate-spin" style={{ animationDuration: '15s', animationDirection: 'reverse' }} />
-
-                {/* Creative Badge */}
-                <div className="absolute -top-5 left-1/2 -translate-x-1/2 flex items-center justify-center z-20">
+            <div className="grid-item md:-mt-4 md:mb-4">
+              <TiltCard glow className="h-full w-full">
+                {/* Badge OUTSIDE the inner card so it isn't clipped */}
+                <div className="absolute -top-5 left-1/2 -translate-x-1/2 flex items-center justify-center z-30" style={{ transform: "translateZ(30px)" }}>
                   <div className="absolute w-full h-full bg-yellow-500/60 blur-md rounded-full animate-pulse"></div>
                   <div className="relative bg-gradient-to-r from-yellow-600 via-yellow-400 to-yellow-600 bg-[length:200%_auto] text-[#050505] px-8 py-2 rounded-full text-xs font-bold tracking-[0.2em] uppercase shadow-[0_10px_20px_rgba(202,138,4,0.4)] border border-yellow-300/50 flex items-center gap-3 animate-pulse" style={{ animationDuration: '3s' }}>
                     <span>★</span>
@@ -353,24 +351,30 @@ export default function Page() {
                   </div>
                 </div>
 
-                <h3 className="text-2xl font-medium tracking-widest text-zinc-500 uppercase mb-5 mt-4 relative z-20">Video Editing</h3>
-                
-                <div className="flex justify-between items-end border-b border-zinc-200 dark:border-zinc-800 pb-5 relative z-20">
-                  <div className="flex flex-col">
-                    <span className="text-3xl font-bold uppercase text-zinc-900 dark:text-white">Standard</span>
-                    <span className="text-sm text-zinc-500 mt-2">Professional cuts, color correction & sound.</span>
+                <div className="relative flex flex-col gap-5 p-10 h-full bg-white dark:bg-[#050505] shadow-[0_0_40px_rgba(202,138,4,0.15)] z-10 rounded-[2rem] border border-yellow-600/30 overflow-hidden">
+                  {/* Subtle internal animated gradient blobs */}
+                  <div className="absolute top-0 right-0 w-64 h-64 bg-yellow-600/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 animate-spin" style={{ animationDuration: '10s' }} />
+                  <div className="absolute bottom-0 left-0 w-64 h-64 bg-yellow-500/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 animate-spin" style={{ animationDuration: '15s', animationDirection: 'reverse' }} />
+
+                  <h3 className="text-2xl font-medium tracking-widest text-zinc-500 uppercase mb-5 mt-4 relative z-20">Video Editing</h3>
+                  
+                  <div className="flex justify-between items-end border-b border-zinc-200 dark:border-zinc-800 pb-5 relative z-20">
+                    <div className="flex flex-col">
+                      <span className="text-3xl font-bold uppercase text-zinc-900 dark:text-white">Standard</span>
+                      <span className="text-sm text-zinc-500 mt-2">Professional cuts, color correction & sound.</span>
+                    </div>
+                    <span className="text-4xl font-bold text-yellow-600 dark:text-yellow-500 tracking-tighter drop-shadow-[0_0_15px_rgba(202,138,4,0.4)]">$50</span>
                   </div>
-                  <span className="text-4xl font-bold text-yellow-600 dark:text-yellow-500 tracking-tighter drop-shadow-[0_0_15px_rgba(202,138,4,0.4)]">$50</span>
-                </div>
-                
-                <div className="flex justify-between items-end border-b border-zinc-200 dark:border-zinc-800 pb-5 pt-5 relative z-20">
-                  <div className="flex flex-col">
-                    <span className="text-3xl font-bold uppercase text-zinc-900 dark:text-white">Premium</span>
-                    <span className="text-sm text-zinc-500 mt-2">Advanced VFX, motion graphics & cinematic grade.</span>
+                  
+                  <div className="flex justify-between items-end border-b border-zinc-200 dark:border-zinc-800 pb-5 pt-5 relative z-20">
+                    <div className="flex flex-col">
+                      <span className="text-3xl font-bold uppercase text-zinc-900 dark:text-white">Premium</span>
+                      <span className="text-sm text-zinc-500 mt-2">Advanced VFX, motion graphics & cinematic grade.</span>
+                    </div>
+                    <span className="text-3xl font-light text-zinc-900 dark:text-white">$100</span>
                   </div>
-                  <span className="text-3xl font-light text-zinc-900 dark:text-white">$100</span>
                 </div>
-              </div>
+              </TiltCard>
             </div>
           </div>
 
