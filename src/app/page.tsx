@@ -93,7 +93,7 @@ export default function Page() {
             {"EDITIFY".split("").map((char, i) => <span key={`e-${i}`} className="char inline-block translate-y-full">{char === " " ? "\u00A0" : char}</span>)}
           </div>
           <div className="overflow-hidden py-1 md:py-2 text-transparent dark:text-transparent" style={{ WebkitTextStroke: '2px currentColor', color: 'var(--foreground)' }}>
-            {"STUDIOS.".split("").map((char, i) => <span key={`ed-${i}`} className="char inline-block translate-y-full">{char === " " ? "\u00A0" : char}</span>)}
+            {"STUDIOS".split("").map((char, i) => <span key={`ed-${i}`} className="char inline-block translate-y-full">{char === " " ? "\u00A0" : char}</span>)}
           </div>
         </h1>
 

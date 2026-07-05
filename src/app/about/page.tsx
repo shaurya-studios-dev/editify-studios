@@ -62,7 +62,7 @@ export default function About() {
           className="text-[12vw] md:text-[8vw] font-bold leading-[0.85] tracking-tighter uppercase mb-20"
         >
           <div className="overflow-hidden py-2 text-zinc-400 dark:text-zinc-600">
-            {"WE ARE".split("").map((char, i) => <span key={i} className="char inline-block translate-y-full">{char === " " ? "\\u00A0" : char}</span>)}
+            {"WE ARE".split("").map((char, i) => <span key={i} className="char inline-block translate-y-full">{char === " " ? "\u00A0" : char}</span>)}
           </div>
           <div className="overflow-hidden py-2 text-zinc-900 dark:text-white">
             {"EDITIFY.".split("").map((char, i) => <span key={i} className="char inline-block translate-y-full">{char}</span>)}

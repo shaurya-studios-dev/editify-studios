@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useRef, useState } from "react";
+import { useDeviceMode } from "./DeviceModeProvider";
 
 interface TiltCardProps {
   children: React.ReactNode;
@@ -12,9 +13,10 @@ export default function TiltCard({ children, className = "", glow = false }: Til
   const cardRef = useRef<HTMLDivElement>(null);
   const [rotation, setRotation] = useState({ x: 0, y: 0 });
   const [glare, setGlare] = useState({ x: 50, y: 50, opacity: 0 });
+  const { isPhone } = useDeviceMode();
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
+    if (!cardRef.current || isPhone) return;
     
     const rect = cardRef.current.getBoundingClientRect();
     const mouseX = e.clientX - rect.left;
@@ -43,7 +45,7 @@ export default function TiltCard({ children, className = "", glow = false }: Til
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
         className="w-full h-full transition-transform duration-200 ease-out"
-        style={{
+        style={isPhone ? {} : {
           transform: `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
           transformStyle: "preserve-3d",
         }}

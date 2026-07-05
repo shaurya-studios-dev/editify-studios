@@ -61,8 +61,11 @@ function GoldenMonolithScene() {
   );
 }
 
+import { useDeviceMode } from "./DeviceModeProvider";
+
 export default function Scene() {
   const { theme } = useTheme();
+  const { isPhone } = useDeviceMode();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -70,7 +73,7 @@ export default function Scene() {
     return () => clearTimeout(t);
   }, []);
 
-  if (!mounted) return null;
+  if (!mounted || isPhone) return null;
 
   const isDark = theme === "dark" || !theme;
 

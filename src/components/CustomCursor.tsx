@@ -2,12 +2,16 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { useDeviceMode } from "./DeviceModeProvider";
 
 export default function CustomCursor() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
+  const { isPhone } = useDeviceMode();
 
   useEffect(() => {
+    if (isPhone) return;
+
     const updateMousePosition = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
@@ -35,7 +39,9 @@ export default function CustomCursor() {
       window.removeEventListener("mousemove", updateMousePosition);
       window.removeEventListener("mouseover", handleMouseOver);
     };
-  }, []);
+  }, [isPhone]);
+
+  if (isPhone) return null;
 
   return (
     <motion.div
