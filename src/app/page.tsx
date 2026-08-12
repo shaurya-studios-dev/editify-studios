@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
@@ -129,8 +129,8 @@ export default function Page() {
           <div className="flex flex-col items-center gap-2">
             <div className="flex -space-x-3 mb-1">
               <Image src="/jona_logo.jpg" alt="Joonah" width={32} height={32} className="rounded-full border-2 border-zinc-50 dark:border-[#050505] object-cover w-8 h-8" />
-              <Image src="https://editify.shop/logo1.jpg" alt="Client" width={32} height={32} className="rounded-full border-2 border-zinc-50 dark:border-[#050505] object-cover w-8 h-8" />
-              <Image src="https://editify.shop/logo2.jpg" alt="Client" width={32} height={32} className="rounded-full border-2 border-zinc-50 dark:border-[#050505] object-cover w-8 h-8" />
+              <Image src="/logo1.jpg" alt="Client" width={32} height={32} className="rounded-full border-2 border-zinc-50 dark:border-[#050505] object-cover w-8 h-8" />
+              <Image src="/logo2.jpg" alt="Client" width={32} height={32} className="rounded-full border-2 border-zinc-50 dark:border-[#050505] object-cover w-8 h-8" />
               <div className="w-8 h-8 rounded-full border-2 border-zinc-50 dark:border-[#050505] bg-zinc-200 dark:bg-zinc-800 flex items-center justify-center text-[10px] font-bold text-zinc-500 z-10 relative">+</div>
             </div>
             <span className="text-xs tracking-widest text-zinc-500 uppercase font-medium">Trusted by Creators</span>
@@ -149,15 +149,15 @@ export default function Page() {
           <h3 className="grid-item text-2xl font-medium tracking-widest text-zinc-500 uppercase mb-8">Video Editing</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-20">
             {[
-              "https://editify.shop/varts.mp4",
-              "https://editify.shop/varts1.mp4",
-              "https://editify.shop/varts2.mp4",
-              "https://editify.shop/varts3.mp4",
-              "https://editify.shop/varts4.mp4",
-              "https://editify.shop/parts.mp4"
+              "/varts.mp4",
+              "/varts1.mp4",
+              "/varts2.mp4",
+              "/varts3.mp4",
+              "/varts4.mp4",
+              "/parts.mp4"
             ].map((videoSrc, i) => (
               <div key={i} className="grid-item group relative aspect-[4/5] bg-zinc-200 dark:bg-zinc-900 rounded-[2rem] overflow-hidden border border-zinc-300 dark:border-zinc-800 hover:border-yellow-600/50 transition-colors duration-500">
-                <video src={videoSrc} controls muted className="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)]" />
+                <video src={videoSrc} autoPlay loop muted playsInline className="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)]" />
               </div>
             ))}
           </div>
@@ -173,12 +173,12 @@ export default function Page() {
             {/* Row 1 - Moving Left */}
             <div className="flex w-max animate-[marquee_40s_linear_infinite] hover:[animation-play-state:paused] gap-5">
               {[
-                "https://editify.shop/arts1.jpg", "https://editify.shop/arts2.jpg", "https://editify.shop/arts3.jpg",
-                "https://editify.shop/arts4.jpg", "https://editify.shop/arts5.jpg", "https://editify.shop/arts7.jpg",
-                "https://editify.shop/arts8.jpg", "https://editify.shop/arts9.jpg", "https://editify.shop/garts1.jpg",
-                "https://editify.shop/garts2.jpg", "https://editify.shop/garts3.jpg", "https://editify.shop/garts4.jpg",
-                "https://editify.shop/garts5.jpg", "https://editify.shop/garts6.jpg", "https://editify.shop/garts7.jpg",
-                "https://editify.shop/garts8.jpg", "https://editify.shop/garts9.jpg", "https://editify.shop/garts10.jpg"
+                "/arts1.jpg", "/arts2.jpg", "/arts3.jpg",
+                "/arts4.jpg", "/arts5.jpg", "/arts7.jpg",
+                "/arts8.jpg", "/arts9.jpg", "/garts1.jpg",
+                "/garts2.jpg", "/garts3.jpg", "/garts4.jpg",
+                "/garts5.jpg", "/garts6.jpg", "/garts7.jpg",
+                "/garts8.jpg", "/garts9.jpg", "/garts10.jpg"
               ].map((imgSrc, i) => (
                 <div key={`r1-${i}`} className="relative w-[300px] md:w-[400px] aspect-video rounded-3xl overflow-hidden group cursor-pointer border border-zinc-200 dark:border-zinc-800 flex-shrink-0">
                   <div className="absolute inset-0 bg-black/50 group-hover:bg-black/0 transition-colors duration-500 z-10" />
@@ -187,12 +187,12 @@ export default function Page() {
               ))}
               {/* Duplicate for seamless infinite scroll */}
               {[
-                "https://editify.shop/arts1.jpg", "https://editify.shop/arts2.jpg", "https://editify.shop/arts3.jpg",
-                "https://editify.shop/arts4.jpg", "https://editify.shop/arts5.jpg", "https://editify.shop/arts7.jpg",
-                "https://editify.shop/arts8.jpg", "https://editify.shop/arts9.jpg", "https://editify.shop/garts1.jpg",
-                "https://editify.shop/garts2.jpg", "https://editify.shop/garts3.jpg", "https://editify.shop/garts4.jpg",
-                "https://editify.shop/garts5.jpg", "https://editify.shop/garts6.jpg", "https://editify.shop/garts7.jpg",
-                "https://editify.shop/garts8.jpg", "https://editify.shop/garts9.jpg", "https://editify.shop/garts10.jpg"
+                "/arts1.jpg", "/arts2.jpg", "/arts3.jpg",
+                "/arts4.jpg", "/arts5.jpg", "/arts7.jpg",
+                "/arts8.jpg", "/arts9.jpg", "/garts1.jpg",
+                "/garts2.jpg", "/garts3.jpg", "/garts4.jpg",
+                "/garts5.jpg", "/garts6.jpg", "/garts7.jpg",
+                "/garts8.jpg", "/garts9.jpg", "/garts10.jpg"
               ].map((imgSrc, i) => (
                 <div key={`r1-dup-${i}`} className="relative w-[300px] md:w-[400px] aspect-video rounded-3xl overflow-hidden group cursor-pointer border border-zinc-200 dark:border-zinc-800 flex-shrink-0">
                   <div className="absolute inset-0 bg-black/50 group-hover:bg-black/0 transition-colors duration-500 z-10" />
@@ -204,12 +204,12 @@ export default function Page() {
             {/* Row 2 - Moving Right */}
             <div className="flex w-max animate-[marqueeReverse_45s_linear_infinite] hover:[animation-play-state:paused] gap-5 -ml-[500px]">
               {[
-                "https://editify.shop/garts11.jpg", "https://editify.shop/garts12.jpg", "https://editify.shop/garts13.jpg",
-                "https://editify.shop/garts14.jpg", "https://editify.shop/garts15.jpg", "https://editify.shop/garts16.jpg",
-                "https://editify.shop/varts1.jpg", "https://editify.shop/varts2.jpg", "https://editify.shop/sgarts1.jpg",
-                "https://editify.shop/sgarts2.jpg", "https://editify.shop/sgarts3.jpg", "https://editify.shop/sgarts4.jpg",
-                "https://editify.shop/sgarts5.jpg", "https://editify.shop/sgarts6.jpg", "https://editify.shop/siarts1.jpg",
-                "https://editify.shop/siarts2.jpg", "https://editify.shop/siarts3.jpg", "https://editify.shop/siarts4.jpg"
+                "/garts11.jpg", "/garts12.jpg", "/garts13.jpg",
+                "/garts14.jpg", "/garts15.jpg", "/garts16.jpg",
+                "/varts1.jpg", "/varts2.jpg", "/sgarts1.jpg",
+                "/sgarts2.jpg", "/sgarts3.jpg", "/sgarts4.jpg",
+                "/sgarts5.jpg", "/sgarts6.jpg", "/siarts1.jpg",
+                "/siarts2.jpg", "/siarts3.jpg", "/siarts4.jpg"
               ].map((imgSrc, i) => (
                 <div key={`r2-${i}`} className="relative w-[300px] md:w-[400px] aspect-square rounded-[2.5rem] overflow-hidden group cursor-pointer border border-zinc-200 dark:border-zinc-800 flex-shrink-0">
                   <div className="absolute inset-0 bg-yellow-600/20 mix-blend-overlay group-hover:opacity-0 transition-opacity duration-500 z-10" />
@@ -218,12 +218,12 @@ export default function Page() {
               ))}
               {/* Duplicate for seamless infinite scroll */}
               {[
-                "https://editify.shop/garts11.jpg", "https://editify.shop/garts12.jpg", "https://editify.shop/garts13.jpg",
-                "https://editify.shop/garts14.jpg", "https://editify.shop/garts15.jpg", "https://editify.shop/garts16.jpg",
-                "https://editify.shop/varts1.jpg", "https://editify.shop/varts2.jpg", "https://editify.shop/sgarts1.jpg",
-                "https://editify.shop/sgarts2.jpg", "https://editify.shop/sgarts3.jpg", "https://editify.shop/sgarts4.jpg",
-                "https://editify.shop/sgarts5.jpg", "https://editify.shop/sgarts6.jpg", "https://editify.shop/siarts1.jpg",
-                "https://editify.shop/siarts2.jpg", "https://editify.shop/siarts3.jpg", "https://editify.shop/siarts4.jpg"
+                "/garts11.jpg", "/garts12.jpg", "/garts13.jpg",
+                "/garts14.jpg", "/garts15.jpg", "/garts16.jpg",
+                "/varts1.jpg", "/varts2.jpg", "/sgarts1.jpg",
+                "/sgarts2.jpg", "/sgarts3.jpg", "/sgarts4.jpg",
+                "/sgarts5.jpg", "/sgarts6.jpg", "/siarts1.jpg",
+                "/siarts2.jpg", "/siarts3.jpg", "/siarts4.jpg"
               ].map((imgSrc, i) => (
                 <div key={`r2-dup-${i}`} className="relative w-[300px] md:w-[400px] aspect-square rounded-[2.5rem] overflow-hidden group cursor-pointer border border-zinc-200 dark:border-zinc-800 flex-shrink-0">
                   <div className="absolute inset-0 bg-yellow-600/20 mix-blend-overlay group-hover:opacity-0 transition-opacity duration-500 z-10" />
@@ -258,23 +258,23 @@ export default function Page() {
             {[
               {
                 name: "JxckeMC, ChampionsMC",
-                text: "Absolutely amazing work! My videos came out perfect and the delivery was fast. Editing service “Editify” was one of the finest teams I have worked with. Their assistance was instrumental in expanding my Discord server to 2.5k members. Their pricing was fair, and the quality was amazing!",
-                img: "https://editify.shop/logo2.jpg"
+                text: "Absolutely amazing work! My videos came out perfect and the delivery was fast. Editing service â€œEditifyâ€ was one of the finest teams I have worked with. Their assistance was instrumental in expanding my Discord server to 2.5k members. Their pricing was fair, and the quality was amazing!",
+                img: "/logo2.jpg"
               },
               {
                 name: "Bloomsart.tcr",
-                text: "We run a bouquet service and wanted a nice little video to show what we do. Editify really helped us bring it to life. The way they edited the clips, added smooth transitions, and matched the music — it just felt right. They were easy to talk to, understood what we needed, and made sure everything looked beautiful.",
-                img: "https://editify.shop/blogo.jpg"
+                text: "We run a bouquet service and wanted a nice little video to show what we do. Editify really helped us bring it to life. The way they edited the clips, added smooth transitions, and matched the music â€” it just felt right. They were easy to talk to, understood what we needed, and made sure everything looked beautiful.",
+                img: "/blogo.jpg"
               },
               {
                 name: "Owner C24L, Aspire SMP",
                 text: "As the founder of aspire smp, Editify helped us a lot in our journey and helped us gain a lot of members, One of the videos they made got around 130k views and helped us to gain around 5k members. I'd definitely recommend it for the upcoming new servers...",
-                img: "https://editify.shop/logo1.jpg"
+                img: "/logo1.jpg"
               },
               {
                 name: "Abha Abhilash, Devamatha's MUN",
-                text: "Huge shoutout to Editify for putting together our Devmun trailer so brilliantly! Super dedicated, always open to feedback, and somehow made every tiny edit we asked for without a fuss. It was very easy to work with you—thank you for bringing our vision to life!",
-                img: "https://editify.shop/logo1.png"
+                text: "Huge shoutout to Editify for putting together our Devmun trailer so brilliantly! Super dedicated, always open to feedback, and somehow made every tiny edit we asked for without a fuss. It was very easy to work with youâ€”thank you for bringing our vision to life!",
+                img: "/logo1.png"
               },
               {
                 name: "Jooonah",
@@ -284,7 +284,7 @@ export default function Page() {
             ].map((review, i) => (
               <div key={i} className="grid-item flex flex-col justify-between p-10 rounded-[2rem] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-black hover:border-yellow-600/50 transition-colors duration-500 shadow-sm">
                 <div>
-                  <div className="text-yellow-500 text-xl tracking-widest mb-6">★★★★★</div>
+                  <div className="text-yellow-500 text-xl tracking-widest mb-6">â˜…â˜…â˜…â˜…â˜…</div>
                   <p className="text-zinc-600 dark:text-zinc-300 font-medium leading-relaxed mb-8">
                     &quot;{review.text}&quot;
                   </p>
@@ -345,9 +345,9 @@ export default function Page() {
                 <div className="absolute -top-5 left-1/2 -translate-x-1/2 flex items-center justify-center z-30" style={{ transform: "translateZ(30px)" }}>
                   <div className="absolute w-full h-full bg-yellow-500/60 blur-md rounded-full animate-pulse"></div>
                   <div className="relative bg-gradient-to-r from-yellow-600 via-yellow-400 to-yellow-600 bg-[length:200%_auto] text-[#050505] px-8 py-2 rounded-full text-xs font-bold tracking-[0.2em] uppercase shadow-[0_10px_20px_rgba(202,138,4,0.4)] border border-yellow-300/50 flex items-center gap-3 animate-pulse" style={{ animationDuration: '3s' }}>
-                    <span>★</span>
+                    <span>â˜…</span>
                     Most Popular
-                    <span>★</span>
+                    <span>â˜…</span>
                   </div>
                 </div>
 
@@ -390,7 +390,7 @@ export default function Page() {
       <footer className="w-full px-10 py-20 border-t border-zinc-200 dark:border-zinc-900 flex flex-col md:flex-row justify-between items-start md:items-center gap-10 text-zinc-500 uppercase tracking-widest text-xs z-10 relative bg-zinc-50 dark:bg-[#050505]">
         <div>
           <span className="text-zinc-900 dark:text-white font-bold block mb-2 text-lg">EDITIFY STUDIOS</span>
-          © 2026 All Rights Reserved
+          Â© 2026 All Rights Reserved
         </div>
         <div className="flex flex-col md:flex-row gap-5 md:gap-10">
           <Link data-cursor-hover href="/privacy" className="hover:text-zinc-900 dark:hover:text-white transition-colors">Privacy Policy</Link>
@@ -402,3 +402,4 @@ export default function Page() {
     </main>
   );
 }
+
