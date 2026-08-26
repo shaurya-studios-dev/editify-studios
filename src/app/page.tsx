@@ -157,7 +157,7 @@ export default function Page() {
               "/parts.mp4"
             ].map((videoSrc, i) => (
               <div key={i} className="grid-item group relative aspect-[4/5] bg-zinc-200 dark:bg-zinc-900 rounded-[2rem] overflow-hidden border border-zinc-300 dark:border-zinc-800 hover:border-yellow-600/50 transition-colors duration-500">
-                <video src={videoSrc} autoPlay loop muted playsInline className="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)]" />
+                <video src={videoSrc} controls preload="auto" loop muted playsInline className="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)]" />
               </div>
             ))}
           </div>
@@ -182,7 +182,7 @@ export default function Page() {
               ].map((imgSrc, i) => (
                 <div key={`r1-${i}`} className="relative w-[300px] md:w-[400px] aspect-video rounded-3xl overflow-hidden group cursor-pointer border border-zinc-200 dark:border-zinc-800 flex-shrink-0">
                   <div className="absolute inset-0 bg-black/50 group-hover:bg-black/0 transition-colors duration-500 z-10" />
-                  <Image src={imgSrc} alt="Art" fill sizes="(max-width: 768px) 300px, 400px" className="object-cover group-hover:scale-110 transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]" />
+                  <Image src={imgSrc} alt="Art" fill priority sizes="(max-width: 768px) 300px, 400px" className="object-cover group-hover:scale-110 transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]" />
                 </div>
               ))}
               {/* Duplicate for seamless infinite scroll */}
@@ -196,7 +196,7 @@ export default function Page() {
               ].map((imgSrc, i) => (
                 <div key={`r1-dup-${i}`} className="relative w-[300px] md:w-[400px] aspect-video rounded-3xl overflow-hidden group cursor-pointer border border-zinc-200 dark:border-zinc-800 flex-shrink-0">
                   <div className="absolute inset-0 bg-black/50 group-hover:bg-black/0 transition-colors duration-500 z-10" />
-                  <Image src={imgSrc} alt="Art" fill sizes="(max-width: 768px) 300px, 400px" className="object-cover group-hover:scale-110 transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]" />
+                  <Image src={imgSrc} alt="Art" fill priority sizes="(max-width: 768px) 300px, 400px" className="object-cover group-hover:scale-110 transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]" />
                 </div>
               ))}
             </div>
@@ -213,7 +213,7 @@ export default function Page() {
               ].map((imgSrc, i) => (
                 <div key={`r2-${i}`} className="relative w-[300px] md:w-[400px] aspect-square rounded-[2.5rem] overflow-hidden group cursor-pointer border border-zinc-200 dark:border-zinc-800 flex-shrink-0">
                   <div className="absolute inset-0 bg-yellow-600/20 mix-blend-overlay group-hover:opacity-0 transition-opacity duration-500 z-10" />
-                  <Image src={imgSrc} alt="Art" fill sizes="(max-width: 768px) 300px, 400px" className="object-cover group-hover:scale-110 transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] grayscale group-hover:grayscale-0" />
+                  <Image src={imgSrc} alt="Art" fill priority sizes="(max-width: 768px) 300px, 400px" className="object-cover group-hover:scale-110 transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] grayscale group-hover:grayscale-0" />
                 </div>
               ))}
               {/* Duplicate for seamless infinite scroll */}
@@ -227,7 +227,7 @@ export default function Page() {
               ].map((imgSrc, i) => (
                 <div key={`r2-dup-${i}`} className="relative w-[300px] md:w-[400px] aspect-square rounded-[2.5rem] overflow-hidden group cursor-pointer border border-zinc-200 dark:border-zinc-800 flex-shrink-0">
                   <div className="absolute inset-0 bg-yellow-600/20 mix-blend-overlay group-hover:opacity-0 transition-opacity duration-500 z-10" />
-                  <Image src={imgSrc} alt="Art" fill sizes="(max-width: 768px) 300px, 400px" className="object-cover group-hover:scale-110 transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] grayscale group-hover:grayscale-0" />
+                  <Image src={imgSrc} alt="Art" fill priority sizes="(max-width: 768px) 300px, 400px" className="object-cover group-hover:scale-110 transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] grayscale group-hover:grayscale-0" />
                 </div>
               ))}
             </div>
@@ -402,4 +402,5 @@ export default function Page() {
     </main>
   );
 }
+
 

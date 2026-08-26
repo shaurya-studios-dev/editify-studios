@@ -23,3 +23,21 @@ body {
   background: var(--background);
   color: var(--foreground);
 }
+
+/* Custom Video Controls matching color scheme (Yellow/Black) */
+video::-webkit-media-controls-panel {
+  background-color: rgba(5, 5, 5, 0.7) !important;
+  backdrop-filter: blur(8px);
+}
+video::-webkit-media-controls-play-button,
+video::-webkit-media-controls-mute-button,
+video::-webkit-media-controls-timeline,
+video::-webkit-media-controls-current-time-display,
+video::-webkit-media-controls-time-remaining-display,
+video::-webkit-media-controls-fullscreen-button {
+  filter: sepia(100%) hue-rotate(30deg) saturate(300%) brightness(120%) drop-shadow(0 0 2px rgba(202,138,4,0.5));
+}
+video::-webkit-media-controls-timeline {
+  background-color: rgba(202, 138, 4, 0.2);
+  border-radius: 10px;
+}
