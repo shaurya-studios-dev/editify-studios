@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
@@ -258,12 +258,12 @@ export default function Page() {
             {[
               {
                 name: "JxckeMC, ChampionsMC",
-                text: "Absolutely amazing work! My videos came out perfect and the delivery was fast. Editing service â€œEditifyâ€ was one of the finest teams I have worked with. Their assistance was instrumental in expanding my Discord server to 2.5k members. Their pricing was fair, and the quality was amazing!",
+                text: "Absolutely amazing work! My videos came out perfect and the delivery was fast. Editing service “Editify” was one of the finest teams I have worked with. Their assistance was instrumental in expanding my Discord server to 2.5k members. Their pricing was fair, and the quality was amazing!",
                 img: "/logo2.jpg"
               },
               {
                 name: "Bloomsart.tcr",
-                text: "We run a bouquet service and wanted a nice little video to show what we do. Editify really helped us bring it to life. The way they edited the clips, added smooth transitions, and matched the music â€” it just felt right. They were easy to talk to, understood what we needed, and made sure everything looked beautiful.",
+                text: "We run a bouquet service and wanted a nice little video to show what we do. Editify really helped us bring it to life. The way they edited the clips, added smooth transitions, and matched the music — it just felt right. They were easy to talk to, understood what we needed, and made sure everything looked beautiful.",
                 img: "/blogo.jpg"
               },
               {
@@ -273,7 +273,7 @@ export default function Page() {
               },
               {
                 name: "Abha Abhilash, Devamatha's MUN",
-                text: "Huge shoutout to Editify for putting together our Devmun trailer so brilliantly! Super dedicated, always open to feedback, and somehow made every tiny edit we asked for without a fuss. It was very easy to work with youâ€”thank you for bringing our vision to life!",
+                text: "Huge shoutout to Editify for putting together our Devmun trailer so brilliantly! Super dedicated, always open to feedback, and somehow made every tiny edit we asked for without a fuss. It was very easy to work with you—thank you for bringing our vision to life!",
                 img: "/logo1.png"
               },
               {
@@ -284,7 +284,7 @@ export default function Page() {
             ].map((review, i) => (
               <div key={i} className="grid-item flex flex-col justify-between p-10 rounded-[2rem] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-black hover:border-yellow-600/50 transition-colors duration-500 shadow-sm">
                 <div>
-                  <div className="text-yellow-500 text-xl tracking-widest mb-6">â˜…â˜…â˜…â˜…â˜…</div>
+                  <div className="text-yellow-500 text-xl tracking-widest mb-6">★★★★★</div>
                   <p className="text-zinc-600 dark:text-zinc-300 font-medium leading-relaxed mb-8">
                     &quot;{review.text}&quot;
                   </p>
