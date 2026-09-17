@@ -65,6 +65,17 @@ export default function Page() {
       );
     });
 
+    gsap.to(".marquee-parallax", {
+      scrollTrigger: {
+        trigger: ".marquee-parallax",
+        start: "top bottom",
+        end: "bottom top",
+        scrub: 1,
+      },
+      y: -100,
+      ease: "none",
+    });
+
     return () => {
       ScrollTrigger.getAll().forEach(t => t.kill());
     };
@@ -165,7 +176,7 @@ export default function Page() {
           <h3 className="grid-item text-2xl font-medium tracking-widest text-zinc-500 uppercase mb-8 mt-32">Digital Art & Thumbnails</h3>
           
           {/* Crazy Infinite Marquee Showcasing */}
-          <div className="relative w-full overflow-hidden flex flex-col gap-5 py-10 -mx-5 md:-mx-10 px-5 md:px-10">
+          <div className="relative w-full overflow-hidden flex flex-col gap-5 py-10 -mx-5 md:-mx-10 px-5 md:px-10 marquee-parallax">
             {/* Gradient Fades for Marquee */}
             <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white dark:from-black to-transparent z-20 pointer-events-none" />
             <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white dark:from-black to-transparent z-20 pointer-events-none" />

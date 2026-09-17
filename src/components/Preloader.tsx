@@ -8,7 +8,6 @@ export default function Preloader() {
   const [hidden, setHidden] = useState(false);
 
   useEffect(() => {
-    // Disable scrolling while loading
     document.body.style.overflow = "hidden";
 
     const interval = setInterval(() => {
@@ -17,16 +16,14 @@ export default function Preloader() {
         if (next >= 100) {
           clearInterval(interval);
           
-          // Trigger slide up animation
           setTimeout(() => {
             setSlideUp(true);
             document.body.style.overflow = "auto";
           }, 400);
 
-          // Unmount after animation completes
           setTimeout(() => {
             setHidden(true);
-          }, 1400); // 400 + 1000ms animation duration
+          }, 1400); 
 
           return 100;
         }
@@ -49,26 +46,33 @@ export default function Preloader() {
   };
 
   return (
-    <div 
-      className={`fixed inset-0 z-[100000] bg-white dark:bg-[#050505] flex flex-col items-center justify-center transition-transform duration-1000 ease-[cubic-bezier(0.7,0,0.3,1)] ${slideUp ? "-translate-y-full" : "translate-y-0"}`}
-    >
-      <div className="flex flex-col items-center gap-10 overflow-hidden">
-        <h1 className="text-black dark:text-white text-4xl md:text-6xl font-bold tracking-[0.3em] uppercase relative">
-          <span className="opacity-10 text-black dark:text-white">Editify</span>
-          <div 
-            className="absolute top-0 left-0 text-yellow-600 dark:text-yellow-500 overflow-hidden whitespace-nowrap transition-[width] duration-[150ms] ease-linear"
-            style={{ width: `${percent}%` }}
-          >
-            Editify
-          </div>
-        </h1>
-        
-        <div className="flex flex-col items-center gap-2">
-          <div className="text-zinc-400 dark:text-zinc-500 text-xs tracking-[0.2em] font-mono uppercase h-4">
-            {getLoadingTerm(percent)}
-          </div>
-          <div className="text-zinc-500 dark:text-zinc-600 text-xs tracking-widest font-mono font-light">
-            {Math.min(percent, 100)}%
+    <div className="fixed inset-0 z-[100000] pointer-events-none flex">
+      {/* Left Curtain */}
+      <div className={`w-1/2 h-full bg-white dark:bg-[#050505] transition-transform duration-1000 ease-[cubic-bezier(0.7,0,0.3,1)] ${slideUp ? "-translate-x-full" : "translate-x-0"}`} />
+      
+      {/* Right Curtain */}
+      <div className={`w-1/2 h-full bg-white dark:bg-[#050505] transition-transform duration-1000 ease-[cubic-bezier(0.7,0,0.3,1)] ${slideUp ? "translate-x-full" : "translate-x-0"}`} />
+
+      {/* Content */}
+      <div className={`absolute inset-0 flex flex-col items-center justify-center transition-opacity duration-500 ${slideUp ? "opacity-0" : "opacity-100"}`}>
+        <div className="flex flex-col items-center gap-10 overflow-hidden">
+          <h1 className="text-black dark:text-white text-4xl md:text-6xl font-bold tracking-[0.3em] uppercase relative">
+            <span className="opacity-10 text-black dark:text-white">Editify</span>
+            <div 
+              className="absolute top-0 left-0 text-yellow-600 dark:text-yellow-500 overflow-hidden whitespace-nowrap transition-[width] duration-[150ms] ease-linear"
+              style={{ width: `${percent}%` }}
+            >
+              Editify
+            </div>
+          </h1>
+          
+          <div className="flex flex-col items-center gap-2">
+            <div className="text-zinc-400 dark:text-zinc-500 text-xs tracking-[0.2em] font-mono uppercase h-4">
+              {getLoadingTerm(percent)}
+            </div>
+            <div className="text-zinc-500 dark:text-zinc-600 text-xs tracking-widest font-mono font-light">
+              {Math.min(percent, 100)}%
+            </div>
           </div>
         </div>
       </div>

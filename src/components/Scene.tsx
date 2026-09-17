@@ -62,6 +62,7 @@ function GoldenMonolithScene() {
 }
 
 import { useDeviceMode } from "./DeviceModeProvider";
+import { EffectComposer, Bloom } from "@react-three/postprocessing";
 
 export default function Scene() {
   const { theme } = useTheme();
@@ -85,6 +86,9 @@ export default function Scene() {
         <directionalLight position={[-10, -20, -10]} intensity={0.5} color="#ca8a04" />
         <GoldenMonolithScene />
         <Environment preset="city" />
+        <EffectComposer disableNormalPass>
+          <Bloom luminanceThreshold={0.2} luminanceSmoothing={0.9} height={300} opacity={1.5} />
+        </EffectComposer>
       </Canvas>
     </div>
   );
