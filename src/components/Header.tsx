@@ -78,6 +78,12 @@ export default function Header() {
               <span className="absolute -bottom-2 left-0 w-full h-[2px] bg-yellow-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
             </Link>
           </Magnetic>
+          <Magnetic>
+            <Link href="/shaurya-studios" data-cursor-hover className="group relative text-xs font-bold uppercase tracking-widest text-teal-600 dark:text-teal-400 hover:text-teal-500 transition-colors bg-teal-500/10 px-4 py-2 rounded-full border border-teal-500/30 ml-4 flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-teal-500 animate-pulse"></span>
+              Shaurya Studios
+            </Link>
+          </Magnetic>
         </nav>
         
         {/* Device Mode Toggle */}
