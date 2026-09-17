@@ -390,7 +390,7 @@ export default function Page() {
       <footer className="w-full px-10 py-20 border-t border-zinc-200 dark:border-zinc-900 flex flex-col md:flex-row justify-between items-start md:items-center gap-10 text-zinc-500 uppercase tracking-widest text-xs z-10 relative bg-zinc-50 dark:bg-[#050505]">
         <div>
           <span className="text-zinc-900 dark:text-white font-bold block mb-2 text-lg">EDITIFY STUDIOS</span>
-          Â© 2026 All Rights Reserved
+          &copy; 2026 All Rights Reserved
         </div>
         <div className="flex flex-col md:flex-row gap-5 md:gap-10">
           <Link data-cursor-hover href="/privacy" className="hover:text-zinc-900 dark:hover:text-white transition-colors">Privacy Policy</Link>
