@@ -345,9 +345,9 @@ export default function Page() {
                 <div className="absolute -top-5 left-1/2 -translate-x-1/2 flex items-center justify-center z-30" style={{ transform: "translateZ(30px)" }}>
                   <div className="absolute w-full h-full bg-yellow-500/60 blur-md rounded-full animate-pulse"></div>
                   <div className="relative bg-gradient-to-r from-yellow-600 via-yellow-400 to-yellow-600 bg-[length:200%_auto] text-[#050505] px-8 py-2 rounded-full text-xs font-bold tracking-[0.2em] uppercase shadow-[0_10px_20px_rgba(202,138,4,0.4)] border border-yellow-300/50 flex items-center gap-3 animate-pulse" style={{ animationDuration: '3s' }}>
-                    <span>â˜…</span>
+                    <span>★</span>
                     Most Popular
-                    <span>â˜…</span>
+                    <span>★</span>
                   </div>
                 </div>
 
